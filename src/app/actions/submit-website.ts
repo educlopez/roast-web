@@ -57,7 +57,7 @@ export async function submitWebsite(formData: FormData) {
     // Send email notification
     await resend.emails.send({
       from: "Roasted <onboarding@resend.dev>",
-      to: "contacto@educalvolopez.com",
+      to: "educlopez93@gmail.com",
       subject: "Nueva Solicitud de Diseño",
       text: `
         Nueva solicitud de diseño:
