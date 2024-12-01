@@ -6,10 +6,10 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Send } from "lucide-react";
-import { sendEmail } from "@/app/actions/send-email";
+import { submitWebsite } from "@/app/actions/submit-website";
 import { useToast } from "@/hooks/use-toast";
 
-export default function SubmitForm() {
+export function SubmitForm() {
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
 
@@ -18,20 +18,22 @@ export default function SubmitForm() {
     setLoading(true);
 
     const formData = new FormData(e.currentTarget);
-    const result = await sendEmail(formData);
+    const result = await submitWebsite(formData);
 
     setLoading(false);
 
     if (result.success) {
       toast({
         title: "¡Enviado con éxito!",
-        description: "Nos pondremos en contacto contigo pronto.",
+        description: "Revisaremos tu sitio web pronto.",
       });
-      e.currentTarget.reset();
+      // e.currentTarget.reset();
     } else {
       toast({
         title: "Error",
-        description: result.error || "Hubo un error al enviar el formulario.",
+        description:
+          result.error ||
+          "Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo.",
         variant: "destructive",
       });
     }

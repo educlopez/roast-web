@@ -23,7 +23,8 @@
     "react-dom": "19.0.0-rc-66855b96-20241106",
     "resend": "^2.0.0",
     "tailwind-merge": "^2.5.5",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "@supabase/supabase-js": "^2.39.0"
   },
   "devDependencies": {
     "@types/node": "^20",

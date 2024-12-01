@@ -8,7 +8,7 @@ import Link from "next/link";
 import { HorizontalScroll } from "@/components/horizontal-scroll";
 import { FloatingCards } from "@/components/floating-cards";
 import { PricingCard } from "@/components/pricing-card";
-import SubmitForm from "@/components/submit-form";
+import { SubmitForm } from "@/components/submit-form";
 
 export default function Page() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -50,13 +50,13 @@ export default function Page() {
             style={{ opacity, scale }}
           >
             <h1 className="text-7xl md:text-8xl font-bold tracking-tight mb-6">
-              Roast de tu
+              Obtén tu diseño
               <br />
-              <span className="text-neutral-400">Portfolio</span>
+              <span className="text-neutral-400">tostado.</span>
             </h1>
             <p className="text-xl text-neutral-600 mb-8 max-w-2xl mx-auto">
-              Roast y rediseño de tu sección principal, dándote formas prácticas
-              de mejorar las conversiones a través del diseño.
+              Tostamos, rediseñamos y reimaginamos tu sección principal, dándote
+              formas prácticas de mejorar las conversiones a través del diseño.
             </p>
             <div className="flex flex-col md:flex-row gap-4 justify-center items-center">
               <Button
@@ -105,7 +105,7 @@ export default function Page() {
 
         <section className="py-24 bg-neutral-950 text-white">
           <div className="max-w-7xl mx-auto px-4">
-            <h2 className="text-3xl font-bold mb-12">Roast Recientes</h2>
+            <h2 className="text-3xl font-bold mb-12">Tostados Recientes</h2>
             <HorizontalScroll />
           </div>
         </section>
