@@ -31,13 +31,13 @@ export default function Page() {
             style={{ opacity, scale }}
           >
             <h1 className="text-7xl md:text-8xl font-bold tracking-tight mb-6">
-              Roast
+              Mejoro
               <br />
               <span className="text-neutral-400">tu proyecto</span>
             </h1>
             <p className="text-xl text-neutral-600 mb-8 max-w-2xl mx-auto">
-              Roast, rediseño y reimagino tu sección principal, dándote formas
-              prácticas de mejorar las conversiones a través del diseño.
+              Roast, rediseño y reimagino tu proyecto, dándote formas prácticas
+              de mejorar las conversiones a través del diseño.
             </p>
             <div className="flex flex-col gap-4 justify-center items-center">
               <Button

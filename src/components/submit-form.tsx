@@ -25,7 +25,7 @@ export function SubmitForm() {
     if (result.success) {
       toast({
         title: "¡Enviado con éxito!",
-        description: "Revisare tu sitio proyecto pronto.",
+        description: "Revisare tu proyecto pronto.",
       });
       // e.currentTarget.reset();
     } else {
