@@ -1,5 +1,5 @@
 "use client";
-
+import { CldImage } from "next-cloudinary";
 import { motion } from "framer-motion";
 import Image from "next/image";
 
@@ -18,13 +18,20 @@ export function FloatingCards() {
           ease: "easeInOut",
         }}
       >
-        <Image
-          src="/placeholder.svg?height=300&width=500"
+        <CldImage
+          width="500600"
+          height="630000"
+          src="roastportfolio/sparkbites.dev"
+          alt="image 1"
+          className="w-full h-full object-cover rounded-lg shadow-2xl"
+        />
+        {/* <Image
+          src="https://res-console.cloudinary.com/dyzxnud9z/thumbnails/v1/image/upload/v1733086908/cm9hc3Rwb3J0Zm9saW8vZWR1Y2Fsdm9sb3Blei5jb20=/drilldown"
           alt="Design mockup"
           width={500}
           height={300}
           className="w-full h-full object-cover rounded-lg shadow-2xl"
-        />
+        /> */}
       </motion.div>
 
       <motion.div
@@ -40,11 +47,18 @@ export function FloatingCards() {
           delay: 0.5,
         }}
       >
-        <Image
-          src="/placeholder.svg?height=300&width=500"
+        {/* <Image
+          src="https://res-console.cloudinary.com/dyzxnud9z/thumbnails/v1/image/upload/v1733086908/cm9hc3Rwb3J0Zm9saW8vZWR1Y2Fsdm9sb3Blei5jb20=/drilldown"
           alt="Design mockup"
           width={500}
           height={300}
+          className="w-full h-full object-cover rounded-lg shadow-2xl"
+        /> */}
+        <CldImage
+          width="500600"
+          height="630000"
+          src="roastportfolio/educalvolopez.com"
+          alt="image 1"
           className="w-full h-full object-cover rounded-lg shadow-2xl"
         />
       </motion.div>

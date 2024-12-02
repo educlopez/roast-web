@@ -5,7 +5,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Flame, ExternalLink } from "lucide-react";
 import Link from "next/link";
-import { HorizontalScroll } from "@/components/horizontal-scroll";
+// import { HorizontalScroll } from "@/components/horizontal-scroll";
 import { FloatingCards } from "@/components/floating-cards";
 import { PricingCard } from "@/components/pricing-card";
 import { SubmitForm } from "@/components/submit-form";
@@ -29,10 +29,10 @@ export default function Page() {
         </Link>
         <nav className="flex gap-6">
           <Link
-            href="#pricing"
+            href="#informacion"
             className="text-sm text-white hover:opacity-70 transition-opacity"
           >
-            Precios
+            Información
           </Link>
           <Link
             href="#submit"
@@ -50,53 +50,56 @@ export default function Page() {
             style={{ opacity, scale }}
           >
             <h1 className="text-7xl md:text-8xl font-bold tracking-tight mb-6">
-              Obtén tu diseño
+              Roast
               <br />
-              <span className="text-neutral-400">tostado.</span>
+              <span className="text-neutral-400">tu web</span>
             </h1>
             <p className="text-xl text-neutral-600 mb-8 max-w-2xl mx-auto">
-              Tostamos, rediseñamos y reimaginamos tu sección principal, dándote
-              formas prácticas de mejorar las conversiones a través del diseño.
+              Roast, rediseño y reimagino tu sección principal, dándote formas
+              prácticas de mejorar las conversiones a través del diseño.
             </p>
-            <div className="flex flex-col md:flex-row gap-4 justify-center items-center">
+            <div className="flex flex-col gap-4 justify-center items-center">
               <Button
                 asChild
                 className="h-12 px-8 bg-black text-white rounded-full hover:scale-105 transition-transform"
               >
-                <Link href="#pricing">
+                <Link href="#informacion">
                   Empezar
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
-              <div className="flex gap-4">
-                <Button
-                  asChild
-                  variant="outline"
-                  className="h-12 px-6 rounded-full hover:scale-105 transition-transform"
-                >
-                  <a
-                    href="https://smoothui.dev"
-                    target="_blank"
-                    rel="noopener noreferrer"
+              <div className="flex flex-col gap-4 mt-8 justify-center items-center">
+                <p>Inspirate y aprende</p>
+                <div className="flex gap-4">
+                  <Button
+                    asChild
+                    variant="outline"
+                    className="h-12 px-6 rounded-full hover:scale-105 transition-transform"
                   >
-                    Micro Interacciones
-                    <ExternalLink className="ml-2 h-4 w-4" />
-                  </a>
-                </Button>
-                <Button
-                  asChild
-                  variant="outline"
-                  className="h-12 px-6 rounded-full hover:scale-105 transition-transform"
-                >
-                  <a
-                    href="https://sparkbites.dev"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    <a
+                      href="https://smoothui.dev"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Micro Interacciones
+                      <ExternalLink className="ml-2 h-4 w-4" />
+                    </a>
+                  </Button>
+                  <Button
+                    asChild
+                    variant="outline"
+                    className="h-12 px-6 rounded-full hover:scale-105 transition-transform"
                   >
-                    Inspiración
-                    <ExternalLink className="ml-2 h-4 w-4" />
-                  </a>
-                </Button>
+                    <a
+                      href="https://sparkbites.dev"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Inspiración
+                      <ExternalLink className="ml-2 h-4 w-4" />
+                    </a>
+                  </Button>
+                </div>
               </div>
             </div>
           </motion.div>
@@ -105,12 +108,13 @@ export default function Page() {
 
         <section className="py-24 bg-neutral-950 text-white">
           <div className="max-w-7xl mx-auto px-4">
-            <h2 className="text-3xl font-bold mb-12">Tostados Recientes</h2>
-            <HorizontalScroll />
+            <h2 className="text-3xl font-bold mb-12">Roast Recientes</h2>
+            {/* <HorizontalScroll /> */}
+            Próximamente
           </div>
         </section>
 
-        <section id="pricing" className="py-24">
+        <section id="informacion" className="py-24">
           <div className="max-w-4xl mx-auto px-4">
             <PricingCard />
           </div>
@@ -129,9 +133,9 @@ export default function Page() {
       <footer className="py-8 px-4 border-t">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm text-neutral-600">
-            © 2024 Roasted. Todos los derechos reservados.
+            Roasted es un micro servicio de Edu Calvo López
           </p>
-          <div className="flex gap-6">
+          {/* <div className="flex gap-6">
             <Link
               href="#"
               className="text-sm text-neutral-600 hover:text-black"
@@ -144,7 +148,7 @@ export default function Page() {
             >
               Privacidad
             </Link>
-          </div>
+          </div> */}
         </div>
       </footer>
     </div>
