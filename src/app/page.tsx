@@ -31,7 +31,7 @@ export default function Page() {
             style={{ opacity, scale }}
           >
             <h1 className="text-7xl md:text-8xl font-bold tracking-tight mb-6">
-              Mejoro
+              Rediseño
               <br />
               <span className="md:text-neutral-400">tu proyecto</span>
             </h1>
