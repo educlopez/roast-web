@@ -102,14 +102,14 @@ export default function Page() {
           </div>
         </section> */}
 
-        <section id="submit" className="py-24 bg-neutral-950 text-white">
+        {/* <section id="submit" className="py-24 bg-neutral-950 text-white">
           <div className="max-w-2xl mx-auto px-4">
             <h2 className="text-3xl font-bold mb-12 text-center">
               Envía Tu Proyecto
             </h2>
             <SubmitForm />
           </div>
-        </section>
+        </section> */}
       </main>
 
       <footer className="py-8 px-4 border-t">
