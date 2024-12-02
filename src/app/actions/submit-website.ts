@@ -17,7 +17,6 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function submitWebsite(formData: FormData) {
   try {
-    const email = formData.get("email") as string;
     const url = formData.get("url") as string;
     const comments = formData.get("comments") as string;
 
@@ -39,14 +38,14 @@ export async function submitWebsite(formData: FormData) {
     if (existingSubmission) {
       return {
         success: false,
-        error: "Este sitio web ya ha sido enviado para revisión.",
+        error: "Este sitio proyecto ya ha sido enviado para revisión.",
       };
     }
 
     // Insert the new submission
     const { error: insertError } = await supabase
       .from("website_submissions")
-      .insert([{ email, url, comments, status: "pending" }])
+      .insert([{ url, comments, status: "pending" }])
       .select();
 
     if (insertError) {
@@ -61,7 +60,6 @@ export async function submitWebsite(formData: FormData) {
       subject: "Nueva Solicitud de Diseño",
       text: `
         Nueva solicitud de diseño:
-        Email: ${email}
         URL: ${url}
         Comentarios: ${comments}
       `,

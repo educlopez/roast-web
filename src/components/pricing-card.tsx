@@ -8,7 +8,7 @@ export function PricingCard() {
       <div className="max-w-xl mx-auto text-center">
         <h3 className="text-5xl font-bold mb-6">Gratis</h3>
         <p className="text-xl text-neutral-400 mb-8">
-          Obtén un rediseño de tu web
+          Obtén un rediseño de tu proyecto
         </p>
         <ul className="space-y-4 mb-8 text-left">
           <li className="flex items-center gap-3">
@@ -17,7 +17,7 @@ export function PricingCard() {
           </li>
           <li className="flex items-center gap-3">
             <span className="text-green-500">✓</span>
-            <span>Rediseñado en 2-3 días según demanda</span>
+            <span>Rediseñado en 1-3 días según demanda</span>
           </li>
           <li className="flex items-center gap-3">
             <span className="text-green-500">✓</span>
@@ -31,10 +31,11 @@ export function PricingCard() {
         </ul>
         <Button
           asChild
+          variant="outline"
           className="w-full h-12 bg-white text-black rounded-full hover:scale-105 transition-transform"
         >
           <Link href="#submit">
-            Envía Tu Diseño
+            Envía Tu Proyecto
             <ArrowRight className="ml-2 h-5 w-5" />
           </Link>
         </Button>

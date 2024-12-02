@@ -25,7 +25,7 @@ export function SubmitForm() {
     if (result.success) {
       toast({
         title: "¡Enviado con éxito!",
-        description: "Revisaremos tu sitio web pronto.",
+        description: "Revisare tu sitio proyecto pronto.",
       });
       // e.currentTarget.reset();
     } else {
@@ -42,17 +42,17 @@ export function SubmitForm() {
   return (
     <form onSubmit={onSubmit} className="space-y-6">
       <div className="space-y-2">
-        <Label htmlFor="url">URL del sitio web</Label>
+        <Label htmlFor="url">URL del proyecto</Label>
         <Input
           id="url"
           name="url"
           type="url"
-          placeholder="https://tu-sitio-web.com"
+          placeholder="https://tu-proyecto.com"
           className="h-12 bg-white/5 border-0 focus-visible:ring-1 focus-visible:ring-white"
           required
         />
       </div>
-      <div className="space-y-2">
+      {/* <div className="space-y-2">
         <Label htmlFor="email">Correo electrónico</Label>
         <Input
           id="email"
@@ -62,7 +62,7 @@ export function SubmitForm() {
           className="h-12 bg-white/5 border-0 focus-visible:ring-1 focus-visible:ring-white"
           required
         />
-      </div>
+      </div> */}
       <div className="space-y-2">
         <Label htmlFor="comments">Comentarios adicionales</Label>
         <Textarea
@@ -74,6 +74,7 @@ export function SubmitForm() {
       </div>
       <Button
         type="submit"
+        variant="outline"
         disabled={loading}
         className="w-full h-12 bg-white text-black rounded-full hover:scale-105 transition-transform disabled:opacity-50"
       >

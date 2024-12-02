@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export function FloatingCards() {
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+    <div className="absolute inset-0 overflow-hidden pointer-events-none z-0 opacity-25 md:opacity-100">
       <motion.div
         className="absolute top-1/4 -right-20 w-80 h-48 rotate-12"
         animate={{
