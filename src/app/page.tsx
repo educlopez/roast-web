@@ -9,8 +9,9 @@ import Link from "next/link";
 // import { HorizontalScroll } from "@/components/horizontal-scroll";
 import { FloatingCards } from "@/components/floating-cards";
 // import { PricingCard } from "@/components/pricing-card";
-// import { SubmitForm } from "@/components/submit-form";
+import { SubmitForm } from "@/components/submit-form";
 import { WebsiteStatus } from "@/components/website-status";
+import { useAvailableSpots } from "@/hooks/use-available-spots";
 
 export default function Page() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -21,6 +22,8 @@ export default function Page() {
 
   const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.8]);
+
+  const availableSpots = useAvailableSpots();
 
   return (
     <div ref={containerRef} className="relative bg-white">
@@ -89,27 +92,28 @@ export default function Page() {
           <FloatingCards />
         </section>
 
-        {/* <section className="py-24 bg-neutral-950 text-white">
-          <div className="max-w-7xl mx-auto px-4">
-            <h2 className="text-3xl font-bold mb-12">Roast Recientes</h2>
-            <HorizontalScroll />
-          </div>
-        </section>
-
-        <section id="informacion" className="py-24">
-          <div className="max-w-4xl mx-auto px-4">
-            <PricingCard />
-          </div>
-        </section> */}
-
-        {/* <section id="submit" className="py-24 bg-neutral-950 text-white">
-          <div className="max-w-2xl mx-auto px-4">
-            <h2 className="text-3xl font-bold mb-12 text-center">
-              Envía Tu Proyecto
-            </h2>
-            <SubmitForm />
-          </div>
-        </section> */}
+        {availableSpots > 0 ? (
+          <section id="submit" className="py-24 bg-neutral-950 text-white">
+            <div className="max-w-2xl mx-auto px-4">
+              <h2 className="text-3xl font-bold mb-12 text-center">
+                Envía Tu Proyecto
+              </h2>
+              <SubmitForm />
+            </div>
+          </section>
+        ) : (
+          <section className="py-24 bg-neutral-950 text-white">
+            <div className="max-w-2xl mx-auto px-4 text-center">
+              <h2 className="text-3xl font-bold mb-12">
+                No hay spots disponibles
+              </h2>
+              <p>
+                Actualmente no hay spots libres. Por favor, vuelve más tarde
+                para enviar tu proyecto.
+              </p>
+            </div>
+          </section>
+        )}
       </main>
 
       <footer className="py-8 px-4 border-t">
