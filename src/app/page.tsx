@@ -9,7 +9,7 @@ import Link from "next/link";
 // import { HorizontalScroll } from "@/components/horizontal-scroll";
 import { FloatingCards } from "@/components/floating-cards";
 // import { PricingCard } from "@/components/pricing-card";
-import { SubmitForm } from "@/components/submit-form";
+// import { SubmitForm } from "@/components/submit-form";
 import { WebsiteStatus } from "@/components/website-status";
 
 export default function Page() {
