@@ -15,7 +15,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.roast.educalvolopez.com"),
+  metadataBase: new URL("https://roast.educalvolopez.com"),
   title: {
     default: "Roast by Edu Calvo",
     template: "%s | Roast by Edu Calvo",
@@ -29,11 +29,11 @@ export const metadata: Metadata = {
     title: "Roast by Edu Calvo",
     description:
       "Descubre Roast by Edu Calvo: un servicio gratuito donde rediseño y mejoro proyectos web enviados por usuarios. Obtén ideas creativas, análisis detallados y un rediseño fresco para destacar online. ¡Envía tu web hoy!",
-    url: "https://www.roast.educalvolopez.com",
+    url: "https://roast.educalvolopez.com",
     siteName: "Roast by Edu Calvo",
     images: [
       {
-        url: "https://www.roast.educalvolopez.com/og.jpg",
+        url: "https://roast.educalvolopez.com/og.jpg",
         width: 1920,
         height: 1080,
       },
