@@ -23,7 +23,7 @@ export default function Page() {
   const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.8]);
 
-  const availableSpots = useAvailableSpots();
+  const { availableSpots } = useAvailableSpots();
 
   return (
     <div ref={containerRef} className="relative bg-white">
@@ -48,7 +48,7 @@ export default function Page() {
                 className="h-12 px-8 bg-black text-white rounded-full hover:scale-105 transition-transform"
                 variant="rainbow"
               >
-                <Link href="#informacion">
+                <Link href="#submit">
                   Enviar proyecto
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
@@ -102,7 +102,7 @@ export default function Page() {
             </div>
           </section>
         ) : (
-          <section className="py-24 bg-neutral-950 text-white">
+          <section id="submit" className="py-24 bg-neutral-950 text-white">
             <div className="max-w-2xl mx-auto px-4 text-center">
               <h2 className="text-3xl font-bold mb-12">
                 No hay spots disponibles
