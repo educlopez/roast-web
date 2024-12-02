@@ -68,10 +68,16 @@ export function SubmitForm() {
         <Textarea
           id="comments"
           name="comments"
-          placeholder="Cuéntanos más sobre tu proyecto..."
+          placeholder="Cuéntame más sobre tu proyecto..."
           className="min-h-[100px] bg-white/5 border-0 focus-visible:ring-1 focus-visible:ring-white"
         />
       </div>
+      <p className="text-sm text-neutral-500 mt-4">
+        *Los Roast se publicaran en x.com en la cuenta de{" "}
+        <a href="https://x.com/educalvolpz" target="_blank">
+          @educalvolpz
+        </a>
+      </p>
       <Button
         type="submit"
         variant="outline"

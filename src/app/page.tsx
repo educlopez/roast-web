@@ -33,9 +33,9 @@ export default function Page() {
             <h1 className="text-7xl md:text-8xl font-bold tracking-tight mb-6">
               Mejoro
               <br />
-              <span className="text-neutral-400">tu proyecto</span>
+              <span className="md:text-neutral-400">tu proyecto</span>
             </h1>
-            <p className="text-xl text-neutral-600 mb-8 max-w-2xl mx-auto">
+            <p className="text-xl md:text-neutral-600 mb-8 max-w-2xl mx-auto">
               Roast, rediseño y reimagino tu proyecto, dándote formas prácticas
               de mejorar las conversiones a través del diseño.
             </p>
@@ -115,7 +115,7 @@ export default function Page() {
       <footer className="py-8 px-4 border-t">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-center items-center gap-4">
           <p className="text-sm text-neutral-600">
-            Roasted es un micro servicio de{" "}
+            El Roast es un micro servicio de{" "}
             <a href="https://educalvolopez.com/" target="_blank">
               Edu Calvo López
             </a>
