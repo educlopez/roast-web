@@ -6,7 +6,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ExternalLink } from "lucide-react";
 import Link from "next/link";
-// import { HorizontalScroll } from "@/components/horizontal-scroll";
+import { HorizontalScroll } from "@/components/horizontal-scroll";
 import { FloatingCards } from "@/components/floating-cards";
 // import { PricingCard } from "@/components/pricing-card";
 import { SubmitForm } from "@/components/submit-form";
@@ -91,7 +91,18 @@ export default function Page() {
           </motion.div>
           <FloatingCards />
         </section>
+        <section className="py-24 bg-neutral-950 text-white">
+          <div className="max-w-7xl mx-auto px-4">
+            <h2 className="text-3xl font-bold mb-12">Roast Recientes</h2>
+            <HorizontalScroll />
+          </div>
+        </section>
 
+        {/* <section id="informacion" className="py-24">
+          <div className="max-w-4xl mx-auto px-4">
+            <PricingCard />
+          </div>
+        </section> */}
         {availableSpots > 0 ? (
           <section id="submit" className="py-24 bg-neutral-950 text-white">
             <div className="max-w-2xl mx-auto px-4">
