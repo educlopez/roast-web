@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import Image from "next/image";
 import { supabase } from "@/lib/supabase";
 
@@ -37,7 +37,12 @@ export function HorizontalScroll() {
       ref={containerRef}
       className="flex overflow-x-scroll snap-x snap-mandatory hide-scrollbar"
     >
-      <div className="flex">
+      <motion.div
+        className="flex"
+        drag="x"
+        dragConstraints={containerRef}
+        dragElastic={0.2}
+      >
         {designs.map((design) => (
           <motion.div
             key={design.id}
@@ -52,13 +57,14 @@ export function HorizontalScroll() {
                 width={800}
                 height={600}
                 className="rounded-lg mb-6"
+                draggable="false"
               />
               <h3 className="text-2xl font-bold mb-2">{design.title}</h3>
               <p className="text-neutral-400">{design.description}</p>
             </div>
           </motion.div>
         ))}
-      </div>
+      </motion.div>
     </div>
   );
 }

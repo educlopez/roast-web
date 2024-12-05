@@ -1,6 +1,6 @@
 "use client";
 import { CldImage } from "next-cloudinary";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 
 export function FloatingCards() {
   return (
