@@ -85,8 +85,9 @@ export function SubmitForm() {
       <Button
         type="submit"
         variant="outline"
+        size="lg"
         disabled={loading}
-        className="w-full h-12 bg-white text-black rounded-full hover:scale-105 transition-transform disabled:opacity-50"
+        className="w-full text-black hover:scale-105 transition-transform disabled:opacity-50"
       >
         {loading ? (
           "Enviando..."

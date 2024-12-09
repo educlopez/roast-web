@@ -6,7 +6,7 @@ export function BlurredSubmitForm() {
   return (
     <section id="submit" className="py-24 bg-neutral-950 text-white relative">
       <div className="p-4 absolute inset-0 backdrop-blur-sm w-full bg-black/20 z-10 flex items-center justify-center">
-        <div className="bg-white text-black p-4 rounded-md text-center">
+        <div className="box-gen text-white p-4 rounded-md text-center">
           <p className="text-lg font-bold">Spots no disponibles</p>
           <p>
             Actualmente no hay spots libres. Por favor, vuelve más tarde para
@@ -37,7 +37,8 @@ export function BlurredSubmitForm() {
           <Button
             type="submit"
             variant="outline"
-            className="w-full h-12 bg-white text-black rounded-full hover:scale-105 transition-transform disabled:opacity-50"
+            size="lg"
+            className="w-full text-black hover:scale-105 transition-transform disabled:opacity-50"
           >
             Enviar para revisión
             <Send className="ml-2 h-5 w-5" />

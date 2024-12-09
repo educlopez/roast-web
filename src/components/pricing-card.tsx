@@ -33,7 +33,8 @@ export function PricingCard() {
         <Button
           asChild
           variant="outline"
-          className="w-full h-12 bg-white text-black rounded-full hover:scale-105 transition-transform"
+          size="lg"
+          className="w-full text-black hover:scale-105 transition-transform"
         >
           <Link href={availableSpots > 0 ? "#submit" : "#galeria"}>
             {availableSpots > 0 ? (

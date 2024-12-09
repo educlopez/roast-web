@@ -101,3 +101,9 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer components {
+  .box-gen {
+    @apply border  bg-blend-luminosity outline outline-1 outline-offset-0  backdrop-blur-xl border-white/10 bg-zinc-900/20 outline-[#1a1a1a];
+  }
+}

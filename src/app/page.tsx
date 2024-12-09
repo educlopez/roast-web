@@ -46,8 +46,9 @@ export default function Page() {
             <div className="flex flex-col gap-4 justify-center items-center">
               <Button
                 asChild
-                className="h-12 px-8 bg-black text-white rounded-full hover:scale-105 transition-transform"
+                className=" bg-black text-white hover:scale-105 transition-transform"
                 variant="rainbow"
+                size="lg"
               >
                 <Link href={availableSpots > 0 ? "#submit" : "#galeria"}>
                   {availableSpots > 0 ? (
@@ -67,7 +68,8 @@ export default function Page() {
                   <Button
                     asChild
                     variant="outline"
-                    className="h-12 px-6 rounded-full hover:scale-105 transition-transform"
+                    className="hover:scale-105 transition-transform"
+                    size="lg"
                   >
                     <a
                       href="https://sparkbites.dev"
@@ -81,7 +83,8 @@ export default function Page() {
                   <Button
                     asChild
                     variant="outline"
-                    className="h-12 px-6 rounded-full hover:scale-105 transition-transform"
+                    className="hover:scale-105 transition-transform"
+                    size="lg"
                   >
                     <a
                       href="https://smoothui.dev"
