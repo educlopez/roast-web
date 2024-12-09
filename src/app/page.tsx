@@ -8,10 +8,11 @@ import { ArrowRight, ExternalLink } from "lucide-react";
 import Link from "next/link";
 import { HorizontalScroll } from "@/components/horizontal-scroll";
 import { FloatingCards } from "@/components/floating-cards";
-// import { PricingCard } from "@/components/pricing-card";
+import { PricingCard } from "@/components/pricing-card";
 import { SubmitForm } from "@/components/submit-form";
 import { WebsiteStatus } from "@/components/website-status";
 import { useAvailableSpots } from "@/hooks/use-available-spots";
+import { BlurredSubmitForm } from "@/components/blurred-submit-form";
 
 export default function Page() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -39,8 +40,8 @@ export default function Page() {
               <span className="md:text-neutral-400">tu proyecto</span>
             </h1>
             <p className="text-xl md:text-neutral-600 mb-8 max-w-2xl mx-auto">
-              Roast, rediseño y reimagino tu proyecto, dándote formas prácticas
-              de mejorar las conversiones a través del diseño.
+              Rediseño y reimagino tu proyecto, dándote formas prácticas de
+              mejorar las conversiones a través del diseño.
             </p>
             <div className="flex flex-col gap-4 justify-center items-center">
               <Button
@@ -48,9 +49,15 @@ export default function Page() {
                 className="h-12 px-8 bg-black text-white rounded-full hover:scale-105 transition-transform"
                 variant="rainbow"
               >
-                <Link href="#submit">
-                  Enviar proyecto
-                  <ArrowRight className="ml-2 h-5 w-5" />
+                <Link href={availableSpots > 0 ? "#submit" : "#galeria"}>
+                  {availableSpots > 0 ? (
+                    <>
+                      Envía Tu Proyecto
+                      <ArrowRight className="ml-2 h-5 w-5" />
+                    </>
+                  ) : (
+                    "Ver Roast Realizados"
+                  )}
                 </Link>
               </Button>
               <WebsiteStatus />
@@ -91,18 +98,18 @@ export default function Page() {
           </motion.div>
           <FloatingCards />
         </section>
-        <section className="py-24 bg-neutral-950 text-white">
+        <section id="galeria" className="py-24 bg-neutral-950 text-white">
           <div className="max-w-7xl mx-auto px-4">
             <h2 className="text-3xl font-bold mb-12">Roast Recientes</h2>
             <HorizontalScroll />
           </div>
         </section>
 
-        {/* <section id="informacion" className="py-24">
+        <section id="informacion" className="py-24">
           <div className="max-w-4xl mx-auto px-4">
             <PricingCard />
           </div>
-        </section> */}
+        </section>
         {availableSpots > 0 ? (
           <section id="submit" className="py-24 bg-neutral-950 text-white">
             <div className="max-w-2xl mx-auto px-4">
@@ -113,17 +120,7 @@ export default function Page() {
             </div>
           </section>
         ) : (
-          <section id="submit" className="py-24 bg-neutral-950 text-white">
-            <div className="max-w-2xl mx-auto px-4 text-center">
-              <h2 className="text-3xl font-bold mb-12">
-                No hay spots disponibles
-              </h2>
-              <p>
-                Actualmente no hay spots libres. Por favor, vuelve más tarde
-                para enviar tu proyecto.
-              </p>
-            </div>
-          </section>
+          <BlurredSubmitForm />
         )}
       </main>
 

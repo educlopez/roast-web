@@ -74,7 +74,11 @@ export function SubmitForm() {
       </div>
       <p className="text-sm text-neutral-500 mt-4">
         *Los Roast se publicaran en x.com en la cuenta de{" "}
-        <a href="https://x.com/educalvolpz" target="_blank">
+        <a
+          href="https://x.com/educalvolpz"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           @educalvolpz
         </a>
       </p>
