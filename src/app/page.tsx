@@ -108,11 +108,7 @@ export default function Page() {
           </div>
         </section>
 
-        <section id="informacion" className="py-24">
-          <div className="max-w-4xl mx-auto px-4">
-            <PricingCard />
-          </div>
-        </section>
+        <PricingCard />
         {availableSpots > 0 ? (
           <section id="submit" className="py-24 bg-neutral-950 text-white">
             <div className="max-w-2xl mx-auto px-4">
