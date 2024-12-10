@@ -66,7 +66,7 @@ export function HorizontalScroll() {
           className="flex overflow-x-scroll snap-x snap-mandatory hide-scrollbar"
         >
           <motion.div
-            className="flex gap-4 p-[5px]"
+            className="flex gap-4 p-[5px] cursor-grab"
             drag="x"
             dragConstraints={containerRef}
             dragElastic={0.2}
