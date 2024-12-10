@@ -1,15 +1,12 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
-import { AnimatePresence, motion } from "motion/react";
 import Image from "next/image";
 import { supabase } from "@/lib/supabase";
-import { useOnClickOutside } from "usehooks-ts";
-import {
-  ReactCompareSlider,
-  ReactCompareSliderImage,
-} from "react-compare-slider";
+import { motion } from "motion/react";
 import { Button } from "./ui/button";
+import Link from "next/link";
+import { CardLink } from "./cardLink";
 
 interface Design {
   id: number;
@@ -17,12 +14,10 @@ interface Design {
   image_url: string;
   description: string;
   before_img: string;
-  after_img: string;
+  url: string;
 }
 export function HorizontalScroll() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [activeItem, setActiveItem] = useState<Design | null>(null);
-  const ref = useRef(null);
   const [designs, setDesigns] = useState<Design[]>([]);
 
   useEffect(() => {
@@ -43,111 +38,77 @@ export function HorizontalScroll() {
     fetchDesigns();
   }, []);
 
-  useOnClickOutside(ref, () => setActiveItem(null));
-
-  useEffect(() => {
-    function onKeyDown(event: KeyboardEvent) {
-      if (event.key === "Escape") {
-        setActiveItem(null);
-      }
-    }
-
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
-  }, []);
-
   return (
-    <>
-      <AnimatePresence>
-        {activeItem ? (
+    <section id="galeria" className="py-24 bg-zinc-100 text-zinc-950">
+      <div className="max-w-7xl mx-auto px-4">
+        <div className="flex flex-row align-items-center gap-4 justify-between">
+          <h2 className="text-2xl md:text-3xl font-bold mb-12">
+            Roast Recientes
+          </h2>
+          <Button variant="outline" size="lg">
+            <Link
+              href="https://www.figma.com/design/dNuAD5d6t0DJEIASEJsTOK/Roast-Recientes-por-Edu-Calvo"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-zinc-950"
+            >
+              Ver todos
+            </Link>
+          </Button>
+        </div>
+        <p className="text-md md:text-xl text-zinc-600 mb-8">
+          Todos los roast han sido realizados con un tiempo medio de 2-3 horas.
+          El objetivo es brindar la mayor calidad en el menor tiempo posible,
+          para poder inspirar y ayudar a más proyectos.
+        </p>
+        <div
+          ref={containerRef}
+          className="flex overflow-x-scroll snap-x snap-mandatory hide-scrollbar"
+        >
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="pointer-events-none absolute inset-0 z-20 bg-black/50 bg-blend-luminosity backdrop-blur-xl dark:bg-zinc-900/70"
-          />
-        ) : null}
-      </AnimatePresence>
-      <AnimatePresence>
-        {activeItem ? (
-          <>
-            <div className="group fixed inset-0 z-30 grid place-items-center">
+            className="flex gap-4 p-[5px]"
+            drag="x"
+            dragConstraints={containerRef}
+            dragElastic={0.2}
+          >
+            {designs.map((design) => (
               <motion.div
-                className="shadow-sm box-gen flex h-fit cursor-pointer flex-col items-start gap-4 overflow-hidden p-4 w-full md:w-2/3"
-                ref={ref}
-                layoutId={`workItem-${activeItem.title}`}
-                style={{ borderRadius: 12 }}
+                key={design.id}
+                className="min-w-[300px] md:min-w-[800px] md:max-h-[444px] snap-center transition-all shadow-neutral-soft rounded-md overflow-hidden"
+                whileHover={{ scale: 0.98 }}
+                transition={{ duration: 0.3 }}
               >
-                <div className="flex w-full items-center gap-4">
-                  <motion.div layoutId={`workItemImage-${activeItem.title}`}>
-                    <ReactCompareSlider
-                      className="rounded-xl"
-                      itemOne={
-                        <ReactCompareSliderImage
-                          src={activeItem.before_img}
-                          alt={activeItem.title}
-                        />
-                      }
-                      itemTwo={
-                        <ReactCompareSliderImage
-                          src={activeItem.after_img}
-                          alt={activeItem.title}
-                        />
-                      }
+                <div className="relative">
+                  <Image
+                    src={design.image_url}
+                    alt={design.title}
+                    width={800}
+                    height={600}
+                    draggable="false"
+                  />
+                  <div className="absolute bottom-2 left-2 z-20">
+                    <CardLink
+                      href={design.url}
+                      imgSrc={design.before_img}
+                      imgAlt="preview image"
+                      title={design.title}
+                      subtitle={design.description}
+                      target="_blank"
                     />
-                    <p className="mt-4 text-center text-2xl ">
-                      {activeItem.title}
-                    </p>
-                  </motion.div>
+                  </div>
+                  <div className="absolute inset-x-0 bottom-0 isolate z-[10] h-[100px]">
+                    <div className="gradient-mask-t-0 absolute inset-0 backdrop-blur-[1px]" />
+                    <div className="gradient-mask-t-0 absolute inset-0 backdrop-blur-[2px]" />
+                    <div className="gradient-mask-t-0 absolute inset-0 backdrop-blur-[3px]" />
+                    <div className="gradient-mask-t-0 absolute inset-0 backdrop-blur-[6px]" />
+                    <div className="gradient-mask-t-0 absolute inset-0 backdrop-blur-[12px]" />
+                  </div>
                 </div>
               </motion.div>
-            </div>
-          </>
-        ) : null}
-      </AnimatePresence>
-      <div
-        ref={containerRef}
-        className="flex overflow-x-scroll snap-x snap-mandatory hide-scrollbar"
-      >
-        <motion.div
-          className="flex"
-          drag="x"
-          dragConstraints={containerRef}
-          dragElastic={0.2}
-        >
-          {designs.map((design) => (
-            <motion.div
-              key={design.id}
-              className=" min-w-300 md:min-w-[800px] snap-center px-4"
-              whileHover={{ scale: 0.98 }}
-              transition={{ duration: 0.3 }}
-            >
-              <div className="bg-neutral-900 md:p-8 rounded-2xl">
-                <Image
-                  src={design.image_url}
-                  alt={design.title}
-                  width={800}
-                  height={600}
-                  className="rounded-lg mb-6"
-                  draggable="false"
-                />
-                <div className="relative p-2 md:p-0">
-                  <h3 className="text-2xl font-bold mb-2">{design.title}</h3>
-                  <p className="text-neutral-400">{design.description}</p>
-                  <Button
-                    onClick={() => setActiveItem(design)}
-                    variant="outline"
-                    size="lg"
-                    className="text-black md:mt-0 mt-2 md:absolute md:top-2 md:right-2 z-10"
-                  >
-                    Ver comparación
-                  </Button>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
+            ))}
+          </motion.div>
+        </div>
       </div>
-    </>
+    </section>
   );
 }

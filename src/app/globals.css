@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --neutral-soft: 0px 0px 0px 1px rgba(9, 9, 11, 0.08),
+    0px 1px 2px -1px rgba(9, 9, 11, 0.08), 0px 2px 4px 0px rgba(9, 9, 11, 0.04);
+  --neutral-soft-hover: 0px 0px 0px 1px rgba(9, 9, 11, 0.08),
+    0px 1px 2px -1px rgba(9, 9, 11, 0.08), 0px 2px 8px 0px rgba(9, 9, 11, 0.1);
+}
+
 .hide-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -105,5 +114,51 @@
 @layer components {
   .box-gen {
     @apply border  bg-blend-luminosity outline outline-1 outline-offset-0  backdrop-blur-xl border-white/10 bg-zinc-900/20 outline-[#1a1a1a];
+  }
+}
+
+.gradient-mask-b-0 {
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 1) 0%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, transparent 100%);
+}
+.gradient-mask-t-0 {
+  -webkit-mask-image: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 1) 0%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 0%, transparent 100%);
+}
+
+.extra-info {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 12px 16px;
+  backdrop-filter: blur(2px);
+}
+
+.border-theme-border-base {
+  --tw-border-opacity: 1;
+  border-color: rgb(230 232 235 / var(--tw-border-opacity));
+}
+
+@layer utilities {
+  .shadow-neutral-soft {
+    --tw-shadow: var(--neutral-soft);
+    --tw-shadow-colored: var(--neutral-soft);
+  }
+  .shadow-neutral-soft-hover,
+  .shadow-neutral-soft {
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+      var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  }
+  .shadow-neutral-soft-hover {
+    --tw-shadow: var(--neutral-soft-hover);
+    --tw-shadow-colored: var(--neutral-soft-hover);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+      var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
 }

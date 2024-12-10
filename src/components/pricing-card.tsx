@@ -21,19 +21,19 @@ export function PricingCard() {
             src="/info.jpeg"
             alt="Tocar hierba ilustración"
             width={500}
-            height={500}
+            height={604}
             className="rounded-2xl"
           />
           <div className="max-w-xl mx-auto ">
-            <h3 className="text-2xl md:text-5xl font-bold mb-6">
+            <h3 className="text-2xl md:text-3xl font-bold mb-6">
               ¡Servicio Gratuito durante Diciembre!
             </h3>
-            <p className="text-md md:text-xl text-neutral-500 mb-8">
+            <p className="text-md md:text-xl text-zinc-600 mb-8">
               Durante todo diciembre, ofrezco un servicio de Roast totalmente
               gratuito. Tras la primera tanda de Roast, es posible que necesite
               limitar el alcance a la sección del hero en algunos casos.
             </p>
-            <p className="text-md md:text-xl text-neutral-500 mb-8">
+            <p className="text-md md:text-xl text-zinc-600 mb-8">
               He recibido propuestas extensas que requieren mucho tiempo. Por lo
               tanto, para poder realizar la mayor cantidad de Roast, considero
               que 2-3 horas por proyecto es un tiempo adecuado. Intentaré
@@ -45,7 +45,7 @@ export function PricingCard() {
               asChild
               variant="outline"
               size="lg"
-              className="w-full text-black hover:scale-105 transition-transform"
+              className="w-full text-zinc-950 hover:scale-105 transition-transform"
             >
               <Link href={availableSpots > 0 ? "#submit" : "#galeria"}>
                 {availableSpots > 0 ? (
@@ -58,7 +58,7 @@ export function PricingCard() {
                 )}
               </Link>
             </Button>
-            <p className="text-sm text-neutral-400 mt-4">
+            <p className="text-sm text-zinc-400 mt-4">
               *Debido a picos en la demanda, algunas solicitudes podrían tardar
               un poco más de lo habitual.
             </p>

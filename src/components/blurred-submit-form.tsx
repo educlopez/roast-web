@@ -4,8 +4,8 @@ import { Send } from "lucide-react";
 
 export function BlurredSubmitForm() {
   return (
-    <section id="submit" className="py-24 bg-neutral-950 text-white relative">
-      <div className="p-4 absolute inset-0 backdrop-blur-sm w-full bg-black/20 z-10 flex items-center justify-center">
+    <section id="submit" className="py-24 bg-zinc-950 text-white relative">
+      <div className="p-4 absolute inset-0 backdrop-blur-sm w-full bg-zinc-950/20 z-10 flex items-center justify-center">
         <div className="box-gen text-white p-4 rounded-md text-center">
           <p className="text-lg font-bold">Spots no disponibles</p>
           <p>
@@ -24,7 +24,7 @@ export function BlurredSubmitForm() {
             <Label htmlFor="comments">Comentarios adicionales</Label>
             <div className="min-h-[100px] bg-white/5 border-0 focus-visible:ring-1 focus-visible:ring-white"></div>
           </div>
-          <p className="text-sm text-neutral-500 mt-4">
+          <p className="text-sm text-zinc-500 mt-4">
             *Los Roast se publicaran en x.com en la cuenta de{" "}
             <a
               href="https://x.com/educalvolpz"
@@ -38,7 +38,7 @@ export function BlurredSubmitForm() {
             type="submit"
             variant="outline"
             size="lg"
-            className="w-full text-black hover:scale-105 transition-transform disabled:opacity-50"
+            className="w-full text-zinc-950 hover:scale-105 transition-transform disabled:opacity-50"
           >
             Enviar para revisión
             <Send className="ml-2 h-5 w-5" />

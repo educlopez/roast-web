@@ -10,13 +10,6 @@ export function WebsiteStatus() {
         Spots libres: <strong>{Math.max(0, maxSpots - pendingSpots)}</strong> de{" "}
         <strong>{maxSpots}</strong>
       </p>
-      {pendingSpots >= 5 ? (
-        <p className="text-red-500">
-          Actualmente no hay spots disponibles.
-          <br /> Por favor, vuelve más tarde para enviar tu proyecto.
-        </p>
-      ) : null}
-
       {totalSubmissions >= 10 ? (
         <p>
           Únete a los ya más de <strong>{totalSubmissions}</strong> en nuestra
