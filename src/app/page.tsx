@@ -34,7 +34,7 @@ export default function Page() {
             className="max-w-4xl mx-auto px-4 text-center z-10"
             style={{ opacity, scale }}
           >
-            <h1 className="text-7xl md:text-8xl font-bold tracking-tight mb-6">
+            <h1 className="text-4xl md:text-8xl font-bold tracking-tight mb-6">
               Rediseño
               <br />
               <span className="md:text-neutral-400">tu proyecto</span>
