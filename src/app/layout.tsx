@@ -71,7 +71,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-zinc-50`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-zinc-50 overflow-x-hidden`}
       >
         <div className="fixed inset-x-0 top-0 isolate z-[30] h-[50px]">
           <div className="gradient-mask-b-0 absolute inset-0 backdrop-blur-[1px]"></div>
