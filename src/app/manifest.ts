@@ -2,8 +2,8 @@ import { MetadataRoute } from "next";
 
 export default async function manifest(): Promise<MetadataRoute.Manifest> {
   return {
-    name: "Roast Portfolio",
+    name: "Roast by Edu Calvo",
     start_url: "/",
-    theme_color: "#101E33",
+    theme_color: "#fafafa",
   };
 }
