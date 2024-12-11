@@ -74,7 +74,7 @@ export function HorizontalScroll() {
             {designs.map((design) => (
               <motion.div
                 key={design.id}
-                className="min-w-[300px] md:min-w-[800px] md:max-h-[444px] snap-center transition-all shadow-neutral-soft rounded-md overflow-hidden"
+                className="min-w-[300px] max-h-[167px] md:min-w-[800px] md:max-h-[444px] snap-center transition-all shadow-neutral-soft rounded-md overflow-hidden"
                 whileHover={{ scale: 0.98 }}
                 transition={{ duration: 0.3 }}
               >
