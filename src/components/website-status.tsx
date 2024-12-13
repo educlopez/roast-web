@@ -12,8 +12,8 @@ export function WebsiteStatus() {
       </p>
       {totalSubmissions >= 10 ? (
         <p>
-          Únete a los ya más de <strong>{totalSubmissions}</strong> en nuestra
-          plataforma.
+          Únete a los ya más de <strong>{totalSubmissions}</strong> proyectos
+          rediseñados.
         </p>
       ) : null}
     </div>
