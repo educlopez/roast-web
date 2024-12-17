@@ -32,7 +32,7 @@ export default function Hero({ containerRef }: HeroProps) {
         >
           Rediseños que
           <br />
-          <span className="md:text-zinc-400"> transforman tu proyecto.</span>
+          <span className="md:text-zinc-500"> transforman tu proyecto.</span>
         </Balancer>
         <Balancer
           as="p"

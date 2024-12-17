@@ -18,8 +18,8 @@ export function FloatingCards() {
         }}
       >
         <CldImage
-          width="500600"
-          height="630000"
+          width="320"
+          height="192"
           src="roastportfolio/sparkbites.dev"
           alt="sparkbites.dev"
           className="w-full h-full object-cover rounded-lg shadow-2xl"
@@ -40,8 +40,8 @@ export function FloatingCards() {
         }}
       >
         <CldImage
-          width="500600"
-          height="630000"
+          width="320"
+          height="192"
           src="roastportfolio/educalvolopez.com"
           alt="educalvolopez.com"
           className="w-full h-full object-cover rounded-lg shadow-2xl"

@@ -78,9 +78,9 @@ export default function SocialSelector() {
             />
           </div>
         </div>
-        <p className="text-sm text-zinc-400">
+        <p className="text-sm text-zinc-500">
           Actualizaciones en{" "}
-          <span className="text-zinc-400 font-medium">
+          <span className="text-zinc-500 font-medium">
             <motion.a
               key={selectedPlatform.domain}
               initial={{ opacity: 0, y: 10, filter: "blur(5px)" }}
