@@ -93,7 +93,14 @@ export default function SocialSelector() {
             </motion.a>
           </span>
           <br />
-          <span className="text-zinc-950 font-medium">@{handle}</span>
+          <a
+            href={selectedPlatform.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-zinc-950 font-medium"
+          >
+            @{handle}
+          </a>
         </p>
       </div>
     </div>
