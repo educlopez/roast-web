@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { Analytics } from "@/components/analytics";
+import { VercelToolbar } from "@vercel/toolbar/next";
 import Footer from "@/components/footer";
 import Divider from "@/components/divider";
 const geistSans = localFont({
@@ -68,6 +69,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const shouldInjectToolbar = process.env.NODE_ENV === "development";
+
   return (
     <html lang="en">
       <body
@@ -88,6 +91,7 @@ export default function RootLayout({
           <div className="gradient-mask-t-0 absolute inset-0 backdrop-blur-[12px]"></div>
         </div>
         {children}
+        {shouldInjectToolbar && <VercelToolbar />}
         <Divider />
         <Footer />
         <Analytics />

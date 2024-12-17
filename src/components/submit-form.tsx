@@ -65,7 +65,7 @@ export function SubmitForm() {
               className="min-h-[100px] bg-white/5 border-0 focus-visible:ring-1 focus-visible:ring-white"
             />
           </div>
-          <p className="text-sm text-zinc-500 mt-4">
+          <p className="text-sm text-zinc-400 mt-4">
             *Los Roast se publicaran en mis redes sociales{" "}
             <a
               href="https://x.com/educalvolpz"

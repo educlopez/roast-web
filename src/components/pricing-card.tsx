@@ -58,7 +58,7 @@ export function PricingCard() {
                 )}
               </Link>
             </Button>
-            <p className="text-sm text-zinc-400 mt-4">
+            <p className="text-sm text-zinc-500 mt-4">
               *Debido a picos en la demanda, algunas solicitudes podrían tardar
               un poco más de lo habitual.
             </p>

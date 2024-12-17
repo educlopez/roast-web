@@ -1,9 +1,18 @@
 import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
+import withVercelToolbar from "@vercel/toolbar/plugins/next";
+const nextConfig: NextConfig = withVercelToolbar()({
   images: {
-    domains: ["yuhzjzwbuimajdzpakby.supabase.co", "res-console.cloudinary.com"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "yuhzjzwbuimajdzpakby.supabase.co",
+      },
+      {
+        protocol: "https",
+        hostname: "res-console.cloudinary.com",
+      },
+    ],
   },
-};
+});
 
 export default nextConfig;

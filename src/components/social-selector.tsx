@@ -55,8 +55,10 @@ export default function SocialSelector() {
                     ? "fill-white "
                     : "fill-zinc-400 hover:fill-white hover:bg-zinc-800/50"
                 }`}
+                aria-label={`Select ${platform.name} platform`}
               >
                 {platform.icon}
+                <span className="sr-only">{platform.name}</span>
               </button>
             ))}
             <motion.div

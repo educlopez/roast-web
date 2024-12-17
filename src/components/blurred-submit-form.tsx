@@ -24,7 +24,7 @@ export function BlurredSubmitForm() {
             <Label htmlFor="comments">Comentarios adicionales</Label>
             <div className="min-h-[100px] bg-white/5 border-0 focus-visible:ring-1 focus-visible:ring-white"></div>
           </div>
-          <p className="text-sm text-zinc-500 mt-4">
+          <p className="text-sm text-zinc-400 mt-4">
             *Los Roast se publicaran en x.com en la cuenta de{" "}
             <a
               href="https://x.com/educalvolpz"

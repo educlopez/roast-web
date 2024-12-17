@@ -44,7 +44,7 @@ export function HorizontalScroll() {
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex flex-row items-center gap-4 justify-between  mb-12">
           <h2 className="text-2xl md:text-3xl font-bold">Roast Recientes</h2>
-          <Button variant="outline" size="lg">
+          <Button variant="outline" size="lg" asChild>
             <Link
               href="https://www.figma.com/design/dNuAD5d6t0DJEIASEJsTOK/Roast-Recientes-por-Edu-Calvo"
               target="_blank"
