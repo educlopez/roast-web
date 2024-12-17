@@ -27,7 +27,6 @@ export function SubmitForm() {
         title: "¡Enviado con éxito!",
         description: "Revisare tu proyecto pronto.",
       });
-      // e.currentTarget.reset();
     } else {
       toast({
         title: "Error",
@@ -57,17 +56,6 @@ export function SubmitForm() {
               required
             />
           </div>
-          {/* <div className="space-y-2">
-        <Label htmlFor="email">Correo electrónico</Label>
-        <Input
-          id="email"
-          name="email"
-          type="email"
-          placeholder="tu@empresa.com"
-          className="h-12 bg-white/5 border-0 focus-visible:ring-1 focus-visible:ring-white"
-          required
-        />
-      </div> */}
           <div className="space-y-2">
             <Label htmlFor="comments">Comentarios adicionales</Label>
             <Textarea
@@ -78,7 +66,7 @@ export function SubmitForm() {
             />
           </div>
           <p className="text-sm text-zinc-500 mt-4">
-            *Los Roast se publicaran en x.com en la cuenta de{" "}
+            *Los Roast se publicaran en mis redes sociales{" "}
             <a
               href="https://x.com/educalvolpz"
               target="_blank"

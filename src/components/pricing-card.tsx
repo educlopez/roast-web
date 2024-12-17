@@ -28,12 +28,12 @@ export function PricingCard() {
             <h3 className="text-2xl md:text-3xl font-bold mb-6">
               ¡Servicio Gratuito durante Diciembre!
             </h3>
-            <p className="text-md md:text-xl text-zinc-600 mb-8">
+            <p className="text-base text-zinc-600 mb-8">
               Durante todo diciembre, ofrezco un servicio de Roast totalmente
               gratuito. Tras la primera tanda de Roast, es posible que necesite
               limitar el alcance a la sección del hero en algunos casos.
             </p>
-            <p className="text-md md:text-xl text-zinc-600 mb-8">
+            <p className="text-base text-zinc-600 mb-8">
               He recibido propuestas extensas que requieren mucho tiempo. Por lo
               tanto, para poder realizar la mayor cantidad de Roast, considero
               que 2-3 horas por proyecto es un tiempo adecuado. Intentaré

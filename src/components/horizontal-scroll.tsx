@@ -7,6 +7,7 @@ import { motion } from "motion/react";
 import { Button } from "./ui/button";
 import Link from "next/link";
 import { CardLink } from "./cardLink";
+import { Figma } from "lucide-react";
 
 interface Design {
   id: number;
@@ -41,22 +42,20 @@ export function HorizontalScroll() {
   return (
     <section id="galeria" className="py-24 bg-zinc-100 text-zinc-950">
       <div className="max-w-7xl mx-auto px-4">
-        <div className="flex flex-row align-items-center gap-4 justify-between">
-          <h2 className="text-2xl md:text-3xl font-bold mb-12">
-            Roast Recientes
-          </h2>
+        <div className="flex flex-row items-center gap-4 justify-between  mb-12">
+          <h2 className="text-2xl md:text-3xl font-bold">Roast Recientes</h2>
           <Button variant="outline" size="lg">
             <Link
               href="https://www.figma.com/design/dNuAD5d6t0DJEIASEJsTOK/Roast-Recientes-por-Edu-Calvo"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-zinc-950"
+              className="text-zinc-950 flex flex-row justify-center gap-2 items-center"
             >
-              Ver todos
+              <Figma className="w-5 h-5" /> Ver Figma
             </Link>
           </Button>
         </div>
-        <p className="text-md md:text-xl text-zinc-600 mb-8">
+        <p className="text-base text-zinc-600 mb-8">
           Todos los roast han sido realizados con un tiempo medio de 2-3 horas.
           El objetivo es brindar la mayor calidad en el menor tiempo posible,
           para poder inspirar y ayudar a más proyectos.

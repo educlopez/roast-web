@@ -1,21 +1,15 @@
 import { useAvailableSpots } from "@/hooks/use-available-spots";
 
 export function WebsiteStatus() {
-  const { pendingSpots, totalSubmissions, isLoading } = useAvailableSpots();
-  const maxSpots = 5;
+  const { totalSubmissions, isLoading } = useAvailableSpots();
 
   return (
-    <div className={`flex flex-col ${isLoading ? "blur-sm" : ""}`}>
+    <div className={`flex flex-col text-sm ${isLoading ? "blur-sm" : ""}`}>
       <p>
-        Spots libres: <strong>{Math.max(0, maxSpots - pendingSpots)}</strong> de{" "}
-        <strong>{maxSpots}</strong>
+        Únete a los ya más de{" "}
+        <strong> {!isLoading ? totalSubmissions : "0"}</strong> proyectos
+        rediseñados.
       </p>
-      {totalSubmissions >= 10 ? (
-        <p>
-          Únete a los ya más de <strong>{totalSubmissions}</strong> proyectos
-          rediseñados.
-        </p>
-      ) : null}
     </div>
   );
 }
