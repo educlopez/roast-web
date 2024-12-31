@@ -9,10 +9,11 @@ import { useAvailableSpots } from "@/hooks/use-available-spots";
 import { BlurredSubmitForm } from "@/components/blurred-submit-form";
 import Divider from "@/components/divider";
 import Hero from "@/components/hero";
+import { useDateContext } from "@/context/DateContext";
 
 export default function Page() {
   const containerRef = useRef<HTMLDivElement>(null);
-
+  const { isDateReached } = useDateContext();
   const { availableSpots } = useAvailableSpots();
 
   return (
@@ -24,7 +25,13 @@ export default function Page() {
         <Divider />
         <PricingCard />
         <Divider />
-        {availableSpots > 0 ? <SubmitForm /> : <BlurredSubmitForm />}
+        {isDateReached ? (
+          <BlurredSubmitForm />
+        ) : availableSpots > 0 ? (
+          <SubmitForm />
+        ) : (
+          <BlurredSubmitForm />
+        )}
       </main>
     </div>
   );

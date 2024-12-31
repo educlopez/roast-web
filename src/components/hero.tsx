@@ -8,6 +8,7 @@ import { useAvailableSpots } from "@/hooks/use-available-spots";
 import { CardLink } from "./cardLink";
 import SocialSelector from "@/components/social-selector";
 import Balancer from "react-wrap-balancer";
+import { useDateContext } from "@/context/DateContext";
 interface HeroProps {
   containerRef: RefObject<HTMLDivElement>;
 }
@@ -20,6 +21,7 @@ export default function Hero({ containerRef }: HeroProps) {
   const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.8]);
   const { availableSpots, isLoading } = useAvailableSpots();
+  const { isDateReached } = useDateContext();
   return (
     <section className="min-h-screen flex items-center justify-center relative">
       <motion.div
@@ -52,7 +54,9 @@ export default function Hero({ containerRef }: HeroProps) {
               href={availableSpots > 0 ? "#submit" : "#galeria"}
               className={isLoading ? "blur-sm" : ""}
             >
-              {availableSpots > 0 ? (
+              {isDateReached ? (
+                "Servicio cerrado"
+              ) : availableSpots > 0 ? (
                 <>{availableSpots} spots disponibles</>
               ) : (
                 "Ver Roast Realizados"
