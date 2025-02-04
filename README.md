@@ -1,4 +1,4 @@
-# Roast by Edu Calvo
+# Roast web
 
 ![Screenshot of roast-web](/public/og.jpg)
 
@@ -17,11 +17,11 @@
 
 </div>
 
-Welcome to the Roast by Edu Calvo project! This website offers a free service where users can submit their web projects for redesign and improvement. The goal is to provide creative ideas, detailed analysis, and a fresh redesign to help projects stand out online.
+Welcome to the Roast web project! This website offers a free service where users can submit their web projects for redesign and improvement. The goal is to provide creative ideas, detailed analysis, and a fresh redesign to help projects stand out online.
 
 ## Table of Contents
 
-- [Roast by Edu Calvo](#roast-by-edu-calvo)
+- [Roast web](#roast-web)
   - [Table of Contents](#table-of-contents)
   - [Introduction](#introduction)
   - [Features](#features)
@@ -33,7 +33,7 @@ Welcome to the Roast by Edu Calvo project! This website offers a free service wh
 
 ## Introduction
 
-Roast by Edu Calvo is a platform designed to help individuals and businesses enhance their web presence. Users can submit their projects, and Edu Calvo will provide feedback and a redesign based on the submitted information.
+Roastweb is a platform designed to help individuals and businesses enhance their web presence. Users can submit their projects, and Edu Calvo will provide feedback and a redesign based on the submitted information.
 
 ## Features
 
@@ -98,10 +98,10 @@ To submit your project for a redesign, fill out the submission form available on
 
 ## Contributing
 
-We welcome contributions to improve the Roast by Edu Calvo project! Please refer to the [CONTRIBUTING.md](CONTRIBUTING.md) file for guidelines on how to contribute.
+We welcome contributions to improve the Roast web project! Please refer to the [CONTRIBUTING.md](CONTRIBUTING.md) file for guidelines on how to contribute.
 
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
 
-Thank you for your interest in Roast by Edu Calvo! If you have any questions, feel free to reach out to the maintainers.
+Thank you for your interest in Roast web! If you have any questions, feel free to reach out to the maintainers.

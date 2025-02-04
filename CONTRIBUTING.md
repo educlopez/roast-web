@@ -1,6 +1,6 @@
-# Contributing to Roast by Edu Calvo
+# Contributing to Roast web
 
-Thank you for your interest in contributing to the Roast by Edu Calvo project! We welcome contributions from everyone. Please follow the guidelines below to help us maintain a high-quality project.
+Thank you for your interest in contributing to the Roast web project! We welcome contributions from everyone. Please follow the guidelines below to help us maintain a high-quality project.
 
 ## How to Contribute
 
@@ -42,4 +42,4 @@ If you encounter any bugs or have feature requests, please open an issue in the 
 
 By contributing to this project, you agree that your contributions will be licensed under the MIT License.
 
-Thank you for helping us improve the Roast by Edu Calvo project!
+Thank you for helping us improve the Roast web project!
