@@ -52,7 +52,7 @@ export default function Hero({ containerRef }: HeroProps) {
           >
             <Link
               href={availableSpots > 0 ? "#submit" : "#galeria"}
-              className={isLoading ? "blur-sm" : ""}
+              className={isLoading ? "blur-xs" : ""}
             >
               {isDateReached ? (
                 "Servicio cerrado"

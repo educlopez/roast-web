@@ -1,39 +1,139 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
 
-:root {
-  --tw-ring-offset-shadow: 0 0 #0000;
-  --tw-ring-shadow: 0 0 #0000;
-  --neutral-soft: 0px 0px 0px 1px rgba(9, 9, 11, 0.08),
-    0px 1px 2px -1px rgba(9, 9, 11, 0.08), 0px 2px 4px 0px rgba(9, 9, 11, 0.04);
-  --neutral-soft-hover: 0px 0px 0px 1px rgba(9, 9, 11, 0.08),
-    0px 1px 2px -1px rgba(9, 9, 11, 0.08), 0px 2px 8px 0px rgba(9, 9, 11, 0.1);
-}
+@plugin 'tailwindcss-animate';
 
-.hide-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
+@custom-variant dark (&:is(.dark *));
 
-.hide-scrollbar::-webkit-scrollbar {
-  display: none;
-}
+@theme {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
 
-@keyframes float {
-  0% {
-    transform: translateY(0px);
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  --color-chart-1: hsl(var(--chart-1));
+  --color-chart-2: hsl(var(--chart-2));
+  --color-chart-3: hsl(var(--chart-3));
+  --color-chart-4: hsl(var(--chart-4));
+  --color-chart-5: hsl(var(--chart-5));
+
+  --color-color-1: hsl(var(--color-1));
+  --color-color-2: hsl(var(--color-2));
+  --color-color-3: hsl(var(--color-3));
+  --color-color-4: hsl(var(--color-4));
+  --color-color-5: hsl(var(--color-5));
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  --animate-rainbow: rainbow var(--speed, 2s) infinite linear;
+
+  @keyframes rainbow {
+    0% {
+      background-position: 0%;
+    }
+    100% {
+      background-position: 200%;
+    }
   }
-  50% {
-    transform: translateY(-20px);
-  }
-  100% {
-    transform: translateY(0px);
+}
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
   }
 }
 
-.floating {
-  animation: float 6s ease-in-out infinite;
+@utility box-gen {
+  @apply border  bg-blend-luminosity outline outline-1 outline-offset-0  backdrop-blur-xl border-white/10 bg-zinc-900/20 outline-[#1a1a1a];
+}
+
+@utility shadow-neutral-soft {
+  --tw-shadow: var(--neutral-soft);
+  --tw-shadow-colored: var(--neutral-soft);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+    var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+@utility shadow-neutral-soft-hover {
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+    var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  --tw-shadow: var(--neutral-soft-hover);
+  --tw-shadow-colored: var(--neutral-soft-hover);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+    var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+@layer utilities {
+  :root {
+    --tw-ring-offset-shadow: 0 0 #0000;
+    --tw-ring-shadow: 0 0 #0000;
+    --neutral-soft: 0px 0px 0px 1px rgba(9, 9, 11, 0.08),
+      0px 1px 2px -1px rgba(9, 9, 11, 0.08),
+      0px 2px 4px 0px rgba(9, 9, 11, 0.04);
+    --neutral-soft-hover: 0px 0px 0px 1px rgba(9, 9, 11, 0.08),
+      0px 1px 2px -1px rgba(9, 9, 11, 0.08), 0px 2px 8px 0px rgba(9, 9, 11, 0.1);
+  }
+
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  @keyframes float {
+    0% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
+  }
+
+  .floating {
+    animation: float 6s ease-in-out infinite;
+  }
 }
 
 @layer base {
@@ -111,54 +211,36 @@
   }
 }
 
-@layer components {
-  .box-gen {
-    @apply border  bg-blend-luminosity outline outline-1 outline-offset-0  backdrop-blur-xl border-white/10 bg-zinc-900/20 outline-[#1a1a1a];
-  }
-}
-
-.gradient-mask-b-0 {
-  -webkit-mask-image: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 1) 0%,
-    transparent 100%
-  );
-  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, transparent 100%);
-}
-.gradient-mask-t-0 {
-  -webkit-mask-image: linear-gradient(
-    to top,
-    rgba(0, 0, 0, 1) 0%,
-    transparent 100%
-  );
-  mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 0%, transparent 100%);
-}
-
-.extra-info {
-  background: rgba(0, 0, 0, 0.2);
-  padding: 12px 16px;
-  backdrop-filter: blur(2px);
-}
-
-.border-theme-border-base {
-  --tw-border-opacity: 1;
-  border-color: rgb(230 232 235 / var(--tw-border-opacity));
-}
-
 @layer utilities {
-  .shadow-neutral-soft {
-    --tw-shadow: var(--neutral-soft);
-    --tw-shadow-colored: var(--neutral-soft);
+  .gradient-mask-b-0 {
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 1) 0%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 1) 0%,
+      transparent 100%
+    );
   }
-  .shadow-neutral-soft-hover,
-  .shadow-neutral-soft {
-    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
-      var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  .gradient-mask-t-0 {
+    -webkit-mask-image: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 1) 0%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 0%, transparent 100%);
   }
-  .shadow-neutral-soft-hover {
-    --tw-shadow: var(--neutral-soft-hover);
-    --tw-shadow-colored: var(--neutral-soft-hover);
-    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
-      var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+
+  .extra-info {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 12px 16px;
+    backdrop-filter: blur(2px);
+  }
+
+  .border-theme-border-base {
+    --tw-border-opacity: 1;
+    border-color: rgb(230 232 235 / var(--tw-border-opacity));
   }
 }

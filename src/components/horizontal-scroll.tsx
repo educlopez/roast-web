@@ -95,7 +95,7 @@ export function HorizontalScroll() {
                       target="_blank"
                     />
                   </div>
-                  <div className="absolute inset-x-0 bottom-0 isolate z-[10] h-[100px]">
+                  <div className="absolute inset-x-0 bottom-0 isolate z-10 h-[100px]">
                     <div className="gradient-mask-t-0 absolute inset-0 backdrop-blur-[1px]" />
                     <div className="gradient-mask-t-0 absolute inset-0 backdrop-blur-[2px]" />
                     <div className="gradient-mask-t-0 absolute inset-0 backdrop-blur-[3px]" />

@@ -5,7 +5,7 @@ import { Send } from "lucide-react";
 export function BlurredSubmitForm() {
   return (
     <section id="submit" className="py-24 bg-zinc-950 text-white relative">
-      <div className="p-4 absolute inset-0 backdrop-blur-sm w-full bg-zinc-950/20 z-10 flex items-center justify-center">
+      <div className="p-4 absolute inset-0 backdrop-blur-xs w-full bg-zinc-950/20 z-10 flex items-center justify-center">
         <div className="box-gen text-white p-4 rounded-md text-center">
           <p className="text-lg font-bold">Spots no disponibles</p>
           <p>
