@@ -19,7 +19,7 @@ export default function Page() {
   return (
     <div ref={containerRef} className="relative">
       <main>
-        <Hero containerRef={containerRef} />
+        <Hero containerRef={containerRef as React.RefObject<HTMLDivElement>} />
         <Divider />
         <HorizontalScroll />
         <Divider />
