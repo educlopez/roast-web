@@ -1,5 +1,22 @@
 # Roast by Edu Calvo
 
+![Screenshot of roast-web](/public/og.jpg)
+
+<div align="center">
+
+![Next.js Badge](https://img.shields.io/badge/Next.js-000?logo=nextdotjs&logoColor=fff&style=flat)
+![Tailwind CSS Badge](https://img.shields.io/badge/Tailwind%20CSS-06B6D4?logo=tailwindcss&logoColor=fff&style=flat)
+![Motion Badge](https://img.shields.io/badge/Motion-ECD53F?style=flat)
+![Supabase Badge](https://img.shields.io/badge/Supabase-3FCF8E?logo=supabase&logoColor=fff&style=flat)
+
+[![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fpheralb%2Fsvgl%2Fbadge%3Fref%3Dmain&style=flat)](https://actions-badge.atrox.dev/educlopez/roast-web/goto?ref=main)
+![GitHub stars](https://img.shields.io/github/stars/educlopez/roast-web)
+![GitHub issues](https://img.shields.io/github/issues/educlopez/roast-web)
+![GitHub forks](https://img.shields.io/github/forks/educlopez/roast-web)
+![GitHub PRs](https://img.shields.io/github/issues-pr/educlopez/roast-web)
+
+</div>
+
 Welcome to the Roast by Edu Calvo project! This website offers a free service where users can submit their web projects for redesign and improvement. The goal is to provide creative ideas, detailed analysis, and a fresh redesign to help projects stand out online.
 
 ## Table of Contents
@@ -32,13 +49,13 @@ To run this project locally, follow these steps:
 1. **Clone the Repository**:
 
    ```bash
-   git clone https://github.com/educlopez/smoothui.git
+   git clone https://github.com/educlopez/roast-web.git
    ```
 
 2. **Navigate to the Project Directory**:
 
    ```bash
-   cd smoothui
+   cd roast-web
    ```
 
 3. **Install Dependencies**:

@@ -9,7 +9,7 @@ Thank you for your interest in contributing to the Roast by Edu Calvo project! W
 2. **Clone Your Fork**: Clone your forked repository to your local machine using:
 
    ```bash
-   git clone https://github.com/your-username/smoothui.git
+   git clone https://github.com/your-username/roast-web.git
    ```
 
 3. **Create a Branch**: Create a new branch for your feature or bug fix:
@@ -33,10 +33,6 @@ Thank you for your interest in contributing to the Roast by Edu Calvo project! W
    ```
 
 7. **Create a Pull Request**: Go to the original repository and create a pull request. Provide a clear description of your changes and why they should be merged.
-
-## Code of Conduct
-
-We expect all contributors to adhere to the [Code of Conduct](CODE_OF_CONDUCT.md). Please be respectful and considerate in your interactions with others.
 
 ## Reporting Issues
 
