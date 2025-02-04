@@ -1,36 +1,90 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Roast by Edu Calvo
 
-## Getting Started
+Welcome to the Roast by Edu Calvo project! This website offers a free service where users can submit their web projects for redesign and improvement. The goal is to provide creative ideas, detailed analysis, and a fresh redesign to help projects stand out online.
 
-First, run the development server:
+## Table of Contents
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- [Roast by Edu Calvo](#roast-by-edu-calvo)
+  - [Table of Contents](#table-of-contents)
+  - [Introduction](#introduction)
+  - [Features](#features)
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [Technical Information](#technical-information)
+  - [Contributing](#contributing)
+  - [License](#license)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Introduction
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Roast by Edu Calvo is a platform designed to help individuals and businesses enhance their web presence. Users can submit their projects, and Edu Calvo will provide feedback and a redesign based on the submitted information.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Features
 
-## Learn More
+- **Free Redesign Service**: Submit your project for a free redesign.
+- **User-Friendly Interface**: Easy-to-use submission form.
+- **Real-Time Updates**: Get notified about the status of your submission.
+- **Social Media Sharing**: Projects will be shared on social media for visibility.
 
-To learn more about Next.js, take a look at the following resources:
+## Installation
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+To run this project locally, follow these steps:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. **Clone the Repository**:
 
-## Deploy on Vercel
+   ```bash
+   git clone https://github.com/educlopez/smoothui.git
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+2. **Navigate to the Project Directory**:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+   ```bash
+   cd smoothui
+   ```
+
+3. **Install Dependencies**:
+   Make sure you have Node.js and npm installed. Then, run:
+
+   ```bash
+   npm install
+   ```
+
+4. **Set Up Environment Variables**:
+   Create a `.env` file in the root of the project and add the following environment variables:
+
+   ```
+   NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+   SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key
+   RESEND_API_KEY=your_resend_api_key
+   ```
+
+5. **Run the Development Server**:
+   Start the development server:
+
+   ```bash
+   npm run dev
+   ```
+
+6. **Open the Project**:
+   Navigate to [http://localhost:3000](http://localhost:3000) to view the project.
+
+## Usage
+
+To submit your project for a redesign, fill out the submission form available on the website. Provide the URL of your project and any additional comments you may have. After submission, you will receive a confirmation and updates regarding your project.
+
+## Technical Information
+
+- **Backend**: The project uses Supabase as the backend service for managing submissions and user data.
+- **Environment Variables**:
+  - `NEXT_PUBLIC_SUPABASE_URL`: The URL of your Supabase instance.
+  - `SUPABASE_SERVICE_ROLE_KEY`: The service role key for accessing Supabase.
+  - `RESEND_API_KEY`: The API key for sending emails via Resend.
+
+## Contributing
+
+We welcome contributions to improve the Roast by Edu Calvo project! Please refer to the [CONTRIBUTING.md](CONTRIBUTING.md) file for guidelines on how to contribute.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+
+Thank you for your interest in Roast by Edu Calvo! If you have any questions, feel free to reach out to the maintainers.
