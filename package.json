@@ -1,7 +1,17 @@
 {
-  "name": "portfolio-junior-roast",
-  "version": "0.1.0",
+  "name": "@educlopez/roast-web",
+  "version": "1.0.0",
+  "author": "@educalvolpz",
+  "description": "This website offers a free service where users can submit their web projects for redesign and improvement.",
   "private": true,
+  "license": "MIT",
+  "keywords": [
+    "roast",
+    "design",
+    "tailwindcss",
+    "motion",
+    "react"
+  ],
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
