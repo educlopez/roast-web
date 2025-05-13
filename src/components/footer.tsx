@@ -14,7 +14,7 @@ export default function Footer() {
         >
           <div className="shrink-0 flex gap-2 p-0.5 shadow-neutral-soft bg-white rounded-full h-8 w-8 group-hover:shadow-neutral-soft-hover">
             <Image
-              src="/pixel-edu-calvo.png"
+              src="https://github.com/educlopez.png"
               alt="avatar Edu"
               width={56}
               height={56}

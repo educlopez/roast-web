@@ -11,6 +11,10 @@ const nextConfig: NextConfig = withVercelToolbar()({
         protocol: "https",
         hostname: "res-console.cloudinary.com",
       },
+      {
+        protocol: "https",
+        hostname: "github.com",
+      },
     ],
   },
 });
