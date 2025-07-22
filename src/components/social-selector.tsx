@@ -25,7 +25,7 @@ const platforms: Platform[] = [
     name: "Bluesky",
     domain: "bsky.app",
     icon: <BskyIcon className="w-5 h-5" />,
-    url: "https://bsky.app/profile/educalvolpz.bsky.social",
+    url: "https://bsky.app/profile/educalvolopez.com",
   },
   {
     name: "Threads",
