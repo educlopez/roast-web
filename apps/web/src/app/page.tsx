@@ -1,16 +1,15 @@
 "use client";
 
+import { useScroll } from "motion/react";
 import { useRef } from "react";
-import { HorizontalScroll } from "@/components/horizontal-scroll";
-import { PricingCard } from "@/components/pricing-card";
-import { SubmitForm } from "@/components/submit-form";
-
-import { useAvailableSpots } from "@/hooks/use-available-spots";
 import { BlurredSubmitForm } from "@/components/blurred-submit-form";
 import Divider from "@/components/divider";
 import Hero from "@/components/hero";
+import { HorizontalScroll } from "@/components/horizontal-scroll";
+import { PricingCard } from "@/components/pricing-card";
+import { SubmitForm } from "@/components/submit-form";
 import { useDateContext } from "@/context/DateContext";
-import { useScroll } from "motion/react";
+import { useAvailableSpots } from "@/hooks/use-available-spots";
 
 export default function Page() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -31,13 +30,13 @@ export default function Page() {
     if (!isSubmissionEnabled) {
       return (
         <BlurredSubmitForm
-          title={
-            isDateReached ? "Servicio cerrado" : "Inscripciones próximamente"
-          }
           message={
             isDateReached
               ? "El periodo de roasts ha finalizado. ¡Gracias a todos los que participaron!"
               : "Las inscripciones estarán disponibles próximamente."
+          }
+          title={
+            isDateReached ? "Servicio cerrado" : "Inscripciones próximamente"
           }
         />
       );
@@ -45,14 +44,14 @@ export default function Page() {
 
     return (
       <BlurredSubmitForm
-        title="Spots no disponibles"
         message="Actualmente no hay spots libres. Por favor, vuelve más tarde para enviar tu proyecto."
+        title="Spots no disponibles"
       />
     );
   })();
 
   return (
-    <div ref={containerRef} className="relative">
+    <div className="relative" ref={containerRef}>
       <main>
         <Hero scrollYProgress={scrollYProgress} />
         <Divider />

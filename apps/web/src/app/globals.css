@@ -1,4 +1,4 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 @plugin 'tailwindcss-animate';
 
@@ -86,27 +86,32 @@
 @utility shadow-neutral-soft {
   --tw-shadow: var(--neutral-soft);
   --tw-shadow-colored: var(--neutral-soft);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
-    var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  box-shadow:
+    var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000),
+    var(--tw-shadow);
 }
 
 @utility shadow-neutral-soft-hover {
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
-    var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  box-shadow:
+    var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000),
+    var(--tw-shadow);
   --tw-shadow: var(--neutral-soft-hover);
   --tw-shadow-colored: var(--neutral-soft-hover);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
-    var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  box-shadow:
+    var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000),
+    var(--tw-shadow);
 }
 
 @layer utilities {
   :root {
     --tw-ring-offset-shadow: 0 0 #0000;
     --tw-ring-shadow: 0 0 #0000;
-    --neutral-soft: 0px 0px 0px 1px rgba(9, 9, 11, 0.08),
+    --neutral-soft:
+      0px 0px 0px 1px rgba(9, 9, 11, 0.08),
       0px 1px 2px -1px rgba(9, 9, 11, 0.08),
       0px 2px 4px 0px rgba(9, 9, 11, 0.04);
-    --neutral-soft-hover: 0px 0px 0px 1px rgba(9, 9, 11, 0.08),
+    --neutral-soft-hover:
+      0px 0px 0px 1px rgba(9, 9, 11, 0.08),
       0px 1px 2px -1px rgba(9, 9, 11, 0.08), 0px 2px 8px 0px rgba(9, 9, 11, 0.1);
   }
 

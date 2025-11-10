@@ -1,18 +1,18 @@
-import { WebsiteStatus } from "@/components/website-status";
-import { motion, useTransform, type MotionValue } from "motion/react";
-import { Button } from "@/components/ui/button";
+import { type MotionValue, motion, useTransform } from "motion/react";
 import Link from "next/link";
+import Balancer from "react-wrap-balancer";
 import { FloatingCards } from "@/components/floating-cards";
+import SocialSelector from "@/components/social-selector";
+import { Button } from "@/components/ui/button";
+import { WebsiteStatus } from "@/components/website-status";
+import { useDateContext } from "@/context/DateContext";
 import { useAvailableSpots } from "@/hooks/use-available-spots";
 import { CardLink } from "./cardLink";
-import SocialSelector from "@/components/social-selector";
-import Balancer from "react-wrap-balancer";
-import { useDateContext } from "@/context/DateContext";
-interface HeroProps {
-  scrollYProgress: MotionValue<number>;
-}
-export default function Hero({ scrollYProgress }: HeroProps) {
 
+type HeroProps = {
+  scrollYProgress: MotionValue<number>;
+};
+export default function Hero({ scrollYProgress }: HeroProps) {
   const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.8]);
   const { availableSpots, isLoading } = useAvailableSpots();
@@ -21,20 +21,20 @@ export default function Hero({ scrollYProgress }: HeroProps) {
   const registrationOpen = isSubmissionEnabled && hasSpots;
   const buttonHref = isDateReached
     ? "#galeria"
-    : !isSubmissionEnabled
-    ? "#informacion"
-    : registrationOpen
-    ? "#submit"
-    : "#galeria";
+    : isSubmissionEnabled
+      ? registrationOpen
+        ? "#submit"
+        : "#galeria"
+      : "#informacion";
   return (
-    <section className="min-h-screen flex items-center justify-center relative">
+    <section className="relative flex min-h-screen items-center justify-center">
       <motion.div
-        className="max-w-4xl mx-auto px-4 text-center z-10"
+        className="z-10 mx-auto max-w-4xl px-4 text-center"
         style={{ opacity, scale }}
       >
         <Balancer
           as="h1"
-          className="text-4xl md:text-6xl font-normal tracking-tight mb-6 text-zinc-950"
+          className="mb-6 font-normal text-4xl text-zinc-950 tracking-tight md:text-6xl"
         >
           Rediseños que
           <br />
@@ -42,49 +42,49 @@ export default function Hero({ scrollYProgress }: HeroProps) {
         </Balancer>
         <Balancer
           as="p"
-          className="text-base text-zinc-950 md:text-zinc-600 mb-8 max-w-2xl mx-auto"
+          className="mx-auto mb-8 max-w-2xl text-base text-zinc-950 md:text-zinc-600"
         >
           ¿Necesitas darle un nuevo aire a tu web? Envía tu proyecto a través
           del formulario y descubre cómo puede renovarse.
         </Balancer>
-        <div className="flex flex-col gap-4 justify-center items-center">
+        <div className="flex flex-col items-center justify-center gap-4">
           <Button
             asChild
-            className=" bg-zinc-950 text-zinc-50 hover:scale-105 transition-transform"
-            variant="rainbow"
+            className="bg-zinc-950 text-zinc-50 transition-transform hover:scale-105"
             size="lg"
+            variant="rainbow"
           >
-            <Link href={buttonHref} className={isLoading ? "blur-xs" : ""}>
+            <Link className={isLoading ? "blur-xs" : ""} href={buttonHref}>
               {isDateReached
                 ? "Servicio cerrado"
-                : !isSubmissionEnabled
-                ? "Inscripciones próximamente"
-                : hasSpots
-                ? `${availableSpots} spots disponibles`
-                : "Ver Roast Realizados"}
+                : isSubmissionEnabled
+                  ? hasSpots
+                    ? `${availableSpots} spots disponibles`
+                    : "Ver Roast Realizados"
+                  : "Inscripciones próximamente"}
             </Link>
           </Button>
           <WebsiteStatus />
         </div>
-        <div className="flex flex-col gap-4 mt-16 justify-center items-center">
+        <div className="mt-16 flex flex-col items-center justify-center gap-4">
           <SocialSelector />
 
-          <div className="flex gap-4 flex-row">
+          <div className="flex flex-row gap-4">
             <CardLink
               href="https://sparkbites.dev"
-              imgSrc="/sparkbites-mini.png"
               imgAlt="preview image"
-              title="Directorio"
+              imgSrc="/sparkbites-mini.png"
               subtitle="Inspiraciones"
               target="_blank"
+              title="Directorio"
             />
             <CardLink
               href="https://smoothui.dev"
-              imgSrc="/smoothui-mini.png"
               imgAlt="preview image"
-              title="Micro"
+              imgSrc="/smoothui-mini.png"
               subtitle="Interacciones"
               target="_blank"
+              title="Micro"
             />
           </div>
         </div>

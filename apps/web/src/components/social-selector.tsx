@@ -1,36 +1,36 @@
 "use client";
 
-import { useState } from "react";
 import { motion } from "motion/react";
+import { useState } from "react";
 
 import { BskyIcon } from "@/components/icons/bsky";
 import { ThreadsIcon } from "@/components/icons/threads";
 import { XIcon } from "@/components/icons/x";
 
-interface Platform {
+type Platform = {
   name: string;
   domain: string;
   icon: React.ReactNode;
   url: string;
-}
+};
 
 const platforms: Platform[] = [
   {
     name: "X",
     domain: "x.com",
-    icon: <XIcon className="w-5 h-5" />,
+    icon: <XIcon className="h-5 w-5" />,
     url: "https://x.com/educalvolpz",
   },
   {
     name: "Bluesky",
     domain: "bsky.app",
-    icon: <BskyIcon className="w-5 h-5" />,
+    icon: <BskyIcon className="h-5 w-5" />,
     url: "https://bsky.app/profile/educalvolopez.com",
   },
   {
     name: "Threads",
     domain: "threads.net",
-    icon: <ThreadsIcon className="w-5 h-5" />,
+    icon: <ThreadsIcon className="h-5 w-5" />,
     url: "https://threads.net/@educalvolpz",
   },
 ];
@@ -42,34 +42,35 @@ export default function SocialSelector() {
   const handle = "educalvolpz";
 
   return (
-    <div className="w-full max-w-2xl mx-auto text-center my-4">
+    <div className="mx-auto my-4 w-full max-w-2xl text-center">
       <div className="space-y-6">
         <div className="flex items-center justify-center">
-          <div className="flex relative items-center justify-center gap-4 w-fit">
+          <div className="relative flex w-fit items-center justify-center gap-4">
             {platforms.map((platform) => (
               <button
+                aria-label={`Select ${platform.name} platform`}
+                className={`relative z-10 rounded-full p-2 transition-colors ${
+                  selectedPlatform.name === platform.name
+                    ? "fill-white"
+                    : "fill-zinc-400 hover:bg-zinc-800/50 hover:fill-white"
+                }`}
                 key={platform.name}
                 onClick={() => setSelectedPlatform(platform)}
-                className={`relative z-10 p-2 rounded-full transition-colors ${
-                  selectedPlatform.name === platform.name
-                    ? "fill-white "
-                    : "fill-zinc-400 hover:fill-white hover:bg-zinc-800/50"
-                }`}
-                aria-label={`Select ${platform.name} platform`}
+                type="button"
               >
                 {platform.icon}
                 <span className="sr-only">{platform.name}</span>
               </button>
             ))}
             <motion.div
-              layoutId="background"
-              className="absolute inset-0 bg-zinc-800 rounded-full w-9 h-9 z-0"
-              initial={false}
               animate={{
                 x:
                   platforms.findIndex((p) => p.name === selectedPlatform.name) *
                   (36 + 16),
               }}
+              className="absolute inset-0 z-0 h-9 w-9 rounded-full bg-zinc-800"
+              initial={false}
+              layoutId="background"
               transition={{
                 type: "spring",
                 stiffness: 500,
@@ -80,26 +81,26 @@ export default function SocialSelector() {
         </div>
         <p className="text-sm text-zinc-500">
           Actualizaciones en{" "}
-          <span className="text-zinc-500 font-medium">
+          <span className="font-medium text-zinc-500">
             <motion.a
-              key={selectedPlatform.domain}
-              initial={{ opacity: 0, y: 10, filter: "blur(5px)" }}
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               exit={{ opacity: 0, y: -10, filter: "blur(5px)" }}
-              transition={{ duration: 0.3 }}
               href={selectedPlatform.url}
-              target="_blank"
+              initial={{ opacity: 0, y: 10, filter: "blur(5px)" }}
+              key={selectedPlatform.domain}
               rel="noopener noreferrer"
+              target="_blank"
+              transition={{ duration: 0.3 }}
             >
               {selectedPlatform.domain}
             </motion.a>
           </span>
           <br />
           <a
+            className="font-medium text-zinc-950"
             href={selectedPlatform.url}
-            target="_blank"
             rel="noopener noreferrer"
-            className="text-zinc-950 font-medium"
+            target="_blank"
           >
             @{handle}
           </a>

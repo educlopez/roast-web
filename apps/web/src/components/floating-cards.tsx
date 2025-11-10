@@ -1,54 +1,54 @@
 "use client";
-import { CldImage } from "next-cloudinary";
 import { motion } from "motion/react";
+import { CldImage } from "next-cloudinary";
 
 export function FloatingCards() {
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none z-0 opacity-50 md:opacity-100">
+    <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden opacity-50 md:opacity-100">
       <motion.div
-        className="absolute top-0 md:top-1/4 -right-20 w-80 h-48 rotate-12"
         animate={{
           y: [0, -20, 0],
           rotate: [12, 15, 12],
         }}
+        className="-right-20 absolute top-0 h-48 w-80 rotate-12 md:top-1/4"
         transition={{
           duration: 5,
-          repeat: Infinity,
+          repeat: Number.POSITIVE_INFINITY,
           ease: "easeInOut",
         }}
       >
         <CldImage
-          width="320"
-          height="192"
+          alt="sparkbites.dev"
+          className="h-full w-full rounded-lg object-cover shadow-2xl"
           crop="fill"
+          height="192"
           sizes="100vw"
           src="roastportfolio/sparkbites.dev"
-          alt="sparkbites.dev"
-          className="w-full h-full object-cover rounded-lg shadow-2xl"
+          width="320"
         />
       </motion.div>
 
       <motion.div
-        className="absolute bottom-0 md:top-1/3 -left-20 w-80 h-48 -rotate-12"
         animate={{
           y: [0, 20, 0],
           rotate: [-12, -15, -12],
         }}
+        className="-left-20 -rotate-12 absolute bottom-0 h-48 w-80 md:top-1/3"
         transition={{
           duration: 5,
-          repeat: Infinity,
+          repeat: Number.POSITIVE_INFINITY,
           ease: "easeInOut",
           delay: 0.5,
         }}
       >
         <CldImage
-          width="320"
-          height="192"
+          alt="educalvolopez.com"
+          className="h-full w-full rounded-lg object-cover shadow-2xl"
           crop="fill"
+          height="192"
           sizes="100vw"
           src="roastportfolio/educalvolopez.com"
-          alt="educalvolopez.com"
-          className="w-full h-full object-cover rounded-lg shadow-2xl"
+          width="320"
         />
       </motion.div>
     </div>

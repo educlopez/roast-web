@@ -1,10 +1,10 @@
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { motion } from "motion/react";
-import { useAvailableSpots } from "@/hooks/use-available-spots";
 import Image from "next/image";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 import { useDateContext } from "@/context/DateContext";
+import { useAvailableSpots } from "@/hooks/use-available-spots";
 
 export function PricingCard() {
   const { isDateReached, isSubmissionEnabled } = useDateContext();
@@ -13,38 +13,38 @@ export function PricingCard() {
   const registrationOpen = isSubmissionEnabled && hasSpots;
 
   return (
-    <section id="informacion" className="py-24">
-      <div className="max-w-7xl mx-auto px-4">
+    <section className="py-24" id="informacion">
+      <div className="mx-auto max-w-7xl px-4">
         <motion.div
-          className="flex flex-col md:flex-row gap-4 justify-center items-center"
-          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
+          className="flex flex-col items-center justify-center gap-4 md:flex-row"
+          initial={{ opacity: 0, y: 20 }}
           transition={{ duration: 0.5 }}
         >
           <Image
-            src="/info.jpeg"
             alt="Tocar hierba ilustración"
-            width={500}
-            height={604}
             className="rounded-2xl"
+            height={604}
+            src="/info.jpeg"
+            width={500}
           />
-          <div className="max-w-xl mx-auto">
-            <h3 className="text-2xl md:text-3xl font-bold mb-6">
+          <div className="mx-auto max-w-xl">
+            <h3 className="mb-6 font-bold text-2xl md:text-3xl">
               {isDateReached
                 ? "¡Gracias por participar!"
-                : !isSubmissionEnabled
-                  ? "Inscripciones disponibles próximamente"
-                  : "¡Servicio Gratuito durante Diciembre!"}
+                : isSubmissionEnabled
+                  ? "¡Servicio Gratuito durante Diciembre!"
+                  : "Inscripciones disponibles próximamente"}
             </h3>
-            <p className="text-base text-zinc-600 mb-8">
+            <p className="mb-8 text-base text-zinc-600">
               {isDateReached
                 ? "El periodo de roasts ha finalizado. ¡Gracias a todos los que participaron!"
-                : !isSubmissionEnabled
-                  ? "Los registros estarán abiertos próximamente. Prepara tu proyecto y vuelve para enviarlo."
-                  : "Durante todo diciembre, ofrezco un servicio de Roast totalmente gratuito. Tras la primera tanda de Roast, es posible que necesite limitar el alcance a la sección del hero en algunos casos."}
+                : isSubmissionEnabled
+                  ? "Durante todo diciembre, ofrezco un servicio de Roast totalmente gratuito. Tras la primera tanda de Roast, es posible que necesite limitar el alcance a la sección del hero en algunos casos."
+                  : "Los registros estarán abiertos próximamente. Prepara tu proyecto y vuelve para enviarlo."}
             </p>
             {!isDateReached && isSubmissionEnabled && (
-              <p className="text-base text-zinc-600 mb-8">
+              <p className="mb-8 text-base text-zinc-600">
                 He recibido propuestas extensas que requieren mucho tiempo. Por
                 lo tanto, para poder realizar la mayor cantidad de Roast,
                 considero que 2-3 horas por proyecto es un tiempo adecuado.
@@ -54,35 +54,37 @@ export function PricingCard() {
             )}
             <Button
               asChild
-              variant="outline"
+              className="w-full text-zinc-950 transition-transform hover:scale-105"
               size="lg"
-              className="w-full text-zinc-950 hover:scale-105 transition-transform"
+              variant="outline"
             >
               <Link
                 href={
                   isDateReached
                     ? "#galeria"
-                    : !isSubmissionEnabled
-                      ? "#informacion"
-                      : registrationOpen
+                    : isSubmissionEnabled
+                      ? registrationOpen
                         ? "#submit"
                         : "#galeria"
+                      : "#informacion"
                 }
               >
                 {isDateReached ? (
                   "Ver Roasts Realizados"
-                ) : !isSubmissionEnabled ? (
-                  "Conoce los detalles"
-                ) : hasSpots ? (
-                  <>
-                    Envía Tu Proyecto <ArrowRight className="ml-2 h-5 w-5" />
-                  </>
+                ) : isSubmissionEnabled ? (
+                  hasSpots ? (
+                    <>
+                      Envía Tu Proyecto <ArrowRight className="ml-2 h-5 w-5" />
+                    </>
+                  ) : (
+                    "Ver Roast Realizados"
+                  )
                 ) : (
-                  "Ver Roast Realizados"
+                  "Conoce los detalles"
                 )}
               </Link>
             </Button>
-            <p className="text-sm text-zinc-500 mt-4">
+            <p className="mt-4 text-sm text-zinc-500">
               *Debido a picos en la demanda, algunas solicitudes podrían tardar
               un poco más de lo habitual.
             </p>

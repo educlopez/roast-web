@@ -1,12 +1,12 @@
 "use client";
 
+import { Send } from "lucide-react";
 import { useState } from "react";
+import { submitWebsite } from "@/app/actions/submit-website";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Send } from "lucide-react";
-import { submitWebsite } from "@/app/actions/submit-website";
 import { useToast } from "@/hooks/use-toast";
 
 export function SubmitForm() {
@@ -39,48 +39,48 @@ export function SubmitForm() {
   }
 
   return (
-    <section id="submit" className="py-24 bg-zinc-950 text-white">
-      <div className="max-w-2xl mx-auto px-4">
-        <h2 className="text-3xl font-bold mb-12 text-center">
+    <section className="bg-zinc-950 py-24 text-white" id="submit">
+      <div className="mx-auto max-w-2xl px-4">
+        <h2 className="mb-12 text-center font-bold text-3xl">
           Envía Tu Proyecto
         </h2>
-        <form onSubmit={onSubmit} className="space-y-6">
+        <form className="space-y-6" onSubmit={onSubmit}>
           <div className="space-y-2">
             <Label htmlFor="url">URL del proyecto</Label>
             <Input
+              className="h-12 border-0 bg-white/5 focus-visible:ring-1 focus-visible:ring-white"
               id="url"
               name="url"
-              type="url"
               placeholder="https://tu-proyecto.com"
-              className="h-12 bg-white/5 border-0 focus-visible:ring-1 focus-visible:ring-white"
               required
+              type="url"
             />
           </div>
           <div className="space-y-2">
             <Label htmlFor="comments">Comentarios adicionales</Label>
             <Textarea
+              className="min-h-[100px] border-0 bg-white/5 focus-visible:ring-1 focus-visible:ring-white"
               id="comments"
               name="comments"
               placeholder="Cuéntame más sobre tu proyecto..."
-              className="min-h-[100px] bg-white/5 border-0 focus-visible:ring-1 focus-visible:ring-white"
             />
           </div>
-          <p className="text-sm text-zinc-400 mt-4">
+          <p className="mt-4 text-sm text-zinc-400">
             *Los Roast se publicaran en mis redes sociales{" "}
             <a
               href="https://x.com/educalvolpz"
-              target="_blank"
               rel="noopener noreferrer"
+              target="_blank"
             >
               @educalvolpz
             </a>
           </p>
           <Button
+            className="w-full text-zinc-950 transition-transform hover:scale-105 disabled:opacity-50"
+            disabled={loading}
+            size="lg"
             type="submit"
             variant="outline"
-            size="lg"
-            disabled={loading}
-            className="w-full text-zinc-950 hover:scale-105 transition-transform disabled:opacity-50"
           >
             {loading ? (
               "Enviando..."

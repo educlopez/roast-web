@@ -1,22 +1,22 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
-import Image from "next/image";
-import { supabase } from "@/lib/supabase";
-import { motion } from "motion/react";
-import { Button } from "./ui/button";
-import Link from "next/link";
-import { CardLink } from "./cardLink";
 import { Figma } from "lucide-react";
+import { motion } from "motion/react";
+import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
+import { supabase } from "@/lib/supabase";
+import { CardLink } from "./cardLink";
+import { Button } from "./ui/button";
 
-interface Design {
+type Design = {
   id: number;
   title: string;
   image_url: string;
   description: string;
   before_img: string;
   url: string;
-}
+};
 export function HorizontalScroll() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [designs, setDesigns] = useState<Design[]>([]);
@@ -40,59 +40,59 @@ export function HorizontalScroll() {
   }, []);
 
   return (
-    <section id="galeria" className="py-24 bg-zinc-100 text-zinc-950">
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="flex flex-row items-center gap-4 justify-between  mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold">Roast Recientes</h2>
-          <Button variant="outline" size="lg" asChild>
+    <section className="bg-zinc-100 py-24 text-zinc-950" id="galeria">
+      <div className="mx-auto max-w-7xl px-4">
+        <div className="mb-12 flex flex-row items-center justify-between gap-4">
+          <h2 className="font-bold text-2xl md:text-3xl">Roast Recientes</h2>
+          <Button asChild size="lg" variant="outline">
             <Link
+              className="flex flex-row items-center justify-center gap-2 text-zinc-950"
               href="https://www.figma.com/design/dNuAD5d6t0DJEIASEJsTOK/Roast-Recientes-por-Edu-Calvo"
-              target="_blank"
               rel="noopener noreferrer"
-              className="text-zinc-950 flex flex-row justify-center gap-2 items-center"
+              target="_blank"
             >
-              <Figma className="w-5 h-5" /> Ver Figma
+              <Figma className="h-5 w-5" /> Ver Figma
             </Link>
           </Button>
         </div>
-        <p className="text-base text-zinc-600 mb-8">
+        <p className="mb-8 text-base text-zinc-600">
           Todos los roast han sido realizados con un tiempo medio de 2-3 horas.
           El objetivo es brindar la mayor calidad en el menor tiempo posible,
           para poder inspirar y ayudar a más proyectos.
         </p>
         <div
+          className="hide-scrollbar flex snap-x snap-mandatory overflow-x-scroll"
           ref={containerRef}
-          className="flex overflow-x-scroll snap-x snap-mandatory hide-scrollbar"
         >
           <motion.div
-            className="flex gap-4 p-[5px] cursor-grab"
+            className="flex cursor-grab gap-4 p-[5px]"
             drag="x"
             dragConstraints={containerRef}
             dragElastic={0.2}
           >
             {designs.map((design) => (
               <motion.div
+                className="max-h-[167px] min-w-[300px] snap-center overflow-hidden rounded-md shadow-neutral-soft transition-all md:max-h-[444px] md:min-w-[800px]"
                 key={design.id}
-                className="min-w-[300px] max-h-[167px] md:min-w-[800px] md:max-h-[444px] snap-center transition-all shadow-neutral-soft rounded-md overflow-hidden"
-                whileHover={{ scale: 0.98 }}
                 transition={{ duration: 0.3 }}
+                whileHover={{ scale: 0.98 }}
               >
                 <div className="relative">
                   <Image
-                    src={design.image_url}
                     alt={design.title}
-                    width={800}
-                    height={600}
                     draggable="false"
+                    height={600}
+                    src={design.image_url}
+                    width={800}
                   />
                   <div className="absolute bottom-2 left-2 z-20">
                     <CardLink
                       href={design.url}
-                      imgSrc={design.before_img}
                       imgAlt="preview image"
-                      title={design.title}
+                      imgSrc={design.before_img}
                       subtitle={design.description}
                       target="_blank"
+                      title={design.title}
                     />
                   </div>
                   <div className="absolute inset-x-0 bottom-0 isolate z-10 h-[100px]">

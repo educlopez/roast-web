@@ -1,7 +1,7 @@
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 
-interface CardLinkProps {
+type CardLinkProps = {
   href: string;
   imgSrc: string;
   imgAlt: string;
@@ -9,7 +9,7 @@ interface CardLinkProps {
   subtitle: string;
   target?: string;
   rel?: string;
-}
+};
 
 export function CardLink({
   href,
@@ -23,20 +23,20 @@ export function CardLink({
   return (
     <div className="relative z-inherit transform-none">
       <Link
+        className="flex items-center gap-3 rounded-lg border border-white bg-zinc-100 p-1 pr-3 text-sm text-zinc-950 shadow-neutral-soft transition-all hover:shadow-neutral-soft-hover"
         href={href}
-        target={target}
         rel={rel}
-        className="transition-all hover:shadow-neutral-soft-hover text-sm text-zinc-950 shadow-neutral-soft p-1 pr-3 rounded-lg flex items-center gap-3 bg-zinc-100 border border-white"
+        target={target}
       >
         <Image
-          src={imgSrc}
           alt={imgAlt}
-          loading="lazy"
-          width={64}
+          className="rounded-[4px] object-cover shadow-neutral-soft"
           height={44}
-          className="object-cover shadow-neutral-soft rounded-[4px]"
+          loading="lazy"
+          src={imgSrc}
+          width={64}
         />
-        <span className="text-xs flex flex-col text-left">
+        <span className="flex flex-col text-left text-xs">
           <span className="text-zinc-950">{title}</span>
           <span className="text-zinc-600">{subtitle}</span>
         </span>

@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import { Toaster } from "@/components/ui/toaster";
-import { Analytics } from "@/components/analytics";
 import { VercelToolbar } from "@vercel/toolbar/next";
-import Footer from "@/components/footer";
+import { Analytics } from "@/components/analytics";
 import Divider from "@/components/divider";
+import Footer from "@/components/footer";
+import { Toaster } from "@/components/ui/toaster";
 import { DateProvider } from "@/context/DateContext";
+
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -75,22 +76,22 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-zinc-50 overflow-x-hidden`}
+        className={`${geistSans.variable} ${geistMono.variable} overflow-x-hidden bg-zinc-50 antialiased`}
       >
         <DateProvider>
           <div className="fixed inset-x-0 top-0 isolate z-30 h-[50px]">
-            <div className="gradient-mask-b-0 absolute inset-0 backdrop-blur-[1px]"></div>
-            <div className="gradient-mask-b-0 absolute inset-0 backdrop-blur-[2px]"></div>
-            <div className="gradient-mask-b-0 absolute inset-0 backdrop-blur-[3px]"></div>
-            <div className="gradient-mask-b-0 absolute inset-0 backdrop-blur-[6px]"></div>
-            <div className="gradient-mask-b-0 absolute inset-0 backdrop-blur-[12px]"></div>
+            <div className="gradient-mask-b-0 absolute inset-0 backdrop-blur-[1px]" />
+            <div className="gradient-mask-b-0 absolute inset-0 backdrop-blur-[2px]" />
+            <div className="gradient-mask-b-0 absolute inset-0 backdrop-blur-[3px]" />
+            <div className="gradient-mask-b-0 absolute inset-0 backdrop-blur-[6px]" />
+            <div className="gradient-mask-b-0 absolute inset-0 backdrop-blur-[12px]" />
           </div>
           <div className="fixed inset-x-0 bottom-0 isolate z-30 h-[100px]">
-            <div className="gradient-mask-t-0 absolute inset-0 backdrop-blur-[1px]"></div>
-            <div className="gradient-mask-t-0 absolute inset-0 backdrop-blur-[2px]"></div>
-            <div className="gradient-mask-t-0 absolute inset-0 backdrop-blur-[3px]"></div>
-            <div className="gradient-mask-t-0 absolute inset-0 backdrop-blur-[6px]"></div>
-            <div className="gradient-mask-t-0 absolute inset-0 backdrop-blur-[12px]"></div>
+            <div className="gradient-mask-t-0 absolute inset-0 backdrop-blur-[1px]" />
+            <div className="gradient-mask-t-0 absolute inset-0 backdrop-blur-[2px]" />
+            <div className="gradient-mask-t-0 absolute inset-0 backdrop-blur-[3px]" />
+            <div className="gradient-mask-t-0 absolute inset-0 backdrop-blur-[6px]" />
+            <div className="gradient-mask-t-0 absolute inset-0 backdrop-blur-[12px]" />
           </div>
           {children}
           {shouldInjectToolbar && <VercelToolbar />}

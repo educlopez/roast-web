@@ -2,23 +2,24 @@ import Image from "next/image";
 
 export default function Footer() {
   return (
-    <footer className="py-8 px-4 border-t mb-14 md:mb-20">
-      <div className="max-w-7xl mx-auto justify-center items-center gap-1 flex flex-col items-align-center">
+    <footer className="mb-14 border-t px-4 py-8 md:mb-20">
+      <div className="items-align-center mx-auto flex max-w-7xl flex-col items-center justify-center gap-1">
         <p className="text-sm text-zinc-600">
           Los roast son un micro servicio de
         </p>
         <a
+          className="items-align-center group flex flex-row items-center justify-center gap-2 text-sm text-zinc-600"
           href="https://educalvolopez.com/"
+          rel="noopener"
           target="_blank"
-          className="text-sm text-zinc-600 justify-center items-center gap-2 flex flex-row items-align-center group"
         >
-          <div className="shrink-0 flex gap-2 p-0.5 shadow-neutral-soft bg-white rounded-full h-8 w-8 group-hover:shadow-neutral-soft-hover">
+          <div className="flex h-8 w-8 shrink-0 gap-2 rounded-full bg-white p-0.5 shadow-neutral-soft group-hover:shadow-neutral-soft-hover">
             <Image
-              src="https://github.com/educlopez.png"
               alt="avatar Edu"
-              width={56}
+              className="shrink-0 rounded-full"
               height={56}
-              className="shrink-0 rounded-full "
+              src="https://github.com/educlopez.png"
+              width={56}
             />
           </div>
           <span className="group-hover:underline group-hover:underline-offset-2">

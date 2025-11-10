@@ -6,7 +6,7 @@ export function WebsiteStatus() {
   return (
     <div className={`flex flex-col text-sm ${isLoading ? "blur-xs" : ""}`}>
       <p>
-        Más de <strong> {!isLoading ? totalSubmissions : "0"}</strong> proyectos
+        Más de <strong> {isLoading ? "0" : totalSubmissions}</strong> proyectos
         rediseñados.
       </p>
     </div>

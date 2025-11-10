@@ -1,49 +1,49 @@
+import { Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
-import { Send } from "lucide-react";
 
-interface BlurredSubmitFormProps {
+type BlurredSubmitFormProps = {
   title?: string;
   message?: string;
-}
+};
 
 export function BlurredSubmitForm({
   title = "Spots no disponibles",
   message = "Actualmente no hay spots libres. Por favor, vuelve más tarde para enviar tu proyecto.",
 }: BlurredSubmitFormProps) {
   return (
-    <section id="submit" className="py-24 bg-zinc-950 text-white relative">
-      <div className="p-4 absolute inset-0 backdrop-blur-xs w-full bg-zinc-950/20 z-10 flex items-center justify-center">
-        <div className="box-gen text-white p-4 rounded-md text-center">
-          <p className="text-lg font-bold">{title}</p>
+    <section className="relative bg-zinc-950 py-24 text-white" id="submit">
+      <div className="absolute inset-0 z-10 flex w-full items-center justify-center bg-zinc-950/20 p-4 backdrop-blur-xs">
+        <div className="box-gen rounded-md p-4 text-center text-white">
+          <p className="font-bold text-lg">{title}</p>
           <p>{message}</p>
         </div>
       </div>
-      <div className="max-w-2xl mx-auto px-4">
+      <div className="mx-auto max-w-2xl px-4">
         <div className="space-y-6 opacity-50">
           <div className="space-y-2">
             <Label htmlFor="url">URL del proyecto</Label>
-            <div className="h-12 bg-white/5 border-0 focus-visible:ring-1 focus-visible:ring-white"></div>
+            <div className="h-12 border-0 bg-white/5 focus-visible:ring-1 focus-visible:ring-white" />
           </div>
           <div className="space-y-2">
             <Label htmlFor="comments">Comentarios adicionales</Label>
-            <div className="min-h-[100px] bg-white/5 border-0 focus-visible:ring-1 focus-visible:ring-white"></div>
+            <div className="min-h-[100px] border-0 bg-white/5 focus-visible:ring-1 focus-visible:ring-white" />
           </div>
-          <p className="text-sm text-zinc-400 mt-4">
+          <p className="mt-4 text-sm text-zinc-400">
             *Los Roast se publicaran en x.com en la cuenta de{" "}
             <a
               href="https://x.com/educalvolpz"
-              target="_blank"
               rel="noopener noreferrer"
+              target="_blank"
             >
               @educalvolpz
             </a>
           </p>
           <Button
+            className="w-full text-zinc-950 transition-transform hover:scale-105 disabled:opacity-50"
+            size="lg"
             type="submit"
             variant="outline"
-            size="lg"
-            className="w-full text-zinc-950 hover:scale-105 transition-transform disabled:opacity-50"
           >
             Enviar para revisión
             <Send className="ml-2 h-5 w-5" />
