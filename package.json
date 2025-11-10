@@ -1,58 +1,18 @@
 {
-  "name": "@educlopez/roast-web",
-  "version": "1.0.0",
-  "author": "@educalvolpz",
-  "description": "This website offers a free service where users can submit their web projects for redesign and improvement.",
+  "name": "roast-web",
   "private": true,
-  "license": "MIT",
-  "keywords": [
-    "roast",
-    "design",
-    "tailwindcss",
-    "motion",
-    "react"
+  "packageManager": "pnpm@10.17.1",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
   ],
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint ."
-  },
-  "dependencies": {
-    "@radix-ui/react-label": "^2.1.1",
-    "@radix-ui/react-select": "^2.1.5",
-    "@radix-ui/react-slot": "^1.1.1",
-    "@radix-ui/react-toast": "^1.2.5",
-    "@supabase/supabase-js": "^2.48.1",
-    "@vercel/analytics": "^1.4.1",
-    "@vercel/og": "0.6.5",
-    "@vercel/toolbar": "^0.1.30",
-    "class-variance-authority": "^0.7.1",
-    "clsx": "^2.1.1",
-    "lucide-react": "^0.474.0",
-    "motion": "^12.1.0",
-    "next": "16.0.1",
-    "next-cloudinary": "^6.16.0",
-    "react": "19.2.0",
-    "react-dom": "19.2.0",
-    "react-wrap-balancer": "^1.1.1",
-    "resend": "^4.1.2",
-    "tailwind-merge": "^3.0.1",
-    "tailwindcss-animate": "^1.0.7"
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "lint": "turbo lint"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4.0.3",
-    "@types/node": "^22.13.1",
-    "@types/react": "19.2.2",
-    "@types/react-dom": "19.2.2",
-    "eslint": "^9.19.0",
-    "eslint-config-next": "16.0.1",
-    "postcss": "^8.5.1",
-    "tailwindcss": "^4.0.3",
-    "typescript": "^5.7.3"
-  },
-  "overrides": {
-    "@types/react": "19.2.2",
-    "@types/react-dom": "19.2.2"
+    "turbo": "^2.6.0"
   }
 }
+

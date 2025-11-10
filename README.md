@@ -1,6 +1,6 @@
 # Roast web
 
-![Screenshot of roast-web](/public/og.jpg)
+![Screenshot of roast-web](apps/web/public/og.jpg)
 
 <div align="center">
 
@@ -59,10 +59,10 @@ To run this project locally, follow these steps:
    ```
 
 3. **Install Dependencies**:
-   Make sure you have Node.js and npm installed. Then, run:
+   Make sure you have Node.js and pnpm installed. Then, run:
 
    ```bash
-   npm install
+   pnpm install
    ```
 
 4. **Set Up Environment Variables**:
@@ -75,10 +75,16 @@ To run this project locally, follow these steps:
    ```
 
 5. **Run the Development Server**:
-   Start the development server:
+   Start the development server from the repository root:
 
    ```bash
-   npm run dev
+   pnpm dev
+   ```
+
+   Alternatively, to run the web app only:
+
+   ```bash
+   pnpm --filter @educlopez/roast-web dev
    ```
 
 6. **Open the Project**:
