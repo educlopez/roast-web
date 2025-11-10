@@ -21,7 +21,16 @@ export default function Hero({ containerRef }: HeroProps) {
   const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.8]);
   const { availableSpots, isLoading } = useAvailableSpots();
-  const { isDateReached } = useDateContext();
+  const { isDateReached, isSubmissionEnabled } = useDateContext();
+  const hasSpots = availableSpots > 0;
+  const registrationOpen = isSubmissionEnabled && hasSpots;
+  const buttonHref = isDateReached
+    ? "#galeria"
+    : !isSubmissionEnabled
+    ? "#informacion"
+    : registrationOpen
+    ? "#submit"
+    : "#galeria";
   return (
     <section className="min-h-screen flex items-center justify-center relative">
       <motion.div
@@ -50,17 +59,14 @@ export default function Hero({ containerRef }: HeroProps) {
             variant="rainbow"
             size="lg"
           >
-            <Link
-              href={availableSpots > 0 ? "#submit" : "#galeria"}
-              className={isLoading ? "blur-xs" : ""}
-            >
-              {isDateReached ? (
-                "Servicio cerrado"
-              ) : availableSpots > 0 ? (
-                <>{availableSpots} spots disponibles</>
-              ) : (
-                "Ver Roast Realizados"
-              )}
+            <Link href={buttonHref} className={isLoading ? "blur-xs" : ""}>
+              {isDateReached
+                ? "Servicio cerrado"
+                : !isSubmissionEnabled
+                ? "Inscripciones próximamente"
+                : hasSpots
+                ? `${availableSpots} spots disponibles`
+                : "Ver Roast Realizados"}
             </Link>
           </Button>
           <WebsiteStatus />

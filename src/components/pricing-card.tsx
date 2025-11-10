@@ -7,8 +7,10 @@ import Image from "next/image";
 import { useDateContext } from "@/context/DateContext";
 
 export function PricingCard() {
-  const { isDateReached } = useDateContext();
+  const { isDateReached, isSubmissionEnabled } = useDateContext();
   const { availableSpots } = useAvailableSpots();
+  const hasSpots = availableSpots > 0;
+  const registrationOpen = isSubmissionEnabled && hasSpots;
 
   return (
     <section id="informacion" className="py-24">
@@ -30,14 +32,18 @@ export function PricingCard() {
             <h3 className="text-2xl md:text-3xl font-bold mb-6">
               {isDateReached
                 ? "¡Gracias por participar!"
-                : "¡Servicio Gratuito durante Diciembre!"}
+                : !isSubmissionEnabled
+                  ? "Inscripciones disponibles próximamente"
+                  : "¡Servicio Gratuito durante Diciembre!"}
             </h3>
             <p className="text-base text-zinc-600 mb-8">
               {isDateReached
                 ? "El periodo de roasts ha finalizado. ¡Gracias a todos los que participaron!"
-                : "Durante todo diciembre, ofrezco un servicio de Roast totalmente gratuito. Tras la primera tanda de Roast, es posible que necesite limitar el alcance a la sección del hero en algunos casos."}
+                : !isSubmissionEnabled
+                  ? "Los registros estarán abiertos próximamente. Prepara tu proyecto y vuelve para enviarlo."
+                  : "Durante todo diciembre, ofrezco un servicio de Roast totalmente gratuito. Tras la primera tanda de Roast, es posible que necesite limitar el alcance a la sección del hero en algunos casos."}
             </p>
-            {!isDateReached && (
+            {!isDateReached && isSubmissionEnabled && (
               <p className="text-base text-zinc-600 mb-8">
                 He recibido propuestas extensas que requieren mucho tiempo. Por
                 lo tanto, para poder realizar la mayor cantidad de Roast,
@@ -56,14 +62,18 @@ export function PricingCard() {
                 href={
                   isDateReached
                     ? "#galeria"
-                    : availableSpots > 0
-                    ? "#submit"
-                    : "#galeria"
+                    : !isSubmissionEnabled
+                      ? "#informacion"
+                      : registrationOpen
+                        ? "#submit"
+                        : "#galeria"
                 }
               >
                 {isDateReached ? (
                   "Ver Roasts Realizados"
-                ) : availableSpots > 0 ? (
+                ) : !isSubmissionEnabled ? (
+                  "Conoce los detalles"
+                ) : hasSpots ? (
                   <>
                     Envía Tu Proyecto <ArrowRight className="ml-2 h-5 w-5" />
                   </>

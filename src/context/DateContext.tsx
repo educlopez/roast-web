@@ -1,5 +1,11 @@
 "use client";
-import React, { createContext, useContext, useEffect, useState } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  type ReactNode,
+} from "react";
 
 interface DateContextType {
   isDateReached: boolean;
@@ -9,23 +15,26 @@ interface DateContextType {
 
 const DateContext = createContext<DateContextType | undefined>(undefined);
 
-export function DateProvider({ children }: { children: React.ReactNode }) {
+export function DateProvider({ children }: { children: ReactNode }) {
   const [state, setState] = useState<DateContextType>({
     isDateReached: false,
-    isSubmissionEnabled: true,
+    isSubmissionEnabled: false,
     currentPhase: "active",
   });
 
   useEffect(() => {
     function updateState() {
-      const targetDate = new Date("2025-01-01");
+      const registrationStart = new Date("2025-12-09T00:00:00");
+      const registrationEndExclusive = new Date("2026-01-02T00:00:00");
       const currentDate = new Date();
-      const isReached = currentDate >= targetDate;
+      const isAfterEnd = currentDate >= registrationEndExclusive;
+      const isBeforeStart = currentDate < registrationStart;
+      const isWithinWindow = !isBeforeStart && !isAfterEnd;
 
       setState({
-        isDateReached: isReached,
-        isSubmissionEnabled: !isReached,
-        currentPhase: isReached ? "ended" : "active",
+        isDateReached: isAfterEnd,
+        isSubmissionEnabled: isWithinWindow,
+        currentPhase: isAfterEnd ? "ended" : "active",
       });
     }
 

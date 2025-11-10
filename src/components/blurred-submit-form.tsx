@@ -2,16 +2,21 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Send } from "lucide-react";
 
-export function BlurredSubmitForm() {
+interface BlurredSubmitFormProps {
+  title?: string;
+  message?: string;
+}
+
+export function BlurredSubmitForm({
+  title = "Spots no disponibles",
+  message = "Actualmente no hay spots libres. Por favor, vuelve más tarde para enviar tu proyecto.",
+}: BlurredSubmitFormProps) {
   return (
     <section id="submit" className="py-24 bg-zinc-950 text-white relative">
       <div className="p-4 absolute inset-0 backdrop-blur-xs w-full bg-zinc-950/20 z-10 flex items-center justify-center">
         <div className="box-gen text-white p-4 rounded-md text-center">
-          <p className="text-lg font-bold">Spots no disponibles</p>
-          <p>
-            Actualmente no hay spots libres. Por favor, vuelve más tarde para
-            enviar tu proyecto.
-          </p>
+          <p className="text-lg font-bold">{title}</p>
+          <p>{message}</p>
         </div>
       </div>
       <div className="max-w-2xl mx-auto px-4">

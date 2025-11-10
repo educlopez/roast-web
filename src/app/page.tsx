@@ -13,8 +13,38 @@ import { useDateContext } from "@/context/DateContext";
 
 export default function Page() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const { isDateReached } = useDateContext();
+  const { isDateReached, isSubmissionEnabled } = useDateContext();
   const { availableSpots } = useAvailableSpots();
+  const hasAvailableSpots = availableSpots > 0;
+  const registrationOpen = isSubmissionEnabled && hasAvailableSpots;
+
+  const formSection = (() => {
+    if (registrationOpen) {
+      return <SubmitForm />;
+    }
+
+    if (!isSubmissionEnabled) {
+      return (
+        <BlurredSubmitForm
+          title={
+            isDateReached ? "Servicio cerrado" : "Inscripciones próximamente"
+          }
+          message={
+            isDateReached
+              ? "El periodo de roasts ha finalizado. ¡Gracias a todos los que participaron!"
+              : "Las inscripciones estarán disponibles próximamente."
+          }
+        />
+      );
+    }
+
+    return (
+      <BlurredSubmitForm
+        title="Spots no disponibles"
+        message="Actualmente no hay spots libres. Por favor, vuelve más tarde para enviar tu proyecto."
+      />
+    );
+  })();
 
   return (
     <div ref={containerRef} className="relative">
@@ -25,13 +55,7 @@ export default function Page() {
         <Divider />
         <PricingCard />
         <Divider />
-        {isDateReached ? (
-          <BlurredSubmitForm />
-        ) : availableSpots > 0 ? (
-          <SubmitForm />
-        ) : (
-          <BlurredSubmitForm />
-        )}
+        {formSection}
       </main>
     </div>
   );
