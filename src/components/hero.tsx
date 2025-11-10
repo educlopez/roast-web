@@ -1,6 +1,5 @@
 import { WebsiteStatus } from "@/components/website-status";
-import { motion, useScroll, useTransform } from "motion/react";
-import { RefObject } from "react";
+import { motion, useTransform, type MotionValue } from "motion/react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { FloatingCards } from "@/components/floating-cards";
@@ -10,13 +9,9 @@ import SocialSelector from "@/components/social-selector";
 import Balancer from "react-wrap-balancer";
 import { useDateContext } from "@/context/DateContext";
 interface HeroProps {
-  containerRef: RefObject<HTMLDivElement>;
+  scrollYProgress: MotionValue<number>;
 }
-export default function Hero({ containerRef }: HeroProps) {
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"],
-  });
+export default function Hero({ scrollYProgress }: HeroProps) {
 
   const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.8]);

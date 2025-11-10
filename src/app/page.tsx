@@ -10,9 +10,14 @@ import { BlurredSubmitForm } from "@/components/blurred-submit-form";
 import Divider from "@/components/divider";
 import Hero from "@/components/hero";
 import { useDateContext } from "@/context/DateContext";
+import { useScroll } from "motion/react";
 
 export default function Page() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"],
+  });
   const { isDateReached, isSubmissionEnabled } = useDateContext();
   const { availableSpots } = useAvailableSpots();
   const hasAvailableSpots = availableSpots > 0;
@@ -49,7 +54,7 @@ export default function Page() {
   return (
     <div ref={containerRef} className="relative">
       <main>
-        <Hero containerRef={containerRef as React.RefObject<HTMLDivElement>} />
+        <Hero scrollYProgress={scrollYProgress} />
         <Divider />
         <HorizontalScroll />
         <Divider />
