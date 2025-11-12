@@ -104,7 +104,6 @@ export default function RootLayout({
             mode="hover"
           />
           <FigmaRulers
-            containerWidth={1280}
             enabled={process.env.NODE_ENV === "development"}
           />
           <SiteHeader />
