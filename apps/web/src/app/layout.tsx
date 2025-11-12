@@ -103,9 +103,7 @@ export default function RootLayout({
             labelTextColor="#ffffff"
             mode="hover"
           />
-          <FigmaRulers
-            enabled={process.env.NODE_ENV === "development"}
-          />
+          <FigmaRulers enabled />
           <SiteHeader />
           {children}
           {shouldInjectToolbar && <VercelToolbar />}
