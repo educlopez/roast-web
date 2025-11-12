@@ -22,7 +22,7 @@ export default function Footer() {
             <div className="mx-auto flex max-w-4xl flex-col items-center text-center">
               <a
                 className="group flex items-center gap-2 rounded-sm px-3 py-2 transition-all hover:bg-primary/10 hover:shadow-neutral-soft hover:backdrop-blur-sm"
-                href="https://x.com/educalvolopez"
+                href="https://x.com/educalvolpz"
                 rel="noopener noreferrer"
                 target="_blank"
               >
