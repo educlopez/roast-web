@@ -1,13 +1,13 @@
 "use client";
 
 import { ArrowLeft, ArrowRight, Figma } from "lucide-react";
-import { motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
-import { useCallback, useEffect, useRef, useState } from "react";
+import type { PointerEvent as ReactPointerEvent } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { supabase } from "@/lib/supabase";
-import { cn } from "@/lib/utils";
 import { CardLink } from "./cardLink";
+import { FigmaFrame } from "./figma-frame";
 import { Button } from "./ui/button";
 
 const SKELETON_KEYS = [
@@ -24,71 +24,71 @@ type Design = {
   before_img: string;
   url: string;
 };
+
 export function HorizontalScroll() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
   const [status, setStatus] = useState<
     "idle" | "loading" | "error" | "success"
   >("idle");
   const [designs, setDesigns] = useState<Design[]>([]);
-  const [isAtStart, setIsAtStart] = useState(true);
-  const [isAtEnd, setIsAtEnd] = useState(false);
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [displayIndex, setDisplayIndex] = useState(1);
+  const [shouldAnimate, setShouldAnimate] = useState(false);
+  const [dragOffset, setDragOffset] = useState(0);
+  const dragState = useRef<{
+    isDragging: boolean;
+    startX: number;
+    pointerId: number | null;
+    rafId: number;
+    skipClick: boolean;
+  }>({
+    isDragging: false,
+    startX: 0,
+    pointerId: null,
+    rafId: 0,
+    skipClick: false,
+  });
+  const [slideMetrics, setSlideMetrics] = useState<{
+    width: number;
+    gap: number;
+    padding: number;
+  }>({
+    width: 0,
+    gap: 0,
+    padding: 0,
+  });
 
-  const updateScrollEdges = useCallback(() => {
+  const measureSlides = useCallback(() => {
     const container = containerRef.current;
-
     if (!container) {
       return;
     }
 
-    const { scrollLeft, scrollWidth, clientWidth } = container;
-    const maxScrollLeft = scrollWidth - clientWidth;
-    const firstItem = container.querySelector<HTMLElement>(
-      "[data-carousel-item]"
+    const track = trackRef.current;
+    if (!track) {
+      return;
+    }
+
+    const firstSlide = track.querySelector<HTMLElement>(
+      "[data-carousel-slide]"
     );
-    const itemWidth = firstItem?.offsetWidth ?? clientWidth;
-    const gap = 16;
-    const step = itemWidth + gap;
-    const rawIndex = step > 0 ? Math.round(scrollLeft / step) : 0;
 
-    setIsAtStart(scrollLeft <= 8);
-    setIsAtEnd(scrollLeft >= maxScrollLeft - 8);
-    setActiveIndex((prev) => {
-      const nextValue = Math.min(
-        Math.max(rawIndex, 0),
-        Math.max(designs.length - 1, 0)
-      );
+    if (!firstSlide) {
+      return;
+    }
 
-      return prev === nextValue ? prev : nextValue;
+    const computedStyle = window.getComputedStyle(track);
+    const gapValue = Number.parseFloat(
+      computedStyle.columnGap || computedStyle.gap || "0"
+    );
+    const containerWidth = container.offsetWidth;
+
+    setSlideMetrics({
+      width: firstSlide.offsetWidth,
+      gap: Number.isNaN(gapValue) ? 0 : gapValue,
+      padding: containerWidth / 2,
     });
-  }, [designs.length]);
-
-  const scrollByOffset = useCallback(
-    (direction: "prev" | "next") => {
-      const container = containerRef.current;
-
-      if (!container) {
-        return;
-      }
-
-      const firstItem = container.querySelector<HTMLElement>(
-        "[data-carousel-item]"
-      );
-      const itemWidth = firstItem?.offsetWidth ?? container.clientWidth * 0.8;
-      const gap = 16; // Tailwind gap-4 between items
-      const scrollAmount = itemWidth + gap;
-      const sign = direction === "next" ? 1 : -1;
-
-      container.scrollBy({
-        left: sign * scrollAmount,
-        behavior: "smooth",
-      });
-      window.requestAnimationFrame(() => {
-        updateScrollEdges();
-      });
-    },
-    [updateScrollEdges]
-  );
+  }, []);
 
   useEffect(() => {
     async function fetchDesigns() {
@@ -105,41 +105,237 @@ export function HorizontalScroll() {
       } else {
         setDesigns(data || []);
         setStatus("success");
-        setActiveIndex(0);
+        setDisplayIndex(1);
+        requestAnimationFrame(() => {
+          measureSlides();
+        });
       }
     }
 
     fetchDesigns().catch((fetchError) => {
       console.error("Unexpected error fetching designs:", fetchError);
     });
-  }, []);
+  }, [measureSlides]);
+
+  useEffect(
+    () => () => {
+      cancelAnimationFrame(dragState.current.rafId);
+    },
+    []
+  );
+
+  const loopedDesigns = useMemo(() => {
+    if (designs.length < 1) {
+      return [];
+    }
+
+    const last = designs.at(-1) ?? designs[0];
+    const first = designs[0];
+
+    return [last, ...designs, first];
+  }, [designs]);
+
+  const featuredDesign = designs[displayIndex - 1] ?? designs[0];
+  const showSkeletons = status === "loading";
+  const showError = status === "error";
+  const showEmptyState = status === "success" && !featuredDesign;
 
   useEffect(() => {
-    const container = containerRef.current;
+    const handleResize = () => {
+      measureSlides();
+    };
 
-    if (!container) {
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [measureSlides]);
+
+  const offsetPerSlide = slideMetrics.width + slideMetrics.gap;
+  const targetTranslate =
+    slideMetrics.width === 0
+      ? 0
+      : slideMetrics.padding -
+        slideMetrics.width / 2 -
+        displayIndex * offsetPerSlide;
+  const translateValue = targetTranslate + dragOffset;
+
+  useEffect(() => {
+    if (loopedDesigns.length > 0) {
+      setDisplayIndex(1);
+    }
+  }, [loopedDesigns.length]);
+
+  useEffect(() => {
+    if (!trackRef.current) {
       return;
     }
 
-    const handleScroll = () => {
-      updateScrollEdges();
+    const handleTransitionEnd = () => {
+      setShouldAnimate(false);
+
+      if (displayIndex === 0) {
+        setDisplayIndex(loopedDesigns.length - 2);
+      } else if (displayIndex === loopedDesigns.length - 1) {
+        setDisplayIndex(1);
+      }
     };
 
-    updateScrollEdges();
-    container.addEventListener("scroll", handleScroll, { passive: true });
+    const track = trackRef.current;
+    track.addEventListener("transitionend", handleTransitionEnd);
 
     return () => {
-      container.removeEventListener("scroll", handleScroll);
+      track.removeEventListener("transitionend", handleTransitionEnd);
     };
-  }, [updateScrollEdges]);
+  }, [displayIndex, loopedDesigns.length]);
 
-  const showSkeletons = status === "loading";
-  const showError = status === "error";
-  const showEmptyState = status === "success" && designs.length === 0;
-  const showNavigation = designs.length > 1;
+  const handleNext = useCallback(() => {
+    if (loopedDesigns.length <= 1) {
+      return;
+    }
+    setShouldAnimate(true);
+    setDisplayIndex((prev) => prev + 1);
+  }, [loopedDesigns.length]);
+
+  const handlePrev = useCallback(() => {
+    if (loopedDesigns.length <= 1) {
+      return;
+    }
+    setShouldAnimate(true);
+    setDisplayIndex((prev) => prev - 1);
+  }, [loopedDesigns.length]);
+
+  const handleDotClick = useCallback(
+    (index: number) => {
+      if (loopedDesigns.length <= 1) {
+        return;
+      }
+
+      setShouldAnimate(true);
+      setDisplayIndex(index + 1);
+    },
+    [loopedDesigns.length]
+  );
+
+  const activeRealIndex =
+    designs.length > 0
+      ? (displayIndex - 1 + designs.length) % designs.length
+      : 0;
+
+  const handleSlideClick = useCallback(
+    (loopIndex: number) => {
+      if (dragState.current.skipClick) {
+        dragState.current.skipClick = false;
+        return;
+      }
+
+      if (loopedDesigns.length <= 1) {
+        return;
+      }
+
+      setShouldAnimate(true);
+      setDisplayIndex(loopIndex);
+    },
+    [loopedDesigns.length]
+  );
+
+  const scheduleDragOffset = useCallback((value: number) => {
+    cancelAnimationFrame(dragState.current.rafId);
+    dragState.current.rafId = requestAnimationFrame(() => {
+      setDragOffset(value);
+    });
+  }, []);
+
+  const handlePointerDown = useCallback(
+    (event: ReactPointerEvent<HTMLDivElement>) => {
+      if (loopedDesigns.length <= 1) {
+        return;
+      }
+
+      if (event.pointerType === "mouse" && event.button !== 0) {
+        return;
+      }
+
+      dragState.current.isDragging = true;
+      dragState.current.startX = event.clientX;
+      dragState.current.pointerId = event.pointerId;
+      dragState.current.skipClick = false;
+      setShouldAnimate(false);
+      scheduleDragOffset(0);
+      trackRef.current?.setPointerCapture(event.pointerId);
+    },
+    [loopedDesigns.length, scheduleDragOffset]
+  );
+
+  const handlePointerMove = useCallback(
+    (event: ReactPointerEvent<HTMLDivElement>) => {
+      if (!dragState.current.isDragging) {
+        return;
+      }
+
+      const delta = event.clientX - dragState.current.startX;
+      if (!dragState.current.skipClick && Math.abs(delta) > 4) {
+        dragState.current.skipClick = true;
+      }
+      scheduleDragOffset(delta);
+    },
+    [scheduleDragOffset]
+  );
+
+  const finishPointerInteraction = useCallback(
+    (event: ReactPointerEvent<HTMLDivElement>) => {
+      if (!dragState.current.isDragging) {
+        return;
+      }
+
+      dragState.current.isDragging = false;
+      const { pointerId, startX } = dragState.current;
+
+      if (pointerId !== null) {
+        try {
+          trackRef.current?.releasePointerCapture(pointerId);
+        } catch {
+          // ignore if pointer wasn't captured
+        }
+      }
+
+      const delta = event.clientX - startX;
+      scheduleDragOffset(0);
+
+      const absDelta = Math.abs(delta);
+      const threshold = Math.max(40, slideMetrics.width * 0.2);
+
+      if (absDelta > threshold) {
+        dragState.current.skipClick = true;
+        if (delta > 0) {
+          handlePrev();
+        } else {
+          handleNext();
+        }
+        setTimeout(() => {
+          dragState.current.skipClick = false;
+        }, 0);
+      } else {
+        dragState.current.skipClick = false;
+        setShouldAnimate(true);
+      }
+
+      dragState.current.pointerId = null;
+      dragState.current.startX = 0;
+    },
+    [handleNext, handlePrev, scheduleDragOffset, slideMetrics.width]
+  );
+
+  const canNavigate = loopedDesigns.length > 1;
+  let cursorStyle = "default";
+  if (dragState.current.isDragging) {
+    cursorStyle = "grabbing";
+  } else if (canNavigate) {
+    cursorStyle = "grab";
+  }
 
   return (
-    <section className="bg-zinc-100 py-24 text-zinc-950" id="galeria">
+    <section className="bg-[#f1e5ff] py-24 text-zinc-950" id="galeria">
       <div className="mx-auto max-w-7xl px-4">
         <div className="mb-12 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <h2 className="font-bold text-2xl md:text-3xl">Roast Recientes</h2>
@@ -164,141 +360,229 @@ export function HorizontalScroll() {
             </Button>
           </div>
         </div>
+
         <p className="mb-8 text-base text-zinc-600">
           Todos los roast han sido realizados con un tiempo medio de 2-3 horas.
           El objetivo es brindar la mayor calidad en el menor tiempo posible,
           para poder inspirar y ayudar a más proyectos.
         </p>
-        <div className="relative">
-          <div
-            className="hide-scrollbar flex snap-x snap-mandatory overflow-x-scroll"
-            ref={containerRef}
-          >
-            <motion.div
-              animate={{ opacity: showSkeletons ? 0.8 : 1 }}
-              className="flex cursor-grab gap-4 p-[5px]"
-              drag="x"
-              dragConstraints={containerRef}
-              dragElastic={0.2}
-            >
-              {showSkeletons &&
-                SKELETON_KEYS.map((skeletonKey) => (
-                  <div
-                    className="max-h-[167px] min-w-[300px] snap-center overflow-hidden rounded-md bg-zinc-200/60 shadow-neutral-soft md:max-h-[444px] md:min-w-[800px]"
-                    key={skeletonKey}
-                  >
-                    <div className="h-full w-full animate-pulse bg-gradient-to-br from-zinc-200 via-zinc-100 to-zinc-200" />
-                  </div>
-                ))}
 
-              {!showSkeletons &&
-                designs.map((design) => (
-                  <motion.div
-                    className="max-h-[167px] min-w-[300px] snap-center overflow-hidden rounded-md shadow-neutral-soft transition-all md:max-h-[444px] md:min-w-[800px]"
-                    data-carousel-item
-                    key={design.id}
-                    transition={{ duration: 0.3 }}
-                    whileHover={{ scale: 0.98 }}
-                  >
-                    <div className="relative h-full w-full">
-                      <Image
-                        alt={design.title}
-                        className="h-full w-full object-cover"
-                        draggable="false"
-                        height={600}
-                        priority={designs[0]?.id === design.id}
-                        src={design.image_url}
-                        width={800}
-                      />
-                      <div className="absolute bottom-2 left-2 z-20">
-                        <CardLink
-                          href={design.url}
-                          imgAlt="preview image"
-                          imgSrc={design.before_img}
-                          subtitle={design.description}
-                          target="_blank"
-                          title={design.title}
+        <div className="relative pb-12">
+          {showSkeletons && (
+            <div className="flex justify-center gap-4">
+              {SKELETON_KEYS.map((key) => (
+                <div
+                  className="h-[200px] w-[300px] animate-pulse rounded-lg bg-zinc-200/70"
+                  key={key}
+                />
+              ))}
+            </div>
+          )}
+
+          {!showSkeletons && featuredDesign && (
+            <div className="relative mx-auto max-w-full" ref={containerRef}>
+              <div className="overflow-hidden">
+                <div
+                  className="flex items-center gap-6"
+                  onPointerCancel={finishPointerInteraction}
+                  onPointerDown={handlePointerDown}
+                  onPointerMove={handlePointerMove}
+                  onPointerUp={finishPointerInteraction}
+                  ref={trackRef}
+                  style={{
+                    transform: `translateX(${translateValue}px)`,
+                    transition:
+                      shouldAnimate && !dragState.current.isDragging
+                        ? "transform 400ms ease"
+                        : "none",
+                    touchAction: "pan-y",
+                    cursor: cursorStyle,
+                  }}
+                >
+                  {loopedDesigns.map((design, index) => {
+                    let realIndex = index - 1;
+                    if (index === 0) {
+                      realIndex = designs.length - 1;
+                    } else if (index === loopedDesigns.length - 1) {
+                      realIndex = 0;
+                    }
+
+                    const isActive = realIndex === activeRealIndex;
+                    const slideContent = (
+                      <div className="relative h-full w-full">
+                        <Image
+                          alt={design.title}
+                          className="h-full w-full rounded-xl object-cover"
+                          height={600}
+                          src={design.image_url}
+                          width={800}
                         />
+                        <div className="absolute bottom-3 left-3">
+                          <CardLink
+                            href={design.url}
+                            imgAlt="preview image"
+                            imgSrc={design.before_img}
+                            subtitle={design.description}
+                            target="_blank"
+                            title={design.title}
+                          />
+                        </div>
                       </div>
-                      <div className="absolute inset-x-0 bottom-0 isolate z-10 h-[100px]">
-                        <div className="gradient-mask-t-0 absolute inset-0 backdrop-blur-[1px]" />
-                        <div className="gradient-mask-t-0 absolute inset-0 backdrop-blur-[2px]" />
-                        <div className="gradient-mask-t-0 absolute inset-0 backdrop-blur-[3px]" />
-                        <div className="gradient-mask-t-0 absolute inset-0 backdrop-blur-[6px]" />
-                        <div className="gradient-mask-t-0 absolute inset-0 backdrop-blur-[12px]" />
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
-            </motion.div>
-          </div>
+                    );
 
-          {showNavigation && (
-            <>
-              <div
-                className={cn(
-                  "pointer-events-none absolute inset-y-0 left-0 hidden w-20 bg-gradient-to-r from-zinc-100 to-transparent transition-opacity duration-200 md:block",
-                  isAtStart ? "opacity-0" : "opacity-100"
-                )}
-              />
-              <div
-                className={cn(
-                  "pointer-events-none absolute inset-y-0 right-0 hidden w-20 bg-gradient-to-l from-zinc-100 to-transparent transition-opacity duration-200 md:block",
-                  isAtEnd ? "opacity-0" : "opacity-100"
-                )}
-              />
-              <div className="absolute inset-y-0 left-2 hidden items-center md:flex">
-                <Button
-                  aria-label="Ver diseño anterior"
-                  className="shadow-neutral-soft hover:shadow-neutral-soft-hover"
-                  disabled={isAtStart}
-                  onClick={() => scrollByOffset("prev")}
-                  size="icon"
-                  variant="outline"
+                    return (
+                      <button
+                        aria-pressed={isActive}
+                        className="w-[280px] flex-shrink-0 border-0 bg-transparent p-0 md:w-[520px]"
+                        data-carousel-slide
+                        key={`${design.id}-${index}`}
+                        onClick={() => handleSlideClick(index)}
+                        type="button"
+                      >
+                        {isActive ? (
+                          <FigmaFrame padding="sm" showCorners>
+                            {slideContent}
+                          </FigmaFrame>
+                        ) : (
+                          <div className="rounded-xl shadow-neutral-soft transition duration-300 hover:shadow-neutral-soft-hover">
+                            {slideContent}
+                          </div>
+                        )}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {canNavigate && (
+                <>
+                  <div className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-[#f1e5ff] via-[#f1e5ff]/80 to-transparent" />
+                  <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-[#f1e5ff] via-[#f1e5ff]/80 to-transparent" />
+                </>
+              )}
+
+              {loopedDesigns.length > 1 && (
+                <>
+                  <button
+                    aria-label="Ver diseño anterior"
+                    className={[
+                      "-translate-y-1/2",
+                      "absolute",
+                      "hidden",
+                      "left-2",
+                      "md:block",
+                      "rounded-full",
+                      "top-1/2",
+                      "bg-white/80",
+                      "p-2",
+                      "text-[#947efb]",
+                      "shadow-sm",
+                      "transition-all",
+                      "hover:bg-white",
+                      "hover:shadow-md",
+                    ].join(" ")}
+                    onClick={handlePrev}
+                    type="button"
+                  >
+                    <ArrowLeft aria-hidden className="h-5 w-5" />
+                    <span className="sr-only">Anterior</span>
+                  </button>
+                  <button
+                    aria-label="Ver diseño siguiente"
+                    className={[
+                      "-translate-y-1/2",
+                      "absolute",
+                      "right-2",
+                      "top-1/2",
+                      "hidden",
+                      "md:block",
+                      "rounded-full",
+                      "bg-white/80",
+                      "p-2",
+                      "text-[#947efb]",
+                      "shadow-sm",
+                      "transition-all",
+                      "hover:bg-white",
+                      "hover:shadow-md",
+                      "md:block",
+                    ].join(" ")}
+                    onClick={handleNext}
+                    type="button"
+                  >
+                    <ArrowRight aria-hidden className="h-5 w-5" />
+                    <span className="sr-only">Siguiente</span>
+                  </button>
+                </>
+              )}
+
+              {loopedDesigns.length > 1 && (
+                <div
+                  className={[
+                    "-bottom-8",
+                    "absolute",
+                    "inset-x-0",
+                    "flex",
+                    "justify-center",
+                    "gap-2",
+                  ].join(" ")}
                 >
-                  <ArrowLeft className="h-4 w-4" />
-                </Button>
-              </div>
-              <div className="absolute inset-y-0 right-2 hidden items-center md:flex">
-                <Button
-                  aria-label="Ver diseño siguiente"
-                  className="shadow-neutral-soft hover:shadow-neutral-soft-hover"
-                  disabled={isAtEnd}
-                  onClick={() => scrollByOffset("next")}
-                  size="icon"
-                  variant="outline"
-                >
-                  <ArrowRight className="h-4 w-4" />
-                </Button>
-              </div>
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 flex justify-center gap-2 pb-3 md:hidden">
-                {designs.map((design, index) => (
-                  <span
-                    className={cn(
-                      "h-2 w-2 rounded-full bg-zinc-300 transition-colors",
-                      index === activeIndex && "bg-zinc-600"
-                    )}
-                    key={`dot-${design.id}`}
-                  />
-                ))}
-              </div>
-            </>
+                  {designs.map((design, index) => (
+                    <button
+                      aria-label={`Ir al slide ${index + 1}`}
+                      className={[
+                        "h-2.5 w-2.5 rounded-full transition-all",
+                        index === activeRealIndex
+                          ? "w-8 bg-[#947efb]"
+                          : "bg-[#947efb]/30 hover:bg-[#947efb]/50",
+                      ].join(" ")}
+                      key={`dot-${design.id}`}
+                      onClick={() => handleDotClick(index)}
+                      type="button"
+                    />
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+
+          {showError && (
+            <p
+              className={[
+                "mt-6",
+                "rounded-md",
+                "border",
+                "border-red-200",
+                "bg-red-50",
+                "px-4",
+                "py-3",
+                "text-sm",
+                "text-red-600",
+              ].join(" ")}
+            >
+              Tuvimos un problema para cargar los roasts recientes. Intenta
+              recargar la página.
+            </p>
+          )}
+
+          {showEmptyState && (
+            <p
+              className={[
+                "mt-6",
+                "rounded-md",
+                "border",
+                "border-zinc-200",
+                "bg-white",
+                "px-4",
+                "py-3",
+                "text-sm",
+                "text-zinc-600",
+              ].join(" ")}
+            >
+              Todavía no hay roasts publicados. Vuelve pronto para descubrir los
+              próximos proyectos.
+            </p>
           )}
         </div>
-
-        {showError && (
-          <p className="mt-6 rounded-md border border-red-200 bg-red-50 px-4 py-3 text-red-600 text-sm">
-            Tuvimos un problema para cargar los roasts recientes. Intenta
-            recargar la página.
-          </p>
-        )}
-
-        {showEmptyState && (
-          <p className="mt-6 rounded-md border border-zinc-200 bg-white px-4 py-3 text-sm text-zinc-600">
-            Todavía no hay roasts publicados. Vuelve pronto para descubrir los
-            próximos proyectos.
-          </p>
-        )}
       </div>
     </section>
   );
