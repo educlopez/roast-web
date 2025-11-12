@@ -3,6 +3,7 @@ import { motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { FigmaFrame } from "@/components/figma-frame";
 import { useDateContext } from "@/context/DateContext";
 import { useAvailableSpots } from "@/hooks/use-available-spots";
 
@@ -28,7 +29,12 @@ export function PricingCard() {
             src="/info.jpeg"
             width={500}
           />
-          <div className="mx-auto max-w-xl">
+          <FigmaFrame
+            cornerSize="sm"
+            label={{ icon: "❖", text: "Información" }}
+            padding="lg"
+            className="mx-auto max-w-xl"
+          >
             <h3 className="mb-6 font-bold text-2xl md:text-3xl">
               {isDateReached
                 ? "¡Gracias por participar!"
@@ -88,7 +94,7 @@ export function PricingCard() {
               *Debido a picos en la demanda, algunas solicitudes podrían tardar
               un poco más de lo habitual.
             </p>
-          </div>
+          </FigmaFrame>
         </motion.div>
       </div>
     </section>

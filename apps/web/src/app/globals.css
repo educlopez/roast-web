@@ -173,6 +173,10 @@
     --color-3: 210 100% 63%;
     --color-4: 195 100% 63%;
     --color-5: 90 100% 63%;
+    --f-cursor-default:
+      url(data:image/svg+xml,%3Csvg%20width%3D%2220%22%20height%3D%2222%22%20viewBox%3D%220%200%2020%2022%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M0.791626%202.45818C0.514908%201.30875%201.71074%200.38515%202.73889%200.89666L2.83752%200.950371L17.609%209.75115C18.6596%2010.3774%2018.435%2011.9597%2017.2516%2012.2687L10.5963%2014.0041L7.42542%2019.7707C6.81866%2020.8739%205.17229%2020.6532%204.87756%2019.4289L0.791626%202.45818Z%22%20fill%3D%22%23907CFF%22%20stroke%3D%22white%22%20stroke-width%3D%221.5%22%2F%3E%3C%2Fsvg%3E)
+        1 2,
+      auto;
   }
   .dark {
     --background: 240 10% 3.9%;
@@ -213,6 +217,12 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    body {
+      cursor: var(--f-cursor-default, auto);
+    }
   }
 }
 

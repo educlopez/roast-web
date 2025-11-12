@@ -1,31 +1,49 @@
 import Image from "next/image";
+import Link from "next/link";
+import { FigmaFrame } from "./figma-frame";
 
 export default function Footer() {
   return (
-    <footer className="mb-14 border-t px-4 py-8 md:mb-20">
-      <div className="items-align-center mx-auto flex max-w-7xl flex-col items-center justify-center gap-1">
-        <p className="text-sm text-zinc-600">
-          Los roast son un micro servicio de
-        </p>
-        <a
-          className="items-align-center group flex flex-row items-center justify-center gap-2 text-sm text-zinc-600"
-          href="https://educalvolopez.com/"
-          rel="noopener"
-          target="_blank"
+    <footer className="mb-10 px-4 pt-8 pb-12">
+      <div className="relative mx-auto max-w-4xl">
+        <FigmaFrame
+          cornerSize="sm"
+          label={{ icon: "❖", text: "Footer" }}
+          padding="lg"
         >
-          <div className="flex h-8 w-8 shrink-0 gap-2 rounded-full bg-white p-0.5 shadow-neutral-soft group-hover:shadow-neutral-soft-hover">
-            <Image
-              alt="avatar Edu"
-              className="shrink-0 rounded-full"
-              height={56}
-              src="https://github.com/educlopez.png"
-              width={56}
-            />
+          <div className="flex flex-col items-center justify-center gap-4 text-center text-zinc-600">
+            <Link
+              className="flex items-center gap-2 transition-opacity hover:opacity-80"
+              href="/"
+            >
+              <Image alt="Roast Logo" height={28} src="/logo.svg" width={97} />
+            </Link>
+
+            <div className="mx-auto flex max-w-4xl flex-col items-center text-center">
+              <a
+                className="group flex items-center gap-2 rounded-sm px-3 py-2 transition-all hover:bg-primary/10 hover:shadow-neutral-soft hover:backdrop-blur-sm"
+                href="https://x.com/educalvolopez"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <span className="whitespace-nowrap text-foreground text-sm">
+                  Made by
+                </span>
+                <Image
+                  alt="User Avatar of Eduardo Calvo"
+                  className="h-7 w-7 shrink-0 rounded-md"
+                  height={32}
+                  loading="lazy"
+                  src="https://github.com/educlopez.png"
+                  width={32}
+                />
+                <span className="whitespace-nowrap font-medium text-foreground text-sm">
+                  Eduardo Calvo
+                </span>
+              </a>
+            </div>
           </div>
-          <span className="group-hover:underline group-hover:underline-offset-2">
-            Edu Calvo
-          </span>
-        </a>
+        </FigmaFrame>
       </div>
     </footer>
   );

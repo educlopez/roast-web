@@ -19,13 +19,37 @@ export default function Hero({ scrollYProgress }: HeroProps) {
   const { isDateReached, isSubmissionEnabled } = useDateContext();
   const hasSpots = availableSpots > 0;
   const registrationOpen = isSubmissionEnabled && hasSpots;
-  const buttonHref = isDateReached
-    ? "#galeria"
-    : isSubmissionEnabled
-      ? registrationOpen
-        ? "#submit"
-        : "#galeria"
-      : "#informacion";
+  const buttonHref = (() => {
+    if (isDateReached) {
+      return "/gallery";
+    }
+
+    if (isSubmissionEnabled) {
+      if (registrationOpen) {
+        return "#submit";
+      }
+
+      return "/gallery";
+    }
+
+    return "#informacion";
+  })();
+
+  const buttonLabel = (() => {
+    if (isDateReached) {
+      return "Servicio cerrado";
+    }
+
+    if (isSubmissionEnabled) {
+      if (hasSpots) {
+        return `${availableSpots} spots disponibles`;
+      }
+
+      return "Ver Roast Realizados";
+    }
+
+    return "Inscripciones próximamente";
+  })();
   return (
     <section className="relative flex min-h-screen items-center justify-center">
       <motion.div
@@ -54,14 +78,12 @@ export default function Hero({ scrollYProgress }: HeroProps) {
             size="lg"
             variant="rainbow"
           >
-            <Link className={isLoading ? "blur-xs" : ""} href={buttonHref}>
-              {isDateReached
-                ? "Servicio cerrado"
-                : isSubmissionEnabled
-                  ? hasSpots
-                    ? `${availableSpots} spots disponibles`
-                    : "Ver Roast Realizados"
-                  : "Inscripciones próximamente"}
+            <Link
+              className={isLoading ? "blur-xs" : ""}
+              data-cursor-label={buttonLabel}
+              href={buttonHref}
+            >
+              {buttonLabel}
             </Link>
           </Button>
           <WebsiteStatus />

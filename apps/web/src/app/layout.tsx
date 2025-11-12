@@ -3,8 +3,11 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { VercelToolbar } from "@vercel/toolbar/next";
 import { Analytics } from "@/components/analytics";
+import { CustomCursor } from "@/components/custom-cursor";
 import Divider from "@/components/divider";
+import { FigmaRulers } from "@/components/figma-rulers";
 import Footer from "@/components/footer";
+import { SiteHeader } from "@/components/site-header";
 import { Toaster } from "@/components/ui/toaster";
 import { DateProvider } from "@/context/DateContext";
 
@@ -93,6 +96,18 @@ export default function RootLayout({
             <div className="gradient-mask-t-0 absolute inset-0 backdrop-blur-[6px]" />
             <div className="gradient-mask-t-0 absolute inset-0 backdrop-blur-[12px]" />
           </div>
+          <CustomCursor
+            cursorColor="#907cff"
+            cursorSize={24}
+            labelColor="#907cff"
+            labelTextColor="#ffffff"
+            mode="hover"
+          />
+          <FigmaRulers
+            containerWidth={1280}
+            enabled={process.env.NODE_ENV === "development"}
+          />
+          <SiteHeader />
           {children}
           {shouldInjectToolbar && <VercelToolbar />}
           <Divider />
