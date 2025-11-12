@@ -23,8 +23,11 @@ type Design = {
   description: string;
   before_img: string;
   url: string;
+  preview_url?: string | null;
+  submission_id?: string | null;
 };
 
+// biome-ignore lint: The carousel handles many interaction states that we'll refactor separately.
 export function HorizontalScroll() {
   const containerRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
@@ -190,54 +193,33 @@ export function HorizontalScroll() {
   }, [displayIndex, loopedDesigns.length]);
 
   const handleNext = useCallback(() => {
-    if (loopedDesigns.length <= 1) {
-      return;
-    }
     setShouldAnimate(true);
     setDisplayIndex((prev) => prev + 1);
-  }, [loopedDesigns.length]);
+  }, []);
 
   const handlePrev = useCallback(() => {
-    if (loopedDesigns.length <= 1) {
-      return;
-    }
     setShouldAnimate(true);
     setDisplayIndex((prev) => prev - 1);
-  }, [loopedDesigns.length]);
+  }, []);
 
-  const handleDotClick = useCallback(
-    (index: number) => {
-      if (loopedDesigns.length <= 1) {
-        return;
-      }
-
-      setShouldAnimate(true);
-      setDisplayIndex(index + 1);
-    },
-    [loopedDesigns.length]
-  );
+  const handleDotClick = useCallback((index: number) => {
+    setShouldAnimate(true);
+    setDisplayIndex(index + 1);
+  }, []);
 
   const activeRealIndex =
     designs.length > 0
       ? (displayIndex - 1 + designs.length) % designs.length
       : 0;
 
-  const handleSlideClick = useCallback(
-    (loopIndex: number) => {
-      if (dragState.current.skipClick) {
-        dragState.current.skipClick = false;
-        return;
-      }
-
-      if (loopedDesigns.length <= 1) {
-        return;
-      }
-
-      setShouldAnimate(true);
-      setDisplayIndex(loopIndex);
-    },
-    [loopedDesigns.length]
-  );
+  const handleSlideClick = useCallback((loopIndex: number) => {
+    if (dragState.current.skipClick) {
+      dragState.current.skipClick = false;
+      return;
+    }
+    setShouldAnimate(true);
+    setDisplayIndex(loopIndex);
+  }, []);
 
   const scheduleDragOffset = useCallback((value: number) => {
     cancelAnimationFrame(dragState.current.rafId);
@@ -351,11 +333,14 @@ export function HorizontalScroll() {
             <Button asChild size="lg" variant="outline">
               <Link
                 className="flex flex-row items-center justify-center gap-2 text-zinc-950"
-                href="https://www.figma.com/design/dNuAD5d6t0DJEIASEJsTOK/Roast-Recientes-por-Edu-Calvo"
+                href={
+                  featuredDesign?.preview_url ??
+                  "https://www.figma.com/design/dNuAD5d6t0DJEIASEJsTOK/Roast-Recientes-por-Edu-Calvo"
+                }
                 rel="noopener noreferrer"
                 target="_blank"
               >
-                <Figma className="h-5 w-5" /> Ver Figma
+                <Figma className="h-5 w-5" /> Ver preview
               </Link>
             </Button>
           </div>
