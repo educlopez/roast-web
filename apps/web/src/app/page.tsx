@@ -1,7 +1,5 @@
 "use client";
 
-import { useScroll } from "motion/react";
-import { useRef } from "react";
 import { BlurredSubmitForm } from "@/components/blurred-submit-form";
 import Divider from "@/components/divider";
 import Hero from "@/components/hero";
@@ -12,11 +10,6 @@ import { useDateContext } from "@/context/DateContext";
 import { useAvailableSpots } from "@/hooks/use-available-spots";
 
 export default function Page() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"],
-  });
   const { isDateReached, isSubmissionEnabled } = useDateContext();
   const { availableSpots } = useAvailableSpots();
   const hasAvailableSpots = availableSpots > 0;
@@ -51,11 +44,13 @@ export default function Page() {
   })();
 
   return (
-    <div className="relative" ref={containerRef}>
+    <div className="relative">
       <main>
-        <Hero scrollYProgress={scrollYProgress} />
+        <Hero />
         <Divider />
         <HorizontalScroll />
+        {/* <Divider />
+        <ProjectSteps /> */}
         <Divider />
         <PricingCard />
         <Divider />

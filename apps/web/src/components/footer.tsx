@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { CardLink } from "./cardLink";
 import { FigmaFrame } from "./figma-frame";
 
 export default function Footer() {
@@ -18,7 +19,24 @@ export default function Footer() {
             >
               <Image alt="Roast Logo" height={28} src="/logo.svg" width={97} />
             </Link>
-
+            <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
+              <CardLink
+                href="https://sparkbites.dev"
+                imgAlt="preview image"
+                imgSrc="/sparkbites-mini.png"
+                subtitle="Inspiraciones"
+                target="_blank"
+                title="Directorio"
+              />
+              <CardLink
+                href="https://smoothui.dev"
+                imgAlt="preview image"
+                imgSrc="/smoothui-mini.png"
+                subtitle="Interacciones"
+                target="_blank"
+                title="Micro"
+              />
+            </div>
             <div className="mx-auto flex max-w-4xl flex-col items-center text-center">
               <a
                 className="group flex items-center gap-2 rounded-sm px-3 py-2 transition-all hover:bg-primary/10 hover:shadow-neutral-soft hover:backdrop-blur-sm"

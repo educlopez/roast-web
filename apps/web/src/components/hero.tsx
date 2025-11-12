@@ -1,6 +1,5 @@
 "use client";
 
-import { type MotionValue, motion, useTransform } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -11,7 +10,6 @@ import { WebsiteStatus } from "@/components/website-status";
 import { useDateContext } from "@/context/DateContext";
 import { useAvailableSpots } from "@/hooks/use-available-spots";
 import { supabase } from "@/lib/supabase";
-import { CardLink } from "./cardLink";
 
 // Configure which 4 designs to show in the hero section
 // Add the exact titles of the 4 designs you want to display
@@ -30,13 +28,8 @@ type Design = {
   [key: string]: unknown;
 };
 
-type HeroProps = {
-  scrollYProgress: MotionValue<number>;
-};
-export default function Hero({ scrollYProgress }: HeroProps) {
+export default function Hero() {
   const [designs, setDesigns] = useState<Design[]>([]);
-  const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.8]);
   const { availableSpots, isLoading } = useAvailableSpots();
   const { isDateReached, isSubmissionEnabled } = useDateContext();
   const hasSpots = availableSpots > 0;
@@ -116,10 +109,7 @@ export default function Hero({ scrollYProgress }: HeroProps) {
   return (
     <>
       <section className="relative flex min-h-[70vh] items-center justify-center py-20">
-        <motion.div
-          className="z-10 mx-auto max-w-4xl px-4 text-center"
-          style={{ opacity, scale }}
-        >
+        <div className="z-10 mx-auto max-w-4xl px-4 text-center">
           <Balancer
             as="h1"
             className="mb-6 font-normal text-4xl text-zinc-950 tracking-tight md:text-6xl"
@@ -152,29 +142,10 @@ export default function Hero({ scrollYProgress }: HeroProps) {
             </Button>
             <WebsiteStatus />
           </div>
-          <div className="mt-16 flex flex-col items-center justify-center gap-4">
+          <div className="mt-8 flex flex-col items-center justify-center gap-4">
             <SocialSelector />
-
-            <div className="flex flex-row gap-4">
-              <CardLink
-                href="https://sparkbites.dev"
-                imgAlt="preview image"
-                imgSrc="/sparkbites-mini.png"
-                subtitle="Inspiraciones"
-                target="_blank"
-                title="Directorio"
-              />
-              <CardLink
-                href="https://smoothui.dev"
-                imgAlt="preview image"
-                imgSrc="/smoothui-mini.png"
-                subtitle="Interacciones"
-                target="_blank"
-                title="Micro"
-              />
-            </div>
           </div>
-        </motion.div>
+        </div>
       </section>
 
       {/* Figma-like redesign showcase section */}

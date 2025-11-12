@@ -1,4 +1,3 @@
-import { type LucideIcon } from "lucide-react";
 import {
   Book,
   Briefcase,
@@ -10,6 +9,7 @@ import {
   GraduationCap,
   Image as ImageIcon,
   Layout,
+  type LucideIcon,
   Palette,
   Sparkles,
   Zap,
@@ -186,4 +186,3 @@ export function IconBox({ type, size = 24, className = "" }: IconBoxProps) {
     </div>
   );
 }
-

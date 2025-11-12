@@ -1,7 +1,12 @@
 "use client";
 
 import { motion } from "motion/react";
-import { useState } from "react";
+import {
+  cloneElement,
+  type ReactElement,
+  type SVGProps,
+  useState,
+} from "react";
 
 import { BskyIcon } from "@/components/icons/bsky";
 import { ThreadsIcon } from "@/components/icons/threads";
@@ -10,8 +15,33 @@ import { XIcon } from "@/components/icons/x";
 type Platform = {
   name: string;
   domain: string;
-  icon: React.ReactNode;
+  icon: ReactElement<SVGProps<SVGSVGElement>>;
   url: string;
+};
+
+type PlatformColors = {
+  background: string;
+  icon: string;
+};
+
+const defaultColors: PlatformColors = {
+  background: "#F1E5FF",
+  icon: "#8638E5",
+};
+
+const platformColors: Record<Platform["name"], PlatformColors> = {
+  X: {
+    background: "#EBEBFF",
+    icon: "#4D49FC",
+  },
+  Bluesky: {
+    background: "#E5F4FF",
+    icon: "#0D99FF",
+  },
+  Threads: {
+    background: "#FFE0FC",
+    icon: "#FF24BD",
+  },
 };
 
 const platforms: Platform[] = [
@@ -35,6 +65,10 @@ const platforms: Platform[] = [
   },
 ];
 
+function getPlatformColors(platformName: Platform["name"]): PlatformColors {
+  return platformColors[platformName] ?? defaultColors;
+}
+
 export default function SocialSelector() {
   const [selectedPlatform, setSelectedPlatform] = useState<Platform>(
     platforms[0]
@@ -46,31 +80,50 @@ export default function SocialSelector() {
       <div className="space-y-6">
         <div className="flex items-center justify-center">
           <div className="relative flex w-fit items-center justify-center gap-4">
-            {platforms.map((platform) => (
-              <button
-                aria-label={`Select ${platform.name} platform`}
-                className={`relative z-10 rounded-full p-2 transition-colors ${
-                  selectedPlatform.name === platform.name
-                    ? "fill-white"
-                    : "fill-zinc-400 hover:bg-zinc-800/50 hover:fill-white"
-                }`}
-                key={platform.name}
-                onClick={() => setSelectedPlatform(platform)}
-                type="button"
-              >
-                {platform.icon}
-                <span className="sr-only">{platform.name}</span>
-              </button>
-            ))}
+            {platforms.map((platform) => {
+              const isSelected = selectedPlatform.name === platform.name;
+              const colors = getPlatformColors(platform.name);
+
+              return (
+                <button
+                  aria-label={`Select ${platform.name} platform`}
+                  className="relative z-10 rounded-full p-2 transition-colors"
+                  key={platform.name}
+                  onClick={() => setSelectedPlatform(platform)}
+                  style={{
+                    backgroundColor: isSelected
+                      ? colors.background
+                      : "transparent",
+                  }}
+                  type="button"
+                >
+                  {cloneElement(platform.icon, {
+                    fill: colors.icon,
+                    style: {
+                      ...(platform.icon.props.style ?? {}),
+                      transition: "fill 0.2s ease, opacity 0.2s ease",
+                      opacity: isSelected ? 1 : 0.5,
+                    },
+                  })}
+                  <span className="sr-only">{platform.name}</span>
+                </button>
+              );
+            })}
             <motion.div
               animate={{
                 x:
                   platforms.findIndex((p) => p.name === selectedPlatform.name) *
                   (36 + 16),
+                backgroundColor: getPlatformColors(selectedPlatform.name)
+                  .background,
               }}
-              className="absolute inset-0 z-0 h-9 w-9 rounded-full bg-zinc-800"
+              className="absolute inset-0 z-0 h-9 w-9 rounded-full"
               initial={false}
               layoutId="background"
+              style={{
+                backgroundColor: getPlatformColors(selectedPlatform.name)
+                  .background,
+              }}
               transition={{
                 type: "spring",
                 stiffness: 500,
