@@ -24,7 +24,7 @@ export function DateProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     function updateState() {
-      const registrationStart = new Date("2025-11-09T00:00:00");
+      const registrationStart = new Date("2025-12-09T00:00:00");
       const registrationEndExclusive = new Date("2026-01-02T00:00:00");
       const currentDate = new Date();
       const isAfterEnd = currentDate >= registrationEndExclusive;
