@@ -10,6 +10,7 @@ import { WebsiteStatus } from "@/components/website-status";
 import { useDateContext } from "@/context/DateContext";
 import { useAvailableSpots } from "@/hooks/use-available-spots";
 import { supabase } from "@/lib/supabase";
+import { Comment } from "./comment";
 
 // Configure which 4 designs to show in the hero section
 // Add the exact titles of the 4 designs you want to display
@@ -109,7 +110,7 @@ export default function Hero() {
   return (
     <>
       <section className="relative flex min-h-[70vh] items-center justify-center py-20">
-        <div className="z-10 mx-auto max-w-4xl px-4 text-center">
+        <div className="relative z-10 mx-auto max-w-4xl px-4 text-center">
           <Balancer
             as="h1"
             className="mb-6 font-normal text-4xl text-zinc-950 tracking-tight md:text-6xl"
@@ -120,10 +121,21 @@ export default function Hero() {
           </Balancer>
           <Balancer
             as="p"
-            className="mx-auto mb-8 max-w-2xl text-base text-zinc-950 md:text-zinc-600"
+            className="relative mx-auto mb-8 max-w-2xl text-base text-zinc-950 md:text-zinc-600"
           >
             ¿Necesitas darle un nuevo aire a tu web? Envía tu proyecto a través
-            del formulario y descubre cómo puede renovarse.
+            del formulario y descubre cómo puede{" "}
+            <span className="relative inline-block">
+              renovarse
+              <div className="-right-4 -translate-y-1/2 absolute top-1/2 z-20 hidden md:block">
+                <Comment
+                  authorName="Edu Calvo"
+                  message="Espero que te guste el resultado"
+                  timestamp="Hace 1 año"
+                />
+              </div>
+            </span>
+            .
           </Balancer>
           <div className="flex flex-col items-center justify-center gap-4">
             <Button

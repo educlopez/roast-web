@@ -35,7 +35,7 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-[101] border-zinc-200 border-b bg-zinc-50/80 backdrop-blur">
-      <div className="mx-auto grid h-16 w-full max-w-7xl grid-cols-3 items-center px-4">
+      <div className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between gap-4 px-4 md:grid md:grid-cols-3">
         <div className="flex items-center">
           <Link
             className="flex items-center gap-2 transition-opacity hover:opacity-80"
@@ -58,13 +58,8 @@ export function SiteHeader() {
             </Link>
           ))}
         </nav>
-        <div className="flex items-center justify-end gap-3">
-          <Button
-            asChild
-            className="hidden md:inline-flex"
-            size="sm"
-            variant="outline"
-          >
+        <div className="flex items-center gap-3 md:justify-end">
+          <Button asChild className="inline-flex" size="sm" variant="outline">
             <Link href="/gallery">Ver galería completa</Link>
           </Button>
           <Button asChild size="sm" variant="rainbow">

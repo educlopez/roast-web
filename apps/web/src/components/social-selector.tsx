@@ -7,10 +7,10 @@ import {
   type SVGProps,
   useState,
 } from "react";
-
 import { BskyIcon } from "@/components/icons/bsky";
 import { ThreadsIcon } from "@/components/icons/threads";
 import { XIcon } from "@/components/icons/x";
+import { Comment } from "./comment";
 
 type Platform = {
   name: string;
@@ -76,10 +76,17 @@ export default function SocialSelector() {
   const handle = "educalvolpz";
 
   return (
-    <div className="mx-auto my-4 w-full max-w-2xl text-center">
+    <div className="relative mx-auto my-4 w-full max-w-2xl text-center">
       <div className="space-y-6">
         <div className="flex items-center justify-center">
           <div className="relative flex w-fit items-center justify-center gap-4">
+            <div className="-translate-y-1/2 absolute top-1/2 right-0 z-20 hidden md:block">
+              <Comment
+                authorName="Edu Calvo"
+                message="Sígueme para estar al día con los últimos rediseños y actualizaciones"
+                timestamp="Hace 1 día"
+              />
+            </div>
             {platforms.map((platform) => {
               const isSelected = selectedPlatform.name === platform.name;
               const colors = getPlatformColors(platform.name);

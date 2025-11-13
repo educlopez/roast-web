@@ -2,8 +2,8 @@ import { ArrowRight } from "lucide-react";
 import { motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import { FigmaFrame } from "@/components/figma-frame";
+import { Button } from "@/components/ui/button";
 import { useDateContext } from "@/context/DateContext";
 import { useAvailableSpots } from "@/hooks/use-available-spots";
 
@@ -30,10 +30,10 @@ export function PricingCard() {
             width={500}
           />
           <FigmaFrame
+            className="mx-auto max-w-xl"
             cornerSize="sm"
             label={{ icon: "❖", text: "Información" }}
             padding="lg"
-            className="mx-auto max-w-xl"
           >
             <h3 className="mb-6 font-bold text-2xl md:text-3xl">
               {isDateReached
@@ -60,7 +60,7 @@ export function PricingCard() {
             )}
             <Button
               asChild
-              className="w-full text-zinc-950 transition-transform hover:scale-105"
+              className="w-full text-zinc-950"
               size="lg"
               variant="outline"
             >

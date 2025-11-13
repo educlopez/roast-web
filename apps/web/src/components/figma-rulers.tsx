@@ -119,7 +119,7 @@ export function FigmaRulers({ enabled = true }: FigmaRulersProps) {
     <>
       {/* Regla horizontal (arriba) */}
       <div
-        className="pointer-events-none fixed left-0 z-[100] border-zinc-200/80 border-b bg-zinc-50/95 backdrop-blur-sm"
+        className="pointer-events-none fixed left-0 z-[100] hidden border-zinc-200/80 border-b bg-zinc-50/95 backdrop-blur-sm md:block"
         style={{
           width: `${viewportWidth}px`,
           top: `${headerHeight}px`,
@@ -153,7 +153,7 @@ export function FigmaRulers({ enabled = true }: FigmaRulersProps) {
 
       {/* Regla vertical (izquierda) */}
       <div
-        className="pointer-events-none fixed left-0 z-[100] border-zinc-200/80 border-r bg-zinc-50/95 backdrop-blur-sm"
+        className="pointer-events-none fixed left-0 z-[100] hidden border-zinc-200/80 border-r bg-zinc-50/95 backdrop-blur-sm md:block"
         style={{
           height: `${viewportHeight - headerHeight}px`,
           top: `${headerHeight}px`,
@@ -200,7 +200,7 @@ export function FigmaRulers({ enabled = true }: FigmaRulersProps) {
 
       {/* Container invisible para posicionar las líneas rojas */}
       <div
-        className="pointer-events-none fixed right-0 left-0 z-[90] mx-auto max-w-7xl px-4"
+        className="pointer-events-none fixed right-0 left-0 z-[90] mx-auto hidden max-w-7xl px-4 md:block"
         ref={guideContainerRef}
         style={{
           top: `${headerHeight}px`,
