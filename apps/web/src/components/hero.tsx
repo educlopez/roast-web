@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import Balancer from "react-wrap-balancer";
 import SocialSelector from "@/components/social-selector";
-import { Button } from "@/components/ui/button";
+import { FigmaButton } from "@/components/ui/figma-button";
 import { WebsiteStatus } from "@/components/website-status";
 import { useDateContext } from "@/context/DateContext";
 import { useAvailableSpots } from "@/hooks/use-available-spots";
@@ -113,15 +113,18 @@ export default function Hero() {
         <div className="relative z-10 mx-auto max-w-4xl px-4 text-center">
           <Balancer
             as="h1"
-            className="mb-6 font-normal text-4xl text-zinc-950 tracking-tight md:text-6xl"
+            className="mb-6 font-normal text-4xl text-light-primary tracking-tight md:text-6xl"
           >
             Rediseños que
             <br />
-            <span className="md:text-zinc-500"> transforman tu proyecto.</span>
+            <span className="md:text-light-secondary">
+              {" "}
+              transforman tu proyecto.
+            </span>
           </Balancer>
           <Balancer
             as="p"
-            className="relative mx-auto mb-8 max-w-2xl text-base text-zinc-950 md:text-zinc-600"
+            className="relative mx-auto mb-8 max-w-2xl text-base text-light-primary md:text-light-secondary"
           >
             ¿Necesitas darle un nuevo aire a tu web? Envía tu proyecto a través
             del formulario y descubre cómo puede{" "}
@@ -138,12 +141,7 @@ export default function Hero() {
             .
           </Balancer>
           <div className="flex flex-col items-center justify-center gap-4">
-            <Button
-              asChild
-              className="bg-zinc-950 text-zinc-50 transition-transform hover:scale-105"
-              size="lg"
-              variant="rainbow"
-            >
+            <FigmaButton asChild size="xl" variant="figjam">
               <Link
                 className={isLoading ? "blur-xs" : ""}
                 data-cursor-label={buttonLabel}
@@ -151,7 +149,7 @@ export default function Hero() {
               >
                 {buttonLabel}
               </Link>
-            </Button>
+            </FigmaButton>
             <WebsiteStatus />
           </div>
           <div className="mt-8 flex flex-col items-center justify-center gap-4">
@@ -177,7 +175,7 @@ export default function Hero() {
 
                 return (
                   <div
-                    className={`shrink-0 rounded-[9px] border-[0.5px] border-zinc-200 bg-white p-px transition-transform duration-300 ease-in-out hover:scale-105 ${visibilityClasses[index] || ""}`}
+                    className={`shrink-0 rounded-[9px] border-[0.5px] border-light-background-secondary bg-light-background p-px transition-transform duration-300 ease-in-out hover:scale-105 ${visibilityClasses[index] || ""}`}
                     key={design.id}
                     style={{ transform: `rotate(${rotation})` }}
                   >
@@ -197,28 +195,28 @@ export default function Hero() {
               // Fallback skeleton/placeholder while loading
               <>
                 <div
-                  className="shrink-0 rounded-[9px] border-[0.5px] border-zinc-200 bg-white p-px transition-transform duration-300 ease-in-out hover:scale-105"
+                  className="shrink-0 rounded-[9px] border-[0.5px] border-light-background-secondary bg-light-background p-px transition-transform duration-300 ease-in-out hover:scale-105"
                   style={{ transform: "rotate(-3deg)" }}
                 >
-                  <div className="h-[120px] w-[180px] animate-pulse rounded-[8px] bg-zinc-100 md:h-[170px] md:w-[280px]" />
+                  <div className="h-[120px] w-[180px] animate-pulse rounded-[8px] bg-light-background-secondary md:h-[170px] md:w-[280px]" />
                 </div>
                 <div
-                  className="shrink-0 rounded-[9px] border-[0.5px] border-zinc-200 bg-white p-px transition-transform duration-300 ease-in-out hover:scale-105"
+                  className="shrink-0 rounded-[9px] border-[0.5px] border-light-background-secondary bg-light-background p-px transition-transform duration-300 ease-in-out hover:scale-105"
                   style={{ transform: "rotate(2deg)" }}
                 >
-                  <div className="h-[120px] w-[180px] animate-pulse rounded-[8px] bg-zinc-100 md:h-[170px] md:w-[280px]" />
+                  <div className="h-[120px] w-[180px] animate-pulse rounded-[8px] bg-light-background-secondary md:h-[170px] md:w-[280px]" />
                 </div>
                 <div
-                  className="hidden shrink-0 rounded-[9px] border-[0.5px] border-zinc-200 bg-white p-px transition-transform duration-300 ease-in-out hover:scale-105 md:block"
+                  className="hidden shrink-0 rounded-[9px] border-[0.5px] border-light-background-secondary bg-light-background p-px transition-transform duration-300 ease-in-out hover:scale-105 md:block"
                   style={{ transform: "rotate(-1deg)" }}
                 >
-                  <div className="h-[170px] w-[280px] animate-pulse rounded-[8px] bg-zinc-100" />
+                  <div className="h-[170px] w-[280px] animate-pulse rounded-[8px] bg-light-background-secondary" />
                 </div>
                 <div
-                  className="hidden shrink-0 rounded-[9px] border-[0.5px] border-zinc-200 bg-white p-px transition-transform duration-300 ease-in-out hover:scale-105 lg:block"
+                  className="hidden shrink-0 rounded-[9px] border-[0.5px] border-light-background-secondary bg-light-background p-px transition-transform duration-300 ease-in-out hover:scale-105 lg:block"
                   style={{ transform: "rotate(2deg)" }}
                 >
-                  <div className="h-[170px] w-[280px] animate-pulse rounded-[8px] bg-zinc-100" />
+                  <div className="h-[170px] w-[280px] animate-pulse rounded-[8px] bg-light-background-secondary" />
                 </div>
               </>
             )}

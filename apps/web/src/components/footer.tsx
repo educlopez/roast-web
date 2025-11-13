@@ -12,7 +12,7 @@ export default function Footer() {
           label={{ icon: "❖", text: "Footer" }}
           padding="lg"
         >
-          <div className="flex flex-col items-center justify-center gap-4 text-center text-zinc-600">
+          <div className="flex flex-col items-center justify-center gap-4 text-center text-light-secondary">
             <Link
               className="flex items-center gap-2 transition-opacity hover:opacity-80"
               href="/"
@@ -44,7 +44,7 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 target="_blank"
               >
-                <span className="whitespace-nowrap text-foreground text-sm">
+                <span className="whitespace-nowrap text-light-secondary text-sm">
                   Made by
                 </span>
                 <Image
@@ -55,7 +55,7 @@ export default function Footer() {
                   src="https://github.com/educlopez.png"
                   width={32}
                 />
-                <span className="whitespace-nowrap font-medium text-foreground text-sm">
+                <span className="whitespace-nowrap font-medium text-light-primary text-sm">
                   Eduardo Calvo
                 </span>
               </a>

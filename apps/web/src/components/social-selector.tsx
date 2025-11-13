@@ -139,9 +139,9 @@ export default function SocialSelector() {
             />
           </div>
         </div>
-        <p className="text-sm text-zinc-500">
+        <p className="text-light-secondary text-sm">
           Actualizaciones en{" "}
-          <span className="font-medium text-zinc-500">
+          <span className="font-medium text-light-secondary">
             <motion.a
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               exit={{ opacity: 0, y: -10, filter: "blur(5px)" }}
@@ -157,7 +157,7 @@ export default function SocialSelector() {
           </span>
           <br />
           <a
-            className="font-medium text-zinc-950"
+            className="font-medium text-light-primary"
             href={selectedPlatform.url}
             rel="noopener noreferrer"
             target="_blank"

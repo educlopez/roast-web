@@ -8,7 +8,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { CardLink } from "./cardLink";
 import { FigmaFrame } from "./figma-frame";
-import { Button } from "./ui/button";
+import { FigmaButton } from "./ui/figma-button";
 
 const SKELETON_KEYS = [
   "design-skeleton-a",
@@ -317,22 +317,28 @@ export function HorizontalScroll() {
   }
 
   return (
-    <section className="bg-[#f1e5ff] py-24 text-zinc-950" id="galeria">
+    <section className="bg-[#f1e5ff] py-24 text-light-primary" id="galeria">
       <div className="mx-auto max-w-7xl px-4">
         <div className="mb-12 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <h2 className="font-bold text-2xl md:text-3xl">Roast Recientes</h2>
           <div className="flex flex-col gap-3 sm:flex-row">
-            <Button asChild size="lg">
+            <FigmaButton asChild size="xl" variant="figjam">
               <Link
                 className="flex flex-row items-center justify-center gap-2"
                 href="/gallery"
               >
                 Ver todos los roasts
               </Link>
-            </Button>
-            <Button asChild size="lg" variant="outline">
+            </FigmaButton>
+            <FigmaButton
+              asChild
+              className="text-light-primary"
+              iconLead={<Figma />}
+              size="xl"
+              variant="secondary"
+            >
               <Link
-                className="flex flex-row items-center justify-center gap-2 text-zinc-950"
+                className="flex flex-row items-center justify-center gap-2"
                 href={
                   featuredDesign?.preview_url ??
                   "https://www.figma.com/design/dNuAD5d6t0DJEIASEJsTOK/Roast-Recientes-por-Edu-Calvo"
@@ -340,13 +346,13 @@ export function HorizontalScroll() {
                 rel="noopener noreferrer"
                 target="_blank"
               >
-                <Figma className="h-5 w-5" /> Ver preview
+                Ver preview
               </Link>
-            </Button>
+            </FigmaButton>
           </div>
         </div>
 
-        <p className="mb-8 text-base text-zinc-600">
+        <p className="mb-8 text-base text-light-secondary">
           Todos los roast han sido realizados con un tiempo medio de 2-3 horas.
           El objetivo es brindar la mayor calidad en el menor tiempo posible,
           para poder inspirar y ayudar a más proyectos.
@@ -357,7 +363,7 @@ export function HorizontalScroll() {
             <div className="flex justify-center gap-4">
               {SKELETON_KEYS.map((key) => (
                 <div
-                  className="h-[200px] w-[300px] animate-pulse rounded-lg bg-zinc-200/70"
+                  className="h-[200px] w-[300px] animate-pulse rounded-lg bg-light-background-secondary"
                   key={key}
                 />
               ))}

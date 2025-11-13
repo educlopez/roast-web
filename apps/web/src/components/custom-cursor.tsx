@@ -102,13 +102,21 @@ export function CustomCursor({
 
   const displayLabel = hoverLabel || labelText;
   const shouldShowLabel = () => {
-    if (mode === "never") return false;
-    if (mode === "always") return !!displayLabel;
-    if (mode === "hover") return !!hoverLabel;
+    if (mode === "never") {
+      return false;
+    }
+    if (mode === "always") {
+      return !!displayLabel;
+    }
+    if (mode === "hover") {
+      return !!hoverLabel;
+    }
     return false;
   };
 
-  if (!isVisible || mode === "never") return null;
+  if (!isVisible || mode === "never") {
+    return null;
+  }
 
   return (
     <>

@@ -1,5 +1,5 @@
 import { Send } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { FigmaButton } from "@/components/ui/figma-button";
 import { Label } from "@/components/ui/label";
 
 type BlurredSubmitFormProps = {
@@ -39,15 +39,16 @@ export function BlurredSubmitForm({
               @educalvolpz
             </a>
           </p>
-          <Button
+          <FigmaButton
             className="w-full text-zinc-950 transition-transform hover:scale-105 disabled:opacity-50"
-            size="lg"
+            disabled
+            iconTrail={<Send />}
+            size="xl"
             type="submit"
-            variant="outline"
+            variant="secondary"
           >
             Enviar para revisión
-            <Send className="ml-2 h-5 w-5" />
-          </Button>
+          </FigmaButton>
         </div>
       </div>
     </section>

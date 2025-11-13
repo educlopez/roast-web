@@ -23,7 +23,7 @@ export function CardLink({
   return (
     <div className="relative z-inherit transform-none">
       <Link
-        className="flex items-center gap-3 rounded-lg border border-white bg-zinc-100 p-1 pr-3 text-sm text-zinc-950 shadow-neutral-soft transition-all hover:shadow-neutral-soft-hover"
+        className="flex items-center gap-3 rounded-lg border border-white bg-light-background-secondary p-1 pr-3 text-light-primary text-sm shadow-neutral-soft transition-all hover:shadow-neutral-soft-hover"
         href={href}
         rel={rel}
         target={target}
@@ -37,8 +37,8 @@ export function CardLink({
           width={64}
         />
         <span className="flex flex-col text-left text-xs">
-          <span className="text-zinc-950">{title}</span>
-          <span className="text-zinc-600">{subtitle}</span>
+          <span className="text-light-primary">{title}</span>
+          <span className="text-light-secondary">{subtitle}</span>
         </span>
       </Link>
     </div>

@@ -45,9 +45,75 @@
   --color-color-4: hsl(var(--color-4));
   --color-color-5: hsl(var(--color-5));
 
+  /* Figma Button Colors - Simplified names */
+  --color-brand: #0d99ff;
+  --color-brand-pressed: #007be5;
+  --color-brand-tertiary: #e5f4ff;
+  --color-onbrand: #ffffff;
+  --color-onbrand-secondary: rgba(255, 255, 255, 0.8);
+
+  --color-figjam: #9747ff;
+  --color-figjam-pressed: #8638e5;
+  --color-onfigjam: #ffffff;
+
+  --color-danger: #f24822;
+  --color-danger-pressed: #dc3412;
+  --color-danger-tertiary: #ffe2e0;
+  --color-ondanger: #ffffff;
+
+  --color-success: #14ae5c;
+  --color-success-pressed: #009951;
+  --color-onsuccess: #ffffff;
+
+  --color-inverse: #2c2c2c;
+  --color-oninverse: rgba(255, 255, 255, 0.9);
+
+  --color-disabled: #d9d9d9;
+  --color-ondisabled: #ffffff;
+
+  --color-text: rgba(0, 0, 0, 0.9);
+  --color-text-disabled: rgba(0, 0, 0, 0.3);
+
+  --color-translucent: rgba(0, 0, 0, 0.1);
+  --color-selected: #0d99ff;
+  --color-selected-strong: #007be5;
+  --color-danger-border: #ffc7c2;
+  --color-disabled-border: #e6e6e6;
+
+  --color-pressed: #f5f5f5;
+  --color-transparent-hover: rgba(0, 0, 0, 0.1);
+  --color-transparent-pressed: rgba(0, 0, 0, 0.15);
+
+  --color-icon: rgba(0, 0, 0, 0.9);
+  --color-icon-disabled: rgba(0, 0, 0, 0.3);
+  --color-icon-brand: #007be5;
+  --color-icon-danger: #f24822;
+
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);
+  --radius-medium: 0.3125rem;
+
+  --spacer-1: 0.3rem;
+  --spacer-2: 0.5rem;
+
+  /* Figma Button Typography Variables */
+  --body-medium-fontSize: 11px;
+  --body-medium-fontFamily: Inter, sans-serif;
+  --body-medium-lineHeight: 16px;
+  --body-medium-fontWeight: 450;
+
+  --color-dark-primary: #ffffff;
+  --color-dark-secondary: rgba(255, 255, 255, 0.7);
+  --color-dark-tertiary: rgba(255, 255, 255, 0.4);
+  --color-dark-background: #2c2c2c;
+  --color-dark-background-secondary: #383838;
+
+  --color-light-primary: #000000;
+  --color-light-secondary: rgba(0, 0, 0, 0.5);
+  --color-light-tertiary: rgba(0, 0, 0, 0.3);
+  --color-light-background: #ffffff;
+  --color-light-background-secondary: #f5f5f5;
 
   --animate-rainbow: rainbow var(--speed, 2s) infinite linear;
 

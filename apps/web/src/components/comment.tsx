@@ -86,7 +86,7 @@ export function Comment({
           width: isOpen ? 180 : 32,
           height: isOpen ? contentHeight : 32,
         }}
-        className="absolute bottom-0 left-0 cursor-pointer overflow-hidden rounded-2xl rounded-bl-none bg-white shadow-[0px_0px_0.5px_0px_rgba(0,0,0,0.18),0px_3px_8px_0px_rgba(0,0,0,0.1),0px_1px_3px_0px_rgba(0,0,0,0.1)]"
+        className="absolute bottom-0 left-0 cursor-pointer overflow-hidden rounded-2xl rounded-bl-none bg-light-background shadow-[0px_0px_0.5px_0px_rgba(0,0,0,0.18),0px_3px_8px_0px_rgba(0,0,0,0.1),0px_1px_3px_0px_rgba(0,0,0,0.1)]"
         onClick={() => {
           console.log(
             "Click! Current isOpen:",
@@ -156,15 +156,15 @@ export function Comment({
           <div className="flex flex-col items-start gap-0.5 py-3 pr-4 pl-11">
             {/* Attribution */}
             <div className="flex items-start gap-0.5">
-              <p className="font-semibold text-[11px] text-zinc-900 leading-4">
+              <p className="font-semibold text-[11px] text-light-primary leading-4">
                 {authorName}
               </p>
-              <p className="font-medium text-[11px] text-zinc-500 leading-4">
+              <p className="font-medium text-[11px] text-light-secondary leading-4">
                 {timestamp}
               </p>
             </div>
             {/* Message */}
-            <p className="text-left font-medium text-[11px] text-zinc-900 leading-4">
+            <p className="text-left font-medium text-[11px] text-light-primary leading-4">
               {message}
             </p>
           </div>
@@ -188,15 +188,15 @@ export function Comment({
             >
               {/* Attribution */}
               <div className="flex items-start gap-0.5">
-                <p className="font-semibold text-[11px] text-zinc-900 leading-4">
+                <p className="font-semibold text-[11px] text-light-primary leading-4">
                   {authorName}
                 </p>
-                <p className="font-medium text-[11px] text-zinc-500 leading-4">
+                <p className="font-medium text-[11px] text-light-secondary leading-4">
                   {timestamp}
                 </p>
               </div>
               {/* Message */}
-              <p className="text-left font-medium text-[11px] text-zinc-900 leading-4">
+              <p className="text-left font-medium text-[11px] text-light-primary leading-4">
                 {message}
               </p>
             </motion.div>

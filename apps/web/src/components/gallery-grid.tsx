@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { IconBox } from "./icon-box";
-import { Button } from "./ui/button";
+import { FigmaButton } from "./ui/figma-button";
 
 type GalleryDesign = {
   id: number;
@@ -118,11 +118,11 @@ export function GalleryGrid() {
                   </div>
                 </div>
                 {design.preview_url ? (
-                  <Button
+                  <FigmaButton
                     asChild
                     className="shrink-0 p-2"
-                    size="sm"
-                    variant="outline"
+                    size="default"
+                    variant="secondary"
                   >
                     <Link
                       aria-label="Abrir preview en Figma"
@@ -130,33 +130,41 @@ export function GalleryGrid() {
                       rel="noopener noreferrer"
                       target="_blank"
                     >
-                      <Eye className="h-4 w-4" />
+                      <Eye />
                     </Link>
-                  </Button>
+                  </FigmaButton>
                 ) : null}
               </div>
             </div>
             <div className="mt-6">
               {design.preview_url ? (
                 <>
-                  <Button className="w-full" disabled variant="outline">
-                    <Lock className="h-4 w-4" />
+                  <FigmaButton
+                    className="w-full"
+                    disabled
+                    iconLead={<Lock />}
+                    variant="secondary"
+                  >
                     <span className="font-medium text-sm">
                       Descarga bloqueada por ahora
                     </span>
-                  </Button>
+                  </FigmaButton>
                   <p className="mt-3 flex items-center justify-center gap-2 text-xs text-zinc-500">
                     Las descargas de Figma estarán disponibles próximamente.
                   </p>
                 </>
               ) : (
                 <>
-                  <Button className="w-full" disabled variant="outline">
-                    <Lock className="h-4 w-4" />
+                  <FigmaButton
+                    className="w-full"
+                    disabled
+                    iconLead={<Lock />}
+                    variant="secondary"
+                  >
                     <span className="font-medium text-sm">
                       Descarga bloqueada por ahora
                     </span>
-                  </Button>
+                  </FigmaButton>
                   <p className="mt-3 flex items-center justify-center gap-2 text-xs text-zinc-500">
                     <Figma className="h-4 w-4" />
                     Las descargas de Figma estarán disponibles próximamente.

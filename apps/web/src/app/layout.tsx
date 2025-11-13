@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 import { VercelToolbar } from "@vercel/toolbar/next";
@@ -11,11 +12,11 @@ import { SiteHeader } from "@/components/site-header";
 import { Toaster } from "@/components/ui/toaster";
 import { DateProvider } from "@/context/DateContext";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
 });
+
 const geistMono = localFont({
   src: "./fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
@@ -79,7 +80,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} overflow-x-hidden bg-zinc-50 antialiased`}
+        className={`${inter.variable} ${geistMono.variable} overflow-x-hidden bg-light-background antialiased`}
       >
         <DateProvider>
           <div className="fixed inset-x-0 top-0 isolate z-30 h-[50px]">
@@ -97,9 +98,9 @@ export default function RootLayout({
             <div className="gradient-mask-t-0 absolute inset-0 backdrop-blur-[12px]" />
           </div>
           <CustomCursor
-            cursorColor="#907cff"
+            cursorColor="#9747FF"
             cursorSize={24}
-            labelColor="#907cff"
+            labelColor="#9747FF"
             labelTextColor="#ffffff"
             mode="hover"
           />
