@@ -119,7 +119,7 @@ export function FigmaRulers({ enabled = true }: FigmaRulersProps) {
     <>
       {/* Regla horizontal (arriba) */}
       <div
-        className="pointer-events-none fixed left-0 z-[100] hidden border-zinc-200/80 border-b bg-zinc-50/95 backdrop-blur-sm md:block"
+        className="pointer-events-none fixed left-0 z-[100] hidden border-light-background-secondary border-b bg-light-background/95 backdrop-blur-sm md:block"
         style={{
           width: `${viewportWidth}px`,
           top: `${headerHeight}px`,
@@ -139,10 +139,10 @@ export function FigmaRulers({ enabled = true }: FigmaRulersProps) {
               style={{ left: `${tick.position}px` }}
             >
               <div
-                className={`w-px bg-zinc-300 ${tick.isMajor ? "h-4" : "h-2"}`}
+                className={`w-px bg-light-background-secondary ${tick.isMajor ? "h-4" : "h-2"}`}
               />
               {tick.isMajor && (
-                <span className="mt-0.5 whitespace-nowrap bg-zinc-50/95 px-1 font-mono text-[10px] text-zinc-600 leading-none">
+                <span className="mt-0.5 whitespace-nowrap bg-light-background/95 px-1 font-mono text-[10px] text-light-secondary leading-none">
                   {tick.value}
                 </span>
               )}
@@ -153,7 +153,7 @@ export function FigmaRulers({ enabled = true }: FigmaRulersProps) {
 
       {/* Regla vertical (izquierda) */}
       <div
-        className="pointer-events-none fixed left-0 z-[100] hidden border-zinc-200/80 border-r bg-zinc-50/95 backdrop-blur-sm md:block"
+        className="pointer-events-none fixed left-0 z-[100] hidden border-light-background-secondary border-r bg-light-background/95 backdrop-blur-sm md:block"
         style={{
           height: `${viewportHeight - headerHeight}px`,
           top: `${headerHeight}px`,
@@ -179,11 +179,11 @@ export function FigmaRulers({ enabled = true }: FigmaRulersProps) {
                 style={{ top: `${adjustedPosition}px` }}
               >
                 <div
-                  className={`h-px bg-zinc-300 ${tick.isMajor ? "w-4" : "w-2"}`}
+                  className={`h-px bg-light-background-secondary ${tick.isMajor ? "w-4" : "w-2"}`}
                 />
                 {tick.isMajor && (
                   <span
-                    className="ml-0.5 whitespace-nowrap bg-zinc-50/95 px-0.5 py-0.5 font-mono text-[10px] text-zinc-600 leading-none"
+                    className="ml-0.5 whitespace-nowrap bg-light-background/95 px-0.5 py-0.5 font-mono text-[10px] text-light-secondary leading-none"
                     style={{
                       writingMode: "vertical-rl",
                       transform: "rotate(180deg)",

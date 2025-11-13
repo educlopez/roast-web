@@ -537,38 +537,14 @@ export function HorizontalScroll() {
           )}
 
           {showError && (
-            <p
-              className={[
-                "mt-6",
-                "rounded-md",
-                "border",
-                "border-red-200",
-                "bg-red-50",
-                "px-4",
-                "py-3",
-                "text-sm",
-                "text-red-600",
-              ].join(" ")}
-            >
+            <p className="mt-6 rounded-md border border-light-background-secondary bg-light-background px-4 py-3 text-light-secondary text-sm">
               Tuvimos un problema para cargar los roasts recientes. Intenta
               recargar la página.
             </p>
           )}
 
           {showEmptyState && (
-            <p
-              className={[
-                "mt-6",
-                "rounded-md",
-                "border",
-                "border-zinc-200",
-                "bg-white",
-                "px-4",
-                "py-3",
-                "text-sm",
-                "text-zinc-600",
-              ].join(" ")}
-            >
+            <p className="mt-6 rounded-md border border-light-background-secondary bg-light-background px-4 py-3 text-light-secondary text-sm">
               Todavía no hay roasts publicados. Vuelve pronto para descubrir los
               próximos proyectos.
             </p>
