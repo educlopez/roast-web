@@ -32,23 +32,19 @@ const navItems: NavItem[] = [
   },
 ];
 
-// Random names for invite avatar
-const randomNames = [
-  "Alex Johnson",
-  "Sarah Martinez",
-  "Michael Chen",
-  "Emily Rodriguez",
-  "David Kim",
-  "Jessica Brown",
-  "Christopher Lee",
-  "Amanda Taylor",
-  "James Wilson",
-  "Maria Garcia",
-  "Robert Anderson",
-  "Lisa Thompson",
-  "Daniel White",
-  "Jennifer Davis",
-  "Matthew Harris",
+// Tech influencers for invite avatar
+type Influencer = {
+  name: string;
+  username: string;
+};
+
+const techInfluencers: Influencer[] = [
+  { name: "Midudev", username: "midudev" },
+  { name: "Pheralb", username: "pheralb_" },
+  { name: "Guillermo Rauch", username: "rauchg" },
+  { name: "Emil Kowalski", username: "emilkowalski_" },
+  { name: "Rauno Freiberg", username: "raunofreiberg" },
+  { name: "Lee Robinson", username: "leerob" },
 ];
 
 // Mensajes divertidos de easter egg
@@ -94,8 +90,8 @@ const easterEggMessages = [
   },
 ];
 
-function getRandomName(): string {
-  return randomNames[Math.floor(Math.random() * randomNames.length)];
+function getRandomInfluencer(): Influencer {
+  return techInfluencers[Math.floor(Math.random() * techInfluencers.length)];
 }
 
 function getRandomEasterEgg(): (typeof easterEggMessages)[0] {
@@ -106,11 +102,15 @@ function getRandomEasterEgg(): (typeof easterEggMessages)[0] {
 
 export function SiteHeader() {
   const pathname = usePathname();
-  const [inviteName] = useState(() => getRandomName());
+  const [influencer] = useState(() => getRandomInfluencer());
   const [easterEgg] = useState(() => getRandomEasterEgg());
-  const inviteInitial = useMemo(
-    () => inviteName.charAt(0).toUpperCase(),
-    [inviteName]
+  const avatarUrl = useMemo(
+    () => `https://unavatar.io/x/${influencer.username}`,
+    [influencer.username]
+  );
+  const influencerInitial = useMemo(
+    () => influencer.name.charAt(0).toUpperCase(),
+    [influencer.name]
   );
 
   return (
@@ -170,7 +170,7 @@ export function SiteHeader() {
                 className="cursor-pointer"
                 shape="circle"
                 size="default"
-                src="https://github.com/educlopez.png"
+                src="https://res.cloudinary.com/dyzxnud9z/image/upload/v1759818651/smoothui/educalvolpz.jpg"
               />
             </div>
           </Popover>
@@ -187,7 +187,8 @@ export function SiteHeader() {
                   </p>
                   <div className="mt-1 border-white/10 border-t pt-1.5">
                     <p className="text-[10px] text-white/50 leading-3">
-                      P.D. El nombre "{inviteName}" se genera aleatoriamente
+                      P.D. Este no es el avatar real de {influencer.name}, solo
+                      es decorativo
                     </p>
                   </div>
                 </div>
@@ -197,12 +198,13 @@ export function SiteHeader() {
           >
             <div className="relative z-0 transition-opacity hover:opacity-80">
               <Avatar
-                alt={inviteName}
+                alt={influencer.name}
                 className="cursor-pointer"
                 color="blue"
-                letter={inviteInitial}
+                letter={influencerInitial}
                 shape="circle"
                 size="default"
+                src={avatarUrl}
               />
             </div>
           </Popover>

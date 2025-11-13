@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import localFont from "next/font/local";
 import "./globals.css";
 import { VercelToolbar } from "@vercel/toolbar/next";
 import { Analytics } from "@/components/analytics";
@@ -15,12 +14,6 @@ import { DateProvider } from "@/context/DateContext";
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
-});
-
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
 });
 
 export const metadata: Metadata = {
@@ -80,7 +73,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${geistMono.variable} overflow-x-hidden bg-light-background antialiased`}
+        className={`${inter.variable} overflow-x-hidden bg-light-background antialiased`}
       >
         <DateProvider>
           <div className="fixed inset-x-0 top-0 isolate z-30 h-[50px]">

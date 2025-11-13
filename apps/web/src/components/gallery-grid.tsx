@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { IconBox } from "./icon-box";
 import { FigmaButton } from "./ui/figma-button";
+import { IconButton } from "./ui/icon-button";
 
 type GalleryDesign = {
   id: number;
@@ -118,21 +119,16 @@ export function GalleryGrid() {
                   </div>
                 </div>
                 {design.preview_url ? (
-                  <FigmaButton
-                    asChild
-                    className="shrink-0 p-2"
-                    size="default"
-                    variant="secondary"
-                  >
+                  <IconButton asChild size="default" variant="secondary">
                     <Link
                       aria-label="Abrir preview en Figma"
                       href={design.preview_url}
                       rel="noopener noreferrer"
                       target="_blank"
                     >
-                      <Eye />
+                      <Eye className="size-4" />
                     </Link>
-                  </FigmaButton>
+                  </IconButton>
                 ) : null}
               </div>
             </div>
@@ -143,6 +139,7 @@ export function GalleryGrid() {
                     className="w-full"
                     disabled
                     iconLead={<Lock />}
+                    size="large"
                     variant="secondary"
                   >
                     <span className="font-medium text-sm">
@@ -150,6 +147,7 @@ export function GalleryGrid() {
                     </span>
                   </FigmaButton>
                   <p className="mt-3 flex items-center justify-center gap-2 text-light-secondary text-xs">
+                    <Figma className="h-4 w-4" />
                     Las descargas de Figma estarán disponibles próximamente.
                   </p>
                 </>

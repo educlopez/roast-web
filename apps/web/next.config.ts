@@ -17,6 +17,10 @@ const nextConfig: NextConfig = withVercelToolbar()({
         protocol: "https",
         hostname: "github.com",
       },
+      {
+        protocol: "https",
+        hostname: "unavatar.io",
+      },
     ],
   },
 });

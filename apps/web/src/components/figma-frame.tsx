@@ -62,7 +62,7 @@ export function FigmaFrame({
       {label && (
         <div
           className={cn(
-            "-top-5 absolute left-0 flex items-center gap-1 py-1 font-medium text-[11px] text-violet-500 tracking-[0.2em] backdrop-blur"
+            "-top-5 absolute left-0 flex items-center gap-1 py-1 font-normal text-[11px] text-violet-500 leading-4 tracking-[0.005em] backdrop-blur"
           )}
         >
           {label.icon && (

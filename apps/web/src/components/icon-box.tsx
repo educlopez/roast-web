@@ -139,7 +139,9 @@ const iconConfigs: Record<string, IconConfig> = {
 };
 
 function getIconConfig(type: string | null | undefined): IconConfig {
-  if (!type) return iconConfigs.default;
+  if (!type) {
+    return iconConfigs.default;
+  }
 
   const normalizedType = type.toLowerCase().trim();
 

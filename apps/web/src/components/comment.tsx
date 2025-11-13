@@ -56,12 +56,12 @@ export function Comment({
         if (innerDiv) {
           // Measure the actual height including padding
           const height = innerDiv.scrollHeight;
-          console.log(
-            "Measured height:",
-            height,
-            "offsetHeight:",
-            innerDiv.offsetHeight
-          );
+          // console.log(
+          //   "Measured height:",
+          //   height,
+          //   "offsetHeight:",
+          //   innerDiv.offsetHeight
+          // );
           if (height > 0) {
             setContentHeight(height);
           }

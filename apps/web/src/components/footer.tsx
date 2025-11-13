@@ -53,7 +53,7 @@ export default function Footer() {
                   className="shrink-0"
                   shape="square"
                   size="lg"
-                  src="https://github.com/educlopez.png"
+                  src="https://res.cloudinary.com/dyzxnud9z/image/upload/v1759818651/smoothui/educalvolpz.jpg"
                 />
                 <span className="whitespace-nowrap font-medium text-light-primary text-sm">
                   Eduardo Calvo
