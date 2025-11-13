@@ -1,10 +1,10 @@
 "use client";
 
 import { AnimatePresence, motion } from "motion/react";
-import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { useClickOutside } from "@/hooks/use-click-outside";
 import { cn } from "@/lib/utils";
+import { Avatar } from "./avatar";
 
 type CommentProps = {
   avatarUrl?: string;
@@ -119,27 +119,20 @@ export function Comment({
             left: isOpen ? 12 : 4,
             top: isOpen ? 12 : 4,
           }}
-          className="absolute size-6 overflow-hidden rounded-full"
+          className="absolute"
           transition={{
             type: "spring",
             stiffness: 300,
             damping: 25,
           }}
         >
-          <div className="relative size-6 overflow-hidden rounded-full border border-white border-solid">
-            <Image
-              alt={avatarAlt}
-              className="pointer-events-none object-cover object-center"
-              fill
-              src={avatarUrl}
-            />
-            {/* Avatar status badge */}
-            {hasNotification && (
-              <div className="-translate-y-1/2 absolute top-1/2 left-0 size-6">
-                <div className="-translate-x-1/2 -translate-y-1/2 absolute top-1/2 left-1/2 size-6 rounded-full bg-orange-500" />
-              </div>
-            )}
-          </div>
+          <Avatar
+            alt={avatarAlt}
+            hasNotification={hasNotification}
+            shape="circle"
+            size="default"
+            src={avatarUrl}
+          />
         </motion.div>
 
         {/* Content - always rendered but hidden when closed for measurement */}

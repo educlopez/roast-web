@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Avatar } from "./avatar";
 import { CardLink } from "./cardLink";
 import { FigmaFrame } from "./figma-frame";
 
@@ -47,13 +48,12 @@ export default function Footer() {
                 <span className="whitespace-nowrap text-light-secondary text-sm">
                   Made by
                 </span>
-                <Image
+                <Avatar
                   alt="User Avatar of Eduardo Calvo"
-                  className="h-7 w-7 shrink-0 rounded-md"
-                  height={32}
-                  loading="lazy"
+                  className="shrink-0"
+                  shape="square"
+                  size="lg"
                   src="https://github.com/educlopez.png"
-                  width={32}
                 />
                 <span className="whitespace-nowrap font-medium text-light-primary text-sm">
                   Eduardo Calvo
