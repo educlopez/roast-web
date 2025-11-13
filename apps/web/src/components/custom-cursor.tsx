@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { motion, useMotionValue, useSpring } from "motion/react";
+import { useEffect, useState } from "react";
 
 type CursorMode = "always" | "hover" | "never";
 
@@ -16,8 +16,10 @@ type CustomCursorProps = {
 };
 
 // Generate cursor SVG data URI with custom color
-function generateCursorSvgDataUri(cursorColor: string, size: number = 24): string {
-  const fillColor = cursorColor.startsWith("#") ? cursorColor : `#${cursorColor}`;
+function generateCursorSvgDataUri(cursorColor: string, size = 24): string {
+  const fillColor = cursorColor.startsWith("#")
+    ? cursorColor
+    : `#${cursorColor}`;
   const scale = size / 20; // Original SVG is 20px wide
   const width = size;
   const height = Math.round(22 * scale); // Original SVG is 22px tall
@@ -36,7 +38,7 @@ export function CustomCursor({
   labelTextColor = "#ffffff",
   mode = "hover",
   cursorSize = 24,
-  labelOffset = { x: 35, y: 50 },
+  labelOffset = { x: 60, y: 15 },
 }: CustomCursorProps) {
   const [isVisible, setIsVisible] = useState(false);
   const [hoverLabel, setHoverLabel] = useState<string>("");
@@ -66,7 +68,9 @@ export function CustomCursor({
     const handleMouseOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       // Check for data-cursor-label attribute on the element or its parents
-      const elementWithLabel = target.closest("[data-cursor-label]") as HTMLElement | null;
+      const elementWithLabel = target.closest(
+        "[data-cursor-label]"
+      ) as HTMLElement | null;
 
       if (elementWithLabel) {
         const label = elementWithLabel.getAttribute("data-cursor-label");
@@ -78,7 +82,10 @@ export function CustomCursor({
 
     // Update CSS variable with cursor SVG
     const cursorValue = generateCursorSvgDataUri(cursorColor, cursorSize);
-    document.documentElement.style.setProperty("--f-cursor-default", cursorValue);
+    document.documentElement.style.setProperty(
+      "--f-cursor-default",
+      cursorValue
+    );
 
     window.addEventListener("mousemove", handleMouseMove);
     document.addEventListener("mouseenter", handleMouseEnter);
@@ -108,7 +115,7 @@ export function CustomCursor({
       {/* Label */}
       {shouldShowLabel() && displayLabel && (
         <motion.div
-          className="pointer-events-none fixed left-0 top-0 z-[9998]"
+          className="pointer-events-none fixed top-0 left-0 z-[9998]"
           style={{
             x: labelXSpring,
             y: labelYSpring,
@@ -124,7 +131,7 @@ export function CustomCursor({
               boxShadow: "0px 5.486px 10.971px 0px rgba(0,0,0,0.12)",
             }}
           >
-            <p className="whitespace-nowrap text-sm font-normal tracking-wide">
+            <p className="whitespace-nowrap font-normal text-sm tracking-wide">
               {displayLabel}
             </p>
           </div>
@@ -133,4 +140,3 @@ export function CustomCursor({
     </>
   );
 }
-
