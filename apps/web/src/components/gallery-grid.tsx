@@ -9,6 +9,12 @@ import { IconBox } from "./icon-box";
 import { FigmaButton } from "./ui/figma-button";
 import { IconButton } from "./ui/icon-button";
 
+type Category = {
+  id: string;
+  name: string;
+  description: string | null;
+};
+
 type GalleryDesign = {
   id: number;
   title: string;
@@ -16,7 +22,8 @@ type GalleryDesign = {
   url?: string | null;
   preview_url?: string | null;
   download_url?: string | null;
-  description?: string | null;
+  categoria?: string | null;
+  categoria_data?: Category | null;
   subtitle?: string | null;
   submission_id?: string | null;
   [key: string]: unknown;
@@ -33,7 +40,14 @@ export function GalleryGrid() {
       setStatus("loading");
       const { data, error } = await supabase
         .from("designs")
-        .select("*")
+        .select(`
+          *,
+          categoria_data:categories!categoria (
+            id,
+            name,
+            description
+          )
+        `)
         .order("created_at", { ascending: false });
 
       if (error) {
@@ -92,7 +106,9 @@ export function GalleryGrid() {
       {designs.map((design) => (
         <article
           className="flex flex-col overflow-hidden rounded-lg bg-light-background shadow-neutral-soft transition-shadow hover:shadow-neutral-soft-hover"
-          data-cursor-label={design.subtitle || design.description || undefined}
+          data-cursor-label={
+            design.subtitle || design.categoria_data?.name || undefined
+          }
           key={design.id}
         >
           <div className="relative aspect-[16/10] overflow-hidden bg-light-background-secondary">
@@ -110,7 +126,7 @@ export function GalleryGrid() {
                 <div className="flex flex-1 items-center gap-3">
                   <IconBox
                     size={24}
-                    type={design.subtitle || design.description || undefined}
+                    type={design.subtitle || design.categoria_data?.name || undefined}
                   />
                   <div className="flex-1">
                     <h3 className="font-semibold text-lg text-light-primary">

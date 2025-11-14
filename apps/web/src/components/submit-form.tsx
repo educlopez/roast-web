@@ -1,23 +1,67 @@
 "use client";
 
 import { Send } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { submitWebsite } from "@/app/actions/submit-website";
 import { FigmaButton } from "@/components/ui/figma-button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/lib/supabase";
+
+type Category = {
+  id: string;
+  name: string;
+  description: string | null;
+};
 
 export function SubmitForm() {
   const [loading, setLoading] = useState(false);
+  const [categoria, setCategoria] = useState("");
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [categoriesLoading, setCategoriesLoading] = useState(true);
   const { toast } = useToast();
+
+  useEffect(() => {
+    async function fetchCategories() {
+      try {
+        const { data, error } = await supabase
+          .from("categories")
+          .select("id, name, description")
+          .order("name");
+
+        if (error) {
+          console.error("Error fetching categories:", error);
+          return;
+        }
+
+        setCategories(data || []);
+      } catch (error) {
+        console.error("Unexpected error fetching categories:", error);
+      } finally {
+        setCategoriesLoading(false);
+      }
+    }
+
+    fetchCategories();
+  }, []);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setLoading(true);
 
     const formData = new FormData(e.currentTarget);
+    if (categoria) {
+      formData.set("categoria", categoria);
+    }
     const result = await submitWebsite(formData);
 
     setLoading(false);
@@ -27,6 +71,9 @@ export function SubmitForm() {
         title: "¡Enviado con éxito!",
         description: "Revisare tu proyecto pronto.",
       });
+      // Reset form
+      e.currentTarget.reset();
+      setCategoria("");
     } else {
       toast({
         title: "Error",
@@ -55,6 +102,49 @@ export function SubmitForm() {
               required
               type="url"
             />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="categoria">Categoría</Label>
+            <Select
+              disabled={categoriesLoading}
+              name="categoria"
+              onValueChange={setCategoria}
+              required
+              value={categoria}
+            >
+              <SelectTrigger className="h-12 border-0 bg-dark-background-secondary text-dark-primary focus-visible:ring-1 focus-visible:ring-violet-600">
+                <SelectValue
+                  placeholder={
+                    categoriesLoading
+                      ? "Cargando categorías..."
+                      : "Selecciona una categoría"
+                  }
+                />
+              </SelectTrigger>
+              <SelectContent className="bg-dark-background-secondary text-dark-primary">
+                {categories.map((category) => (
+                  <SelectItem key={category.id} value={category.id}>
+                    {category.name}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="x_handle">
+              Handle de X.com (opcional)
+            </Label>
+            <Input
+              className="h-12 border-0 bg-dark-background-secondary text-dark-primary placeholder:text-dark-tertiary focus-visible:ring-1 focus-visible:ring-violet-600"
+              id="x_handle"
+              name="x_handle"
+              placeholder="@tuusuario"
+              type="text"
+            />
+            <p className="text-dark-tertiary text-xs">
+              Si lo proporcionas, te mencionaremos cuando publiquemos tu proyecto
+              en X.com
+            </p>
           </div>
           <div className="space-y-2">
             <Label htmlFor="comments">Comentarios adicionales</Label>

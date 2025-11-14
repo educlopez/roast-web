@@ -23,7 +23,7 @@ type IconConfig = {
 
 // Color schemes matching the Figma examples
 const iconConfigs: Record<string, IconConfig> = {
-  // Specific project types
+  // Specific project types/categories
   portfolio: {
     icon: Briefcase,
     bgColor: "#F1E5FF",
@@ -39,10 +39,10 @@ const iconConfigs: Record<string, IconConfig> = {
     bgColor: "#E5F4FF",
     iconColor: "#0D99FF",
   },
-  directorio: {
-    icon: FolderOpen,
-    bgColor: "#EBEBFF",
-    iconColor: "#4D49FC",
+  producto: {
+    icon: Sparkles,
+    bgColor: "#FFE0FC",
+    iconColor: "#FF24BD",
   },
   recurso: {
     icon: Sparkles,

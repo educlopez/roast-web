@@ -25,7 +25,26 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 export async function submitWebsite(formData: FormData) {
   try {
     const url = formData.get("url") as string;
+    const categoriaId = formData.get("categoria") as string;
+    const xHandle = formData.get("x_handle") as string | null;
     const comments = formData.get("comments") as string;
+
+    // Validate categoria is a valid UUID
+    if (!categoriaId || !/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(categoriaId)) {
+      return {
+        success: false,
+        error: "Por favor, selecciona una categoría válida",
+      };
+    }
+
+    // Get category name for email notification
+    const { data: categoryData, error: categoryError } = await supabase
+      .from("categories")
+      .select("name")
+      .eq("id", categoriaId)
+      .single();
+
+    const categoriaName = categoryData?.name || categoriaId;
 
     // Check if the website has already been submitted
     const { data: existingSubmission, error: checkError } = await supabase
@@ -52,7 +71,15 @@ export async function submitWebsite(formData: FormData) {
     // Insert the new submission
     const { error: insertError } = await supabase
       .from("website_submissions")
-      .insert([{ url, comments, status: "pending" }])
+      .insert([
+        {
+          url,
+          categoria: categoriaId,
+          x_handle: xHandle || null,
+          comments,
+          status: "pending",
+        },
+      ])
       .select();
 
     if (insertError) {
@@ -68,7 +95,9 @@ export async function submitWebsite(formData: FormData) {
       text: `
         Nueva solicitud de diseño:
         URL: ${url}
-        Comentarios: ${comments}
+        Categoría: ${categoriaName}
+        Handle X.com: ${xHandle || "No proporcionado"}
+        Comentarios: ${comments || "No proporcionados"}
       `,
     });
 

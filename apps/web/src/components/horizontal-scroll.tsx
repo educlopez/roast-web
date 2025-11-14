@@ -16,11 +16,18 @@ const SKELETON_KEYS = [
   "design-skeleton-c",
 ];
 
+type Category = {
+  id: string;
+  name: string;
+  description: string | null;
+};
+
 type Design = {
   id: number;
   title: string;
   image_url: string;
-  description: string;
+  categoria: string;
+  categoria_data?: Category | null;
   before_img: string;
   url: string;
   preview_url?: string | null;
@@ -98,7 +105,14 @@ export function HorizontalScroll() {
       setStatus("loading");
       const { data, error } = await supabase
         .from("designs")
-        .select("*")
+        .select(`
+          *,
+          categoria_data:categories!categoria (
+            id,
+            name,
+            description
+          )
+        `)
         .order("created_at", { ascending: false })
         .limit(5);
 
@@ -413,7 +427,7 @@ export function HorizontalScroll() {
                             href={design.url}
                             imgAlt="preview image"
                             imgSrc={design.before_img}
-                            subtitle={design.description}
+                            subtitle={design.categoria_data?.name || design.categoria}
                             target="_blank"
                             title={design.title}
                           />
