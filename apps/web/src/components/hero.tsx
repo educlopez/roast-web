@@ -152,14 +152,6 @@ export default function Hero() {
           />
         </motion.div>
         <div className="relative z-10 mx-auto max-w-4xl px-4 text-center">
-          <motion.p
-            animate={{ opacity: 1, y: 0 }}
-            className="mb-2 font-normal text-light-secondary text-sm md:text-base"
-            initial={{ opacity: 0, y: 10 }}
-            transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
-          >
-            Rediseño completo
-          </motion.p>
           <motion.div
             animate={{ opacity: 1, y: 0 }}
             className="mx-auto mb-6 max-w-3xl"
