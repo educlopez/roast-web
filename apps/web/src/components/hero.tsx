@@ -119,21 +119,25 @@ export default function Hero() {
             x: [0, 30, -20, 15, 0],
             y: [0, -25, 20, -10, 0],
           }}
-          className="pointer-events-none absolute top-[30%] left-[10%] z-20 hidden md:block"
+          className="pointer-events-none absolute top-[30%] left-[10%] z-90 hidden md:block"
           transition={{
             duration: 8,
             repeat: Number.POSITIVE_INFINITY,
             ease: "easeInOut",
           }}
         >
-          <CursorLabel color="#9747FF" label="@maria_nav" textColor="white" />
+          <CursorLabel
+            color="#9747FF"
+            label="@maria_smoothui"
+            textColor="white"
+          />
         </motion.div>
         <motion.div
           animate={{
             x: [0, -25, 20, -15, 0],
             y: [0, 30, -20, 15, 0],
           }}
-          className="pointer-events-none absolute top-[40%] right-[10%] z-20 hidden md:block"
+          className="pointer-events-none absolute top-[40%] right-[10%] z-90 hidden md:block"
           transition={{
             duration: 10,
             repeat: Number.POSITIVE_INFINITY,
@@ -143,7 +147,7 @@ export default function Hero() {
         >
           <CursorLabel
             color="#FFCD29"
-            label="@carlos_design"
+            label="@carlos_sparkbites"
             textColor="text-light-primary"
           />
         </motion.div>
