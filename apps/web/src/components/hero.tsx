@@ -1,5 +1,6 @@
 "use client";
 
+import { motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -11,6 +12,8 @@ import { useDateContext } from "@/context/DateContext";
 import { useAvailableSpots } from "@/hooks/use-available-spots";
 import { supabase } from "@/lib/supabase";
 import { Comment } from "./comment";
+import { CursorLabel } from "./cursor-label";
+import { FigmaFrame } from "./figma-frame";
 
 // Configure which 4 designs to show in the hero section
 // Add the exact titles of the 4 designs you want to display
@@ -110,37 +113,118 @@ export default function Hero() {
   return (
     <>
       <section className="relative flex min-h-[70vh] items-center justify-center py-20">
+        {/* Floating cursors with labels */}
+        <motion.div
+          animate={{
+            x: [0, 30, -20, 15, 0],
+            y: [0, -25, 20, -10, 0],
+          }}
+          className="pointer-events-none absolute top-[30%] left-[10%] z-20 hidden md:block"
+          transition={{
+            duration: 8,
+            repeat: Number.POSITIVE_INFINITY,
+            ease: "easeInOut",
+          }}
+        >
+          <CursorLabel color="#9747FF" label="@maria_nav" textColor="white" />
+        </motion.div>
+        <motion.div
+          animate={{
+            x: [0, -25, 20, -15, 0],
+            y: [0, 30, -20, 15, 0],
+          }}
+          className="pointer-events-none absolute top-[40%] right-[10%] z-20 hidden md:block"
+          transition={{
+            duration: 10,
+            repeat: Number.POSITIVE_INFINITY,
+            ease: "easeInOut",
+            delay: 1,
+          }}
+        >
+          <CursorLabel
+            color="#FFCD29"
+            label="@carlos_design"
+            textColor="text-light-primary"
+          />
+        </motion.div>
         <div className="relative z-10 mx-auto max-w-4xl px-4 text-center">
-          <Balancer
-            as="h1"
-            className="mb-6 font-normal text-4xl text-light-primary tracking-tight md:text-6xl"
+          <motion.p
+            animate={{ opacity: 1, y: 0 }}
+            className="mb-2 font-normal text-light-secondary text-sm md:text-base"
+            initial={{ opacity: 0, y: 10 }}
+            transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
-            Rediseños que
-            <br />
-            <span className="md:text-light-secondary">
-              {" "}
-              transforman tu proyecto.
-            </span>
-          </Balancer>
-          <Balancer
-            as="p"
-            className="relative mx-auto mb-8 max-w-2xl text-base text-light-primary md:text-light-secondary"
+            Rediseño completo
+          </motion.p>
+          <motion.div
+            animate={{ opacity: 1, y: 0 }}
+            className="mx-auto mb-6 max-w-3xl"
+            initial={{ opacity: 0, y: 20 }}
+            transition={{
+              duration: 0.5,
+              ease: [0.25, 0.46, 0.45, 0.94],
+            }}
           >
-            ¿Necesitas darle un nuevo aire a tu web? Envía tu proyecto a través
-            del formulario y descubre cómo puede{" "}
-            <span className="relative inline-block">
-              renovarse
-              <div className="-right-4 -translate-y-1/2 absolute top-1/2 z-20 hidden md:block">
-                <Comment
-                  authorName="Edu Calvo"
-                  message="Espero que te guste el resultado"
-                  timestamp="Hace 1 año"
-                />
-              </div>
-            </span>
-            .
-          </Balancer>
-          <div className="flex flex-col items-center justify-center gap-4">
+            <Balancer
+              as="h1"
+              className="font-normal text-4xl text-light-primary tracking-tight md:text-6xl"
+            >
+              Te ayudo a que tu web{" "}
+              <span className="relative inline-flex items-baseline">
+                <FigmaFrame
+                  className="-my-1 inline-flex items-center"
+                  cornerSize="sm"
+                  padding="sm"
+                  showCorners={true}
+                >
+                  <span className="text-light-primary leading-none">
+                    transmita
+                  </span>
+                </FigmaFrame>
+              </span>
+            </Balancer>
+          </motion.div>
+          <motion.div
+            animate={{ opacity: 1, y: 0 }}
+            className="relative mx-auto mb-8 max-w-2xl"
+            initial={{ opacity: 0, y: 20 }}
+            transition={{
+              duration: 0.5,
+              delay: 0.2,
+              ease: [0.25, 0.46, 0.45, 0.94],
+            }}
+          >
+            <Balancer
+              as="p"
+              className="text-base text-light-primary md:text-light-secondary"
+            >
+              Analizo tu proyecto y te propongo un rediseño visual que mejora tu
+              comunicación,
+              <span className="relative inline-block">
+                {" "}
+                <span className="relative inline-block">
+                  estilo y estructura.
+                  <div className="-right-4 -translate-y-1/2 absolute top-1/2 z-20 hidden md:block">
+                    <Comment
+                      authorName="Edu Calvo"
+                      message="Espero que te guste el resultado"
+                      timestamp="Hace 1 año"
+                    />
+                  </div>
+                </span>
+              </span>
+            </Balancer>
+          </motion.div>
+          <motion.div
+            animate={{ opacity: 1, y: 0 }}
+            className="flex flex-col items-center justify-center gap-4"
+            initial={{ opacity: 0, y: 20 }}
+            transition={{
+              duration: 0.5,
+              delay: 0.4,
+              ease: [0.25, 0.46, 0.45, 0.94],
+            }}
+          >
             <FigmaButton asChild size="xl" variant="figjam">
               <Link
                 className={isLoading ? "blur-xs" : ""}
@@ -151,7 +235,7 @@ export default function Hero() {
               </Link>
             </FigmaButton>
             <WebsiteStatus />
-          </div>
+          </motion.div>
           <div className="mt-8 flex flex-col items-center justify-center gap-4">
             <SocialSelector />
           </div>
