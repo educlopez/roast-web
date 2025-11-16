@@ -6,6 +6,10 @@ import {
   useEffect,
   useState,
 } from "react";
+import {
+  REGISTRATION_END_EXCLUSIVE,
+  REGISTRATION_START,
+} from "@/lib/registration-dates";
 
 type DateContextType = {
   isDateReached: boolean;
@@ -24,11 +28,9 @@ export function DateProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     function updateState() {
-      const registrationStart = new Date("2025-11-17T10:00:00");
-      const registrationEndExclusive = new Date("2026-01-02T00:00:00");
       const currentDate = new Date();
-      const isAfterEnd = currentDate >= registrationEndExclusive;
-      const isBeforeStart = currentDate < registrationStart;
+      const isAfterEnd = currentDate >= REGISTRATION_END_EXCLUSIVE;
+      const isBeforeStart = currentDate < REGISTRATION_START;
       const isWithinWindow = !(isBeforeStart || isAfterEnd);
 
       setState({

@@ -11,6 +11,7 @@ import { WebsiteStatus } from "@/components/website-status";
 import { useDateContext } from "@/context/DateContext";
 import { useAvailableSpots } from "@/hooks/use-available-spots";
 import { supabase } from "@/lib/supabase";
+import { RegistrationCountdown } from "./registration-countdown";
 import { Comment } from "./comment";
 import { CursorLabel } from "./cursor-label";
 import { FigmaFrame } from "./figma-frame";
@@ -213,7 +214,7 @@ export default function Hero() {
           </motion.div>
           <motion.div
             animate={{ opacity: 1, y: 0 }}
-            className="flex flex-col items-center justify-center gap-4"
+            className="flex flex-col items-center justify-center gap-3"
             initial={{ opacity: 0, y: 20 }}
             transition={{
               duration: 0.5,
@@ -230,6 +231,9 @@ export default function Hero() {
                 {buttonLabel}
               </Link>
             </FigmaButton>
+            {!isSubmissionEnabled && !isDateReached ? (
+              <RegistrationCountdown />
+            ) : null}
             <WebsiteStatus />
           </motion.div>
           <div className="mt-8 flex flex-col items-center justify-center gap-4">
