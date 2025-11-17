@@ -61,6 +61,9 @@ export const metadata: Metadata = {
   icons: {
     shortcut: "/favicon.ico",
   },
+  appleWebApp: {
+    title: "Roast by Edu",
+  },
 };
 
 export default function RootLayout({
