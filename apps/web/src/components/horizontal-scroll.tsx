@@ -417,9 +417,13 @@ export function HorizontalScroll() {
                       <div className="relative h-full w-full">
                         <Image
                           alt={design.title}
-                          className="h-full w-full rounded-xl object-cover"
+                          className="h-full w-full select-none rounded-xl object-cover"
+                          draggable={false}
                           height={600}
                           src={design.image_url}
+                          style={{
+                            userSelect: "none",
+                          }}
                           width={800}
                         />
                         <div className="absolute bottom-3 left-3">
@@ -427,7 +431,9 @@ export function HorizontalScroll() {
                             href={design.url}
                             imgAlt="preview image"
                             imgSrc={design.before_img}
-                            subtitle={design.categoria_data?.name || design.categoria}
+                            subtitle={
+                              design.categoria_data?.name || design.categoria
+                            }
                             target="_blank"
                             title={design.title}
                           />
