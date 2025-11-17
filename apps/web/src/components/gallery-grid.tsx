@@ -126,7 +126,11 @@ export function GalleryGrid() {
                 <div className="flex flex-1 items-center gap-3">
                   <IconBox
                     size={24}
-                    type={design.subtitle || design.categoria_data?.name || undefined}
+                    type={
+                      design.subtitle ||
+                      design.categoria_data?.name ||
+                      undefined
+                    }
                   />
                   <div className="flex-1">
                     <h3 className="font-semibold text-lg text-light-primary">
@@ -164,7 +168,8 @@ export function GalleryGrid() {
                   </FigmaButton>
                   <p className="mt-3 flex items-center justify-center gap-2 text-light-secondary text-xs">
                     <Figma className="h-4 w-4" />
-                    Las descargas de Figma estarán disponibles próximamente.
+                    Los archivos de Figma serán de pago. La preview siempre está
+                    disponible.
                   </p>
                 </>
               ) : (
@@ -181,7 +186,8 @@ export function GalleryGrid() {
                   </FigmaButton>
                   <p className="mt-3 flex items-center justify-center gap-2 text-light-secondary text-xs">
                     <Figma className="h-4 w-4" />
-                    Las descargas de Figma estarán disponibles próximamente.
+                    Los archivos de Figma serán de pago. La preview siempre está
+                    disponible.
                   </p>
                 </>
               )}

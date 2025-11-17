@@ -17,8 +17,9 @@ export default function GalleryPage() {
           </h1>
           <p className="text-base text-light-secondary md:text-lg">
             Revisa todos los proyectos que ya han pasado por un roast. Cada uno
-            incluye su preview y nombre. Las descargas de Figma estarán
-            disponibles próximamente.
+            incluye su preview y nombre. La preview del proyecto siempre estará
+            disponible de forma gratuita, mientras que los archivos de Figma
+            serán de pago.
           </p>
         </header>
         <GalleryGrid />
