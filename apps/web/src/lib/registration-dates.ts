@@ -1,3 +1,3 @@
 export const REGISTRATION_START = new Date("2025-11-17T17:00:00");
 
-export const REGISTRATION_END_EXCLUSIVE = new Date("2026-01-12T00:00:00");
+export const REGISTRATION_END_EXCLUSIVE = new Date("2025-12-12T00:00:00");
