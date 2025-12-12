@@ -31,7 +31,7 @@
     "clsx": "^2.1.1",
     "lucide-react": "^0.556.0",
     "motion": "^12.23.25",
-    "next": "16.0.7",
+    "next": "16.0.10",
     "next-cloudinary": "^6.17.5",
     "react": "19.2.1",
     "react-dom": "19.2.1",
