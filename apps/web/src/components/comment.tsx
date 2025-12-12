@@ -17,7 +17,7 @@ type CommentProps = {
 };
 
 export function Comment({
-  avatarUrl = "https://res.cloudinary.com/dyzxnud9z/image/upload/v1759818651/smoothui/educalvolpz.jpg",
+  avatarUrl = "https://ik.imagekit.io/16u211libb/avatar-educalvolpz.jpeg?updatedAt=1765524159631",
   avatarAlt = "Avatar",
   className,
   hasNotification = false,
