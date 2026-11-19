@@ -19,18 +19,21 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL("https://roast.educalvolopez.com"),
   title: {
-    default: "Roast by Edu Calvo",
+    default: "Roast by Edu Calvo — Rediseño web gratuito",
     template: "%s | Roast by Edu Calvo",
   },
   description:
-    "Descubre Roast by Edu Calvo: un servicio gratuito donde rediseño y mejoro proyectos web enviados por usuarios. Obtén ideas creativas, análisis detallados y un rediseño fresco para destacar online. ¡Envía tu web hoy!",
+    "Roast by Edu Calvo: envía tu web y la rediseño gratis. Recibe un análisis de UI/UX y una propuesta de diseño en Figma para que tu proyecto destaque.",
   keywords: [
     "rediseño web gratuito, análisis de proyectos web, mejora de sitios web, crítica de diseño web, Roast by Edu Calvo, rediseño creativo, optimización de diseño web, proyectos web, análisis UI/UX, diseño web gratis",
   ],
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
-    title: "Roast by Edu Calvo",
+    title: "Roast by Edu Calvo — Rediseño web gratuito",
     description:
-      "Descubre Roast by Edu Calvo: un servicio gratuito donde rediseño y mejoro proyectos web enviados por usuarios. Obtén ideas creativas, análisis detallados y un rediseño fresco para destacar online. ¡Envía tu web hoy!",
+      "Roast by Edu Calvo: envía tu web y la rediseño gratis. Recibe un análisis de UI/UX y una propuesta de diseño en Figma para que tu proyecto destaque.",
     url: "https://roast.educalvolopez.com",
     siteName: "Roast by Edu Calvo",
     images: [
@@ -40,7 +43,7 @@ export const metadata: Metadata = {
         height: 1080,
       },
     ],
-    locale: "es-ES",
+    locale: "es_ES",
     type: "website",
   },
   robots: {
@@ -55,7 +58,7 @@ export const metadata: Metadata = {
     },
   },
   twitter: {
-    title: "SmoothUI",
+    title: "Roast by Edu Calvo — Rediseño web gratuito",
     card: "summary_large_image",
   },
   icons: {
@@ -63,6 +66,19 @@ export const metadata: Metadata = {
   },
   appleWebApp: {
     title: "Roast by Edu",
+  },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Roast by Edu Calvo",
+  url: "https://roast.educalvolopez.com",
+  inLanguage: "es-ES",
+  publisher: {
+    "@type": "Person",
+    name: "Eduardo Calvo",
+    url: "https://educalvolopez.com",
   },
 };
 
@@ -74,10 +90,15 @@ export default function RootLayout({
   const shouldInjectToolbar = process.env.NODE_ENV === "development";
 
   return (
-    <html lang="en">
+    <html lang="es">
       <body
         className={`${inter.variable} overflow-x-hidden bg-light-background antialiased`}
       >
+        <script
+          // biome-ignore lint/security/noDangerouslySetInnerHtml: static JSON-LD built from constants
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          type="application/ld+json"
+        />
         <DateProvider>
           <div className="fixed inset-x-0 top-0 isolate z-30 h-[50px]">
             <div className="gradient-mask-b-0 absolute inset-0 backdrop-blur-[1px]" />
