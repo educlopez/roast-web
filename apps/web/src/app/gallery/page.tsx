@@ -5,6 +5,23 @@ export const metadata: Metadata = {
   title: "Galería de Roasts",
   description:
     "Explora todos los roasts completados por Edu Calvo. Descubre cada proyecto y prepárate para descargar los archivos de Figma próximamente.",
+  alternates: {
+    canonical: "/gallery",
+  },
+  openGraph: {
+    title: "Galería de Roasts | Roast by Edu Calvo",
+    description:
+      "Explora todos los roasts completados por Edu Calvo. Descubre cada proyecto y prepárate para descargar los archivos de Figma próximamente.",
+    url: "/gallery",
+    siteName: "Roast by Edu Calvo",
+    images: [{ url: "/og.jpg", width: 1920, height: 1080 }],
+    locale: "es_ES",
+    type: "website",
+  },
+  twitter: {
+    title: "Galería de Roasts | Roast by Edu Calvo",
+    card: "summary_large_image",
+  },
 };
 
 export default function GalleryPage() {
